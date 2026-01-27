@@ -21,8 +21,12 @@ function Dashboard() {
       try {
         setLoading(true);
         setError(null);
+        console.log('DEBUG: Getting token from Clerk...');
         const token = await getToken();
+        console.log('DEBUG: Token received:', token ? 'Yes' : 'No');
+        console.log('DEBUG: Calling fetchRepos...');
         const data = await fetchRepos(token);
+        console.log('DEBUG: Repos received:', data);
         setRepos(data);
       } catch (err) {
         console.error('Failed to fetch repos:', err);

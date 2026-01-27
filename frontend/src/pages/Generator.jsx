@@ -1,72 +1,63 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useUser, RedirectToSignIn } from '@clerk/clerk-react';
+import { useUser, useAuth, RedirectToSignIn } from '@clerk/clerk-react';
 import Navbar from '../components/Navbar';
 import MarkdownPreview from '../components/MarkdownPreview';
+import { generateReadme, getGeneration, importRepo, fetchRepos } from '../services/api';
 
 const templates = [
-  { id: 'minimalist', name: 'Minimalist', description: 'Clean and simple' },
-  { id: 'professional', name: 'Professional', description: 'Detailed and complete' },
-  { id: 'portfolio', name: 'Portfolio', description: 'Showcase-ready' },
+  { 
+    id: 'minimalist', 
+    name: 'Minimalist', 
+    description: 'Clean and simple - only essential info',
+    icon: '📄'
+  },
+  { 
+    id: 'professional', 
+    name: 'Professional', 
+    description: 'Detailed and complete documentation',
+    icon: '💼'
+  },
+  { 
+    id: 'portfolio', 
+    name: 'Portfolio', 
+    description: 'Showcase-ready with visual appeal',
+    icon: '🚀'
+  },
 ];
-
-const sampleReadme = `# 🚀 Awesome Project
-
-A full-stack web application built with React and Node.js featuring real-time collaboration.
-
-## ✨ Features
-
-- 🔐 Secure authentication with JWT
-- 📊 Real-time data synchronization
-- 🎨 Modern, responsive UI design
-- ⚡ Lightning-fast performance
-
-## 🛠️ Tech Stack
-
-| Category | Technologies |
-|----------|-------------|
-| Frontend | React, CSS3, Vite |
-| Backend | Node.js, Express |
-| Database | PostgreSQL |
-| Auth | JWT, OAuth 2.0 |
-
-## 📦 Installation
-
-\`\`\`bash
-# Clone the repository
-git clone https://github.com/user/awesome-project.git
-
-# Navigate to the project directory
-cd awesome-project
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-\`\`\`
-
-## 🚀 Usage
-
-1. Open your browser and navigate to \`http://localhost:5173\`
-2. Create an account or sign in
-3. Start collaborating!
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-Made with ❤️ by [Your Name](https://github.com/username)
-`;
 
 function Generator() {
   const { repoId } = useParams();
   const { isSignedIn, isLoaded } = useUser();
+  const { getToken } = useAuth();
   const [selectedTemplate, setSelectedTemplate] = useState('professional');
-  const [content, setContent] = useState(sampleReadme);
+  const [content, setContent] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
+  const [error, setError] = useState(null);
+  const [repoInfo, setRepoInfo] = useState(null);
+  const [generationStatus, setGenerationStatus] = useState(null);
+
+  // Fetch repo info on mount
+  useEffect(() => {
+    async function loadRepoInfo() {
+      if (!isSignedIn) return;
+      
+      try {
+        const token = await getToken();
+        const repos = await fetchRepos(token);
+        const repo = repos.find(r => String(r.id) === String(repoId));
+        if (repo) {
+          setRepoInfo(repo);
+        }
+      } catch (err) {
+        console.error('Failed to load repo info:', err);
+      }
+    }
+
+    if (isLoaded && isSignedIn) {
+      loadRepoInfo();
+    }
+  }, [isLoaded, isSignedIn, repoId, getToken]);
 
   if (!isLoaded) {
     return (
@@ -85,10 +76,87 @@ function Generator() {
 
   const handleGenerate = async () => {
     setIsGenerating(true);
-    // Simulate AI generation
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setContent(sampleReadme);
-    setIsGenerating(false);
+    setError(null);
+    setGenerationStatus('Starting generation...');
+    setContent('');
+
+    try {
+      const token = await getToken();
+      console.log('Token obtained:', token ? 'Yes' : 'No');
+      
+      // First, import the repo to get a database ID
+      setGenerationStatus('Importing repository...');
+      
+      // If we have repo info from GitHub, import it
+      let dbRepoId = repoId;
+      if (repoInfo) {
+        console.log('Importing repo:', repoInfo.full_name);
+        const importData = {
+          id: repoInfo.id,
+          name: repoInfo.name,
+          full_name: repoInfo.full_name,
+          description: repoInfo.description || '',
+          language: repoInfo.language || 'Unknown',
+          stargazers_count: repoInfo.stargazers_count || repoInfo.stargrazers_count || 0,
+          forks_count: repoInfo.forks_count || 0,
+          visibility: repoInfo.visibility || 'public',
+          default_branch: repoInfo.default_branch || 'main',
+          updated_at: repoInfo.updated_at || new Date().toISOString()
+        };
+        console.log('Import data:', importData);
+        
+        const importedRepo = await importRepo(token, importData);
+        console.log('Imported repo:', importedRepo);
+        dbRepoId = importedRepo.id;
+      }
+
+      // Start generation
+      setGenerationStatus('Generating README with AI...');
+      console.log('Generating README for repo ID:', dbRepoId, 'template:', selectedTemplate);
+      const response = await generateReadme(token, dbRepoId, selectedTemplate);
+      console.log('Generation response:', response);
+      
+      if (response.status === 'pending') {
+        // Poll for completion
+        setGenerationStatus('AI is writing your README...');
+        let attempts = 0;
+        const maxAttempts = 60; // 60 seconds max
+        
+        while (attempts < maxAttempts) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          const generation = await getGeneration(token, response.generation_id);
+          console.log('Generation status:', generation.status);
+          
+          if (generation.status === 'completed') {
+            setContent(generation.content);
+            setGenerationStatus(null);
+            break;
+          } else if (generation.status === 'failed') {
+            throw new Error('Generation failed. Please try again.');
+          }
+          
+          attempts++;
+          setGenerationStatus(`AI is writing your README... (${attempts}s)`);
+        }
+        
+        if (attempts >= maxAttempts) {
+          throw new Error('Generation timed out. Please try again.');
+        }
+      } else if (response.content) {
+        // Synchronous response with content
+        setContent(response.content);
+        setGenerationStatus(null);
+      } else {
+        throw new Error('Unexpected response format');
+      }
+    } catch (err) {
+      console.error('Generation error:', err);
+      const errorMessage = err.message || 'Failed to generate README';
+      setError(errorMessage);
+      setGenerationStatus(null);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const handleCopy = () => {
@@ -125,7 +193,16 @@ function Generator() {
             </svg>
             README Generator
           </h1>
-          <p className="generator-subtitle">Repository ID: {repoId}</p>
+          <p className="generator-subtitle">
+            {repoInfo ? (
+              <>
+                <strong>{repoInfo.full_name}</strong>
+                {repoInfo.description && <span> - {repoInfo.description}</span>}
+              </>
+            ) : (
+              `Repository ID: ${repoId}`
+            )}
+          </p>
         </div>
 
         {/* Template Selector */}
@@ -136,11 +213,24 @@ function Generator() {
               className={`template-option ${selectedTemplate === template.id ? 'active' : ''}`}
               onClick={() => setSelectedTemplate(template.id)}
             >
+              <div className="template-option-icon">{template.icon}</div>
               <div className="template-option-title">{template.name}</div>
               <div className="template-option-desc">{template.description}</div>
             </div>
           ))}
         </div>
+
+        {/* Error Display */}
+        {error && (
+          <div className="card" style={{ 
+            borderColor: 'var(--error)', 
+            background: 'rgba(239, 68, 68, 0.1)',
+            marginBottom: 'var(--space-4)',
+            padding: 'var(--space-4)'
+          }}>
+            <p style={{ color: 'var(--error)', margin: 0 }}>❌ {error}</p>
+          </div>
+        )}
 
         {/* Generate Button */}
         <div style={{ marginBottom: 'var(--space-6)' }}>
@@ -152,14 +242,14 @@ function Generator() {
           >
             {isGenerating ? (
               <>
-                <span className="animate-pulse">Generating...</span>
+                <span className="animate-pulse">{generationStatus || 'Generating...'}</span>
               </>
             ) : (
               <>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                 </svg>
-                Generate README with AI
+                Generate {selectedTemplate.charAt(0).toUpperCase() + selectedTemplate.slice(1)} README
               </>
             )}
           </button>
@@ -170,7 +260,7 @@ function Generator() {
           <div className="generator-panel">
             <div className="panel-header">
               <span className="panel-title">📝 Editor</span>
-              <button className="btn btn-ghost" onClick={handleCopy}>
+              <button className="btn btn-ghost" onClick={handleCopy} disabled={!content}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
                   <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
@@ -183,7 +273,7 @@ function Generator() {
                 className="editor-textarea"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="Your README content will appear here..."
+                placeholder={isGenerating ? generationStatus : "Click 'Generate' to create your README..."}
               />
             </div>
           </div>
@@ -193,14 +283,20 @@ function Generator() {
               <span className="panel-title">👁️ Preview</span>
             </div>
             <div className="panel-content" style={{ padding: 0, overflow: 'auto' }}>
-              <MarkdownPreview content={content} />
+              {content ? (
+                <MarkdownPreview content={content} />
+              ) : (
+                <div style={{ padding: 'var(--space-8)', textAlign: 'center', color: 'var(--text-muted)' }}>
+                  {isGenerating ? generationStatus : 'Preview will appear here'}
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Actions */}
         <div className="generator-actions">
-          <button className="btn btn-secondary" onClick={handleDownload}>
+          <button className="btn btn-secondary" onClick={handleDownload} disabled={!content}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
               <polyline points="7 10 12 15 17 10" />
@@ -208,7 +304,7 @@ function Generator() {
             </svg>
             Download README.md
           </button>
-          <button className="btn btn-primary">
+          <button className="btn btn-primary" disabled={!content}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
               <polyline points="16 16 12 12 8 16" />
               <line x1="12" y1="12" x2="12" y2="21" />
