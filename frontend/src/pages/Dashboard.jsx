@@ -1,61 +1,41 @@
-import { useState } from 'react';
-import { useUser, RedirectToSignIn } from '@clerk/clerk-react';
+import { useState, useEffect } from 'react';
+import { useUser, useAuth, RedirectToSignIn } from '@clerk/clerk-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RepoCard from '../components/RepoCard';
-
-// Mock data for demonstration
-const mockRepos = [
-  {
-    id: 1,
-    name: 'awesome-project',
-    full_name: 'user/awesome-project',
-    description: 'A full-stack web application built with React and Node.js featuring real-time collaboration.',
-    language: 'JavaScript',
-    stargazers_count: 128,
-    forks_count: 24,
-    visibility: 'public',
-    updated_at: '2024-01-20T10:30:00Z',
-  },
-  {
-    id: 2,
-    name: 'machine-learning-toolkit',
-    full_name: 'user/machine-learning-toolkit',
-    description: 'A comprehensive toolkit for machine learning experiments with PyTorch and TensorFlow integration.',
-    language: 'Python',
-    stargazers_count: 256,
-    forks_count: 48,
-    visibility: 'public',
-    updated_at: '2024-01-18T15:45:00Z',
-  },
-  {
-    id: 3,
-    name: 'rust-cli-tools',
-    full_name: 'user/rust-cli-tools',
-    description: 'High-performance command-line utilities written in Rust for system administration.',
-    language: 'Rust',
-    stargazers_count: 89,
-    forks_count: 12,
-    visibility: 'public',
-    updated_at: '2024-01-15T08:20:00Z',
-  },
-  {
-    id: 4,
-    name: 'design-system',
-    full_name: 'user/design-system',
-    description: 'A modern design system with reusable components for React applications.',
-    language: 'TypeScript',
-    stargazers_count: 342,
-    forks_count: 67,
-    visibility: 'public',
-    updated_at: '2024-01-22T12:00:00Z',
-  },
-];
+import { fetchRepos } from '../services/api';
 
 function Dashboard() {
   const { isSignedIn, isLoaded, user } = useUser();
+  const { getToken } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
-  const [repos] = useState(mockRepos);
+  const [repos, setRepos] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch repos from backend
+  useEffect(() => {
+    async function loadRepos() {
+      if (!isSignedIn) return;
+      
+      try {
+        setLoading(true);
+        setError(null);
+        const token = await getToken();
+        const data = await fetchRepos(token);
+        setRepos(data);
+      } catch (err) {
+        console.error('Failed to fetch repos:', err);
+        setError(err.message || 'Failed to load repositories');
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (isLoaded && isSignedIn) {
+      loadRepos();
+    }
+  }, [isLoaded, isSignedIn, getToken]);
 
   // Show loading while checking auth
   if (!isLoaded) {
@@ -116,7 +96,7 @@ function Dashboard() {
           </div>
           <div className="card stat-card">
             <div className="stat-value">
-              {repos.reduce((acc, repo) => acc + repo.stargazers_count, 0)}
+              {repos.reduce((acc, repo) => acc + (repo.stargazers_count || repo.stargrazers_count || 0), 0)}
             </div>
             <div className="stat-label">Total Stars</div>
           </div>
@@ -126,13 +106,45 @@ function Dashboard() {
           </div>
         </div>
 
-        {filteredRepos.length > 0 ? (
+        {/* Loading State */}
+        {loading && (
+          <div className="card empty-state">
+            <div className="loading-spinner"></div>
+            <h3 className="empty-state-title">Loading your repositories...</h3>
+            <p className="empty-state-description">Fetching data from GitHub</p>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && !loading && (
+          <div className="card empty-state" style={{ borderColor: 'var(--error)' }}>
+            <svg className="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="var(--error)" strokeWidth="1.5">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 8v4M12 16h.01" />
+            </svg>
+            <h3 className="empty-state-title">Failed to load repositories</h3>
+            <p className="empty-state-description">{error}</p>
+            <button 
+              className="btn btn-primary" 
+              style={{ marginTop: 'var(--space-4)' }}
+              onClick={() => window.location.reload()}
+            >
+              Retry
+            </button>
+          </div>
+        )}
+
+        {/* Repos Grid */}
+        {!loading && !error && filteredRepos.length > 0 && (
           <div className="repos-grid">
             {filteredRepos.map(repo => (
               <RepoCard key={repo.id} repo={repo} />
             ))}
           </div>
-        ) : (
+        )}
+
+        {/* Empty State */}
+        {!loading && !error && filteredRepos.length === 0 && (
           <div className="card empty-state">
             <svg className="empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />

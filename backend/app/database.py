@@ -5,7 +5,7 @@ from app.config import settings
 # Create SQLite engine
 engine = create_engine(
     settings.database_url,
-    connect_args{"check_same_thread": Fasle},
+    connect_args={"check_same_thread": False},
     echo=False
 ) 
 
@@ -24,4 +24,4 @@ def get_db():
         db.close()
 
 def init_db():
-    Base.metadat.create_all(bind=engine)
+    Base.metadata.create_all(bind=engine)

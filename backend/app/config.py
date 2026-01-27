@@ -1,21 +1,25 @@
+"""Application configuration and environment variables."""
 from typing import Optional, List
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+
 class Settings(BaseSettings):
+    """Application settings loaded from environment variables."""
+    
     model_config = SettingsConfigDict(
         env_file=".env",
         case_sensitive=False,
         extra="ignore"
     )
-
-# API Keys
-AI_API_KEY: Optional[str] = None
-clerk_secret_key: Optional[str] = None
-
-# Database
-database_url: str = "sqlite:///./readme_ai.db"
-
-# CORS
+    
+    # API Keys
+    gemini_api_key: Optional[str] = None
+    clerk_secret_key: Optional[str] = None
+    
+    # Database
+    database_url: str = "sqlite:///./readme_ai.db"
+    
+    # CORS
     cors_origins: List[str] = ["http://localhost:5173", "http://localhost:3000"]
     
     # GitHub
