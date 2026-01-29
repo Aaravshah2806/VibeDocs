@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useUser, useAuth, RedirectToSignIn } from '@clerk/clerk-react';
 import Navbar from '../components/Navbar';
 import MarkdownPreview from '../components/MarkdownPreview';
-import { generateReadme, getGeneration, importRepo, fetchRepos } from '../services/api';
+import { generateReadme, getGeneration, importRepo, fetchRepos, fetchRepoByIdentifier, getApiBaseUrl } from '../services/api';
 
 const templates = [
   { 
@@ -27,7 +27,8 @@ const templates = [
 ];
 
 function Generator() {
-  const { repoId } = useParams();
+  const { repoId, owner, repo } = useParams();
+  const identifier = owner && repo ? `${owner}/${repo}` : repoId;
   const { isSignedIn, isLoaded } = useUser();
   const { getToken } = useAuth();
   const [selectedTemplate, setSelectedTemplate] = useState('professional');
@@ -35,29 +36,68 @@ function Generator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState(null);
   const [repoInfo, setRepoInfo] = useState(null);
+  const [dbRepoId, setDbRepoId] = useState(null); // DB UUID when repo loaded via fetch endpoint
   const [generationStatus, setGenerationStatus] = useState(null);
+  const [loadError, setLoadError] = useState(null);
 
-  // Fetch repo info on mount
+  const loadRepoInfoRef = useRef(null);
+
+  // Fetch repo info on mount: try list first, then fetch by id or owner/repo
   useEffect(() => {
     async function loadRepoInfo() {
-      if (!isSignedIn) return;
-      
+      if (!isSignedIn || !identifier) return;
+      setRepoInfo(null);
+      setDbRepoId(null);
+      setLoadError(null);
+
       try {
         const token = await getToken();
-        const repos = await fetchRepos(token);
-        const repo = repos.find(r => String(r.id) === String(repoId));
-        if (repo) {
-          setRepoInfo(repo);
+        try {
+          const repos = await fetchRepos(token);
+          const match = repos.find(
+            (r) =>
+              String(r.id) === String(identifier) ||
+              (r.full_name && r.full_name === identifier)
+          );
+          if (match) {
+            setRepoInfo(match);
+            return;
+          }
+        } catch (e) {
+          console.warn('fetchRepos failed, trying fetch-by-identifier:', e);
         }
-      } catch (err) {
+
+        const fetched = await fetchRepoByIdentifier(token, identifier);
+        const repoName = fetched.full_name?.split("/").pop() || fetched.name || identifier;
+        setRepoInfo({
+          full_name: fetched.full_name || identifier,
+          name: repoName,
+          description: null,
+          id: fetched.id,
+        });
+        setDbRepoId(fetched.id);      } catch (err) {
         console.error('Failed to load repo info:', err);
+        const msg = err.message || 'Could not load repository from GitHub';
+        const isNetwork = /failed to fetch|networkerror|load failed/i.test(msg);
+        setLoadError(
+          isNetwork
+            ? 'Cannot reach the API. Start the backend (e.g. `python run.py` in /backend) and ensure it runs on port 8000.'
+            : msg
+        );
       }
     }
 
+    loadRepoInfoRef.current = loadRepoInfo;
     if (isLoaded && isSignedIn) {
       loadRepoInfo();
     }
-  }, [isLoaded, isSignedIn, repoId, getToken]);
+  }, [isLoaded, isSignedIn, identifier, getToken]);
+
+  const retryLoad = () => {
+    setLoadError(null);
+    setError(null);
+    loadRepoInfoRef.current?.();
+  };
 
   if (!isLoaded) {
     return (
@@ -84,36 +124,34 @@ function Generator() {
       const token = await getToken();
       console.log('Token obtained:', token ? 'Yes' : 'No');
       
-      // First, import the repo to get a database ID
-      setGenerationStatus('Importing repository...');
-      
-      // If we have repo info from GitHub, import it
-      let dbRepoId = repoId;
-      if (repoInfo) {
-        console.log('Importing repo:', repoInfo.full_name);
-        const importData = {
-          id: repoInfo.id,
-          name: repoInfo.name,
-          full_name: repoInfo.full_name,
-          description: repoInfo.description || '',
-          language: repoInfo.language || 'Unknown',
-          stargazers_count: repoInfo.stargazers_count || repoInfo.stargrazers_count || 0,
-          forks_count: repoInfo.forks_count || 0,
-          visibility: repoInfo.visibility || 'public',
-          default_branch: repoInfo.default_branch || 'main',
-          updated_at: repoInfo.updated_at || new Date().toISOString()
-        };
-        console.log('Import data:', importData);
-        
-        const importedRepo = await importRepo(token, importData);
-        console.log('Imported repo:', importedRepo);
-        dbRepoId = importedRepo.id;
+      let idForGenerate = dbRepoId;
+
+      if (!idForGenerate) {
+        setGenerationStatus('Importing repository...');
+        if (repoInfo && repoInfo.full_name) {
+          const importData = {
+            id: repoInfo.id,
+            name: repoInfo.name,
+            full_name: repoInfo.full_name,
+            description: repoInfo.description || '',
+            language: repoInfo.language || 'Unknown',
+            stargazers_count: repoInfo.stargazers_count ?? 0,
+            forks_count: repoInfo.forks_count ?? 0,
+            visibility: repoInfo.visibility || 'public',
+            default_branch: repoInfo.default_branch || 'main',
+            updated_at: repoInfo.updated_at || new Date().toISOString(),
+          };
+          const importedRepo = await importRepo(token, importData);
+          idForGenerate = importedRepo.id;
+        } else {
+          throw new Error(
+            'Could not load repository. Please open it from the Dashboard or check your GitHub connection.'
+          );
+        }
       }
 
-      // Start generation
       setGenerationStatus('Generating README with AI...');
-      console.log('Generating README for repo ID:', dbRepoId, 'template:', selectedTemplate);
-      const response = await generateReadme(token, dbRepoId, selectedTemplate);
+      const response = await generateReadme(token, idForGenerate, selectedTemplate);
       console.log('Generation response:', response);
       
       if (response.status === 'pending') {
@@ -151,8 +189,13 @@ function Generator() {
       }
     } catch (err) {
       console.error('Generation error:', err);
-      const errorMessage = err.message || 'Failed to generate README';
-      setError(errorMessage);
+      const msg = err.message || 'Failed to generate README';
+      const isNetwork = /failed to fetch|networkerror|load failed/i.test(msg);
+      setError(
+        isNetwork
+          ? 'Cannot reach the API. Start the backend (e.g. `python run.py` in /backend) and ensure it runs on port 8000.'
+          : msg
+      );
       setGenerationStatus(null);
     } finally {
       setIsGenerating(false);
@@ -200,7 +243,7 @@ function Generator() {
                 {repoInfo.description && <span> - {repoInfo.description}</span>}
               </>
             ) : (
-              `Repository ID: ${repoId}`
+              `Repository: ${identifier || '…'}`
             )}
           </p>
         </div>
@@ -220,7 +263,25 @@ function Generator() {
           ))}
         </div>
 
-        {/* Error Display */}
+        {/* Load Error (could not fetch repo from GitHub) */}
+        {loadError && (
+          <div className="card" style={{ 
+            borderColor: 'var(--error)', 
+            background: 'rgba(239, 68, 68, 0.1)',
+            marginBottom: 'var(--space-4)',
+            padding: 'var(--space-4)'
+          }}>
+            <p style={{ color: 'var(--error)', margin: 0 }}>❌ {loadError}</p>
+            <p style={{ color: 'var(--text-muted)', margin: 'var(--space-2) 0 0', fontSize: '0.9rem' }}>
+              Make sure the repo exists, you have access to it, and GitHub is connected in your account.
+            </p>
+            <button type="button" className="btn btn-primary" style={{ marginTop: 'var(--space-3)' }} onClick={retryLoad}>
+              Retry loading repository
+            </button>
+          </div>
+        )}
+
+        {/* Generation Error */}
         {error && (
           <div className="card" style={{ 
             borderColor: 'var(--error)', 
@@ -237,7 +298,7 @@ function Generator() {
           <button 
             className="btn btn-primary" 
             onClick={handleGenerate}
-            disabled={isGenerating}
+            disabled={isGenerating || !!loadError || (!repoInfo && !dbRepoId)}
             style={{ width: '100%', padding: 'var(--space-4)' }}
           >
             {isGenerating ? (

@@ -1,0 +1,25 @@
+2026-01-29 18:43:55,477 - app.database - INFO - Database initialized successfully
+2026-01-29 18:51:46,440 - app.database - INFO - Database initialized successfully
+2026-01-29 18:52:32,843 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38qhxKW9IjdFu4vXjFArZ8FfsGM/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-29 18:52:33,927 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated&direction=desc&affiliation=owner%2Ccollaborator%2Corganization_member "HTTP/1.1 200 OK"
+2026-01-29 18:52:35,137 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38qhxKW9IjdFu4vXjFArZ8FfsGM/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-29 18:52:36,226 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated&direction=desc&affiliation=owner%2Ccollaborator%2Corganization_member "HTTP/1.1 200 OK"
+2026-01-29 18:52:37,865 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38qhxKW9IjdFu4vXjFArZ8FfsGM/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-29 18:52:38,899 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated&direction=desc&affiliation=owner%2Ccollaborator%2Corganization_member "HTTP/1.1 200 OK"
+2026-01-29 18:52:39,797 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38qhxKW9IjdFu4vXjFArZ8FfsGM/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-29 18:52:40,812 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated&direction=desc&affiliation=owner%2Ccollaborator%2Corganization_member "HTTP/1.1 200 OK"
+2026-01-29 18:52:45,612 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38qhxKW9IjdFu4vXjFArZ8FfsGM/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-29 18:52:45,641 - app.routers.repos - INFO - Imported repository: Aaravshah2806/Chess-Game-Using-Python
+2026-01-29 18:52:46,592 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38qhxKW9IjdFu4vXjFArZ8FfsGM/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-29 18:52:46,615 - app.routers.generate - INFO - Started generation: 9ac32d4e-45b1-4328-ba82-32d052fe0c99 for repo: Aaravshah2806/Chess-Game-Using-Python
+2026-01-29 18:52:46,616 - app.routers.generate - INFO - Starting background generation for: 9ac32d4e-45b1-4328-ba82-32d052fe0c99
+2026-01-29 18:52:46,623 - app.routers.generate - INFO - Generating README for Aaravshah2806/Chess-Game-Using-Python
+2026-01-29 18:52:47,858 - app.routers.generate - ERROR - Generation failed: module 'google.genai.types' has no attribute 'HttpOptions'
+2026-01-29 18:52:48,775 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38qhxKW9IjdFu4vXjFArZ8FfsGM/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-29 23:09:15,956 - app.main - INFO - [STARTUP] Starting VibeDocs API...
+2026-01-29 23:09:15,967 - app.database - INFO - Database initialized successfully
+2026-01-29 23:09:15,968 - app.main - INFO - [OK] Database initialized
+2026-01-29 23:09:15,968 - app.main - INFO - [OK] Gemini AI: available
+2026-01-29 23:09:15,968 - app.main - INFO - [OK] Claude AI: not configured
+2026-01-29 23:09:15,969 - app.main - INFO - [OK] GitHub Token: configured
+2026-01-29 23:10:50,814 - app.main - INFO - [SHUTDOWN] Shutting down VibeDocs API...

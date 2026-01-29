@@ -41,11 +41,11 @@
 
 | Layer            | Technology                | Purpose                                              |
 | :--------------- | :------------------------ | :--------------------------------------------------- |
-| **Frontend**     | React.js &CSS    | For a fast, responsive, and developer-friendly UI.   |
+| **Frontend**     | React.js &CSS             | For a fast, responsive, and developer-friendly UI.   |
 | **Components**   | Shadcn UI                 | For consistent buttons, cards, and search inputs.    |
 | **AI Brain**     | Claude 3.5 Sonnet         | For processing large file trees and generating text. |
 | **Orchestrator** | LangChain                 | To manage prompts and AI responses.                  |
-| **Backend**      | Python & SQLLite        | For secure authentication and data storage.          |
+| **Backend**      | Python & SQLLite          | For secure authentication and data storage.          |
 
 ---
 

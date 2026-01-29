@@ -1,16 +1,23 @@
+"""AI Generator Service using Google GenAI SDK."""
 from app.services.github import GitHubService
 import asyncio
 from typing import List
 from google import genai
+from google.genai import types
 from app.config import settings
 from app.schemas.schemas import FileTreeItem
 from app.prompts.readme_prompt import get_readme_prompt
+
 
 class AIGeneratorService:
     def __init__(self):
         if not settings.gemini_api_key:
             raise ValueError("GEMINI_API_KEY not set")
-        self.client = genai.Client(api_key=settings.gemini_api_key)
+        # Use the new google.genai client with explicit http_options for v1 API
+        self.client = genai.Client(
+            api_key=settings.gemini_api_key,
+            http_options=types.HttpOptions(api_version='v1')
+        )
         self.model = "gemini-2.5-flash"
 
     async def generate_readme(
@@ -23,10 +30,10 @@ class AIGeneratorService:
         """Generate README content for a repository using Google Gemini."""
 
         # Get file tree
-        file_tree = await github_service.get_file_tree(owner, repo, branch)
+        file_tree = await github_service.get_repo_tree(owner, repo, branch)
 
         # Get imp file contents for context
-        important_files_contenet = {}
+        important_files_content = {}
         important_paths = [
             "package.json", "requirements.txt", "pom.xml", "Cargo.toml",
             "go.mod", "composer.json", "Gemfile", "pubspec.yaml",
@@ -38,13 +45,13 @@ class AIGeneratorService:
                 if item.type == "file" and item.size and item.size < 50000:
                     content = await github_service.get_file_content(owner, repo, item.path, branch)
                     if content:
-                        important_files_contenet[item.path] = content[:2000]
+                        important_files_content[item.path] = content[:2000]
 
         # Build context
         context = f"Repository: {owner}/{repo}\n\n"
-        if important_files_contenet:
+        if important_files_content:
             context += "Important File Contents:\n"
-            for path, content in important_files_contenet.items():
+            for path, content in important_files_content.items():
                 context += f"\n---{path} ---\n{content}\n"
 
         # Get prompt

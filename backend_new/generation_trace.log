@@ -1,0 +1,55 @@
+2026-01-29 23:15:33.251561: Received generation request for repo_id: 886f083f-f2d3-4c36-997f-cf6a7da19f8d
+2026-01-29 23:15:33.253853: User: 7b7fbd6d-369b-4049-88e3-e6047cd16770, Token present: True
+2026-01-29 23:15:33.276714: Background task started for generation_id: eb45c6c6-f9b7-4348-808b-89d02bf83449
+2026-01-29 23:15:33.280783: Generating for Aaravshah2806/test_repository on branch master
+2026-01-29 23:15:33.282573: EXCEPTION in background task: module 'google.genai.types' has no attribute 'HttpOptions'
+2026-01-29 23:24:10.225108: Received generation request for repo_id: 886f083f-f2d3-4c36-997f-cf6a7da19f8d
+2026-01-29 23:24:10.228509: User: 7b7fbd6d-369b-4049-88e3-e6047cd16770, Token present: True
+2026-01-29 23:24:10.261961: Background task started for generation_id: c662af4d-aab9-4f85-9f43-efa58537a4f9
+2026-01-29 23:24:10.274207: Generating for Aaravshah2806/test_repository on branch master
+2026-01-29 23:24:19.039185: Calling AI service...
+2026-01-29 23:24:23.447711: EXCEPTION in background task: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 36.459507067s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '36s'}]}}
+2026-01-29 23:29:05.692713: Received generation request for repo_id: 886f083f-f2d3-4c36-997f-cf6a7da19f8d
+2026-01-29 23:29:05.698999: User: 7b7fbd6d-369b-4049-88e3-e6047cd16770, Token present: True
+2026-01-29 23:29:05.749927: Background task started for generation_id: 7ab22f23-d7af-4899-89a7-6bdf5a27d34d
+2026-01-29 23:29:05.764074: Generating for Aaravshah2806/test_repository on branch master
+2026-01-29 23:29:14.116354: Calling AI service...
+2026-01-29 23:29:18.576164: EXCEPTION in background task: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-01-29 23:31:36.900296: Received generation request for repo_id: 886f083f-f2d3-4c36-997f-cf6a7da19f8d
+2026-01-29 23:31:36.903045: User: 7b7fbd6d-369b-4049-88e3-e6047cd16770, Token present: True
+2026-01-29 23:31:36.942675: Background task started for generation_id: ddc3a070-4598-4ab6-b0d9-de0ba364dc8f
+2026-01-29 23:31:36.950791: Generating for Aaravshah2806/test_repository on branch master
+2026-01-29 23:31:45.036851: Calling AI service...
+2026-01-29 23:31:49.789281: EXCEPTION in background task: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+2026-01-29 23:34:39.029563: Received generation request for repo_id: 886f083f-f2d3-4c36-997f-cf6a7da19f8d
+2026-01-29 23:34:39.031947: User: 7b7fbd6d-369b-4049-88e3-e6047cd16770, Token present: True
+2026-01-29 23:34:39.070912: Background task started for generation_id: 046f5403-45f8-4954-8edd-613ec3565052
+2026-01-29 23:34:39.077509: Generating for Aaravshah2806/test_repository on branch master
+2026-01-29 23:34:39.080292: Calling AI service...
+2026-01-29 23:35:30.511557: EXCEPTION in background task: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-01-29 23:40:34.933232: Received generation request for repo_id: 886f083f-f2d3-4c36-997f-cf6a7da19f8d
+2026-01-29 23:40:34.935236: User: 7b7fbd6d-369b-4049-88e3-e6047cd16770, Token present: True
+2026-01-29 23:40:34.960420: Background task started for generation_id: 21b46fbc-25bb-4268-82eb-8780ec63bf9e
+2026-01-29 23:40:34.963268: Generating for Aaravshah2806/test_repository on branch master
+2026-01-29 23:40:34.966248: Calling AI service...
+2026-01-29 23:41:23.810071: EXCEPTION in background task: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-01-29 23:47:41.816775: Received generation request for repo_id: 886f083f-f2d3-4c36-997f-cf6a7da19f8d
+2026-01-29 23:47:41.817973: User: 7b7fbd6d-369b-4049-88e3-e6047cd16770, Token present: True
+2026-01-29 23:47:41.831061: Background task started for generation_id: 7636fba4-0838-466e-882d-ede0e352bfc5
+2026-01-29 23:47:41.833765: Generating for Aaravshah2806/test_repository on branch master
+2026-01-29 23:47:41.834917: Calling AI service...
+2026-01-29 23:49:30.076689: EXCEPTION in background task: All Gemini models failed. Last error: 404 models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2026-01-29 23:54:34.497063: Received generation request for repo_id: 886f083f-f2d3-4c36-997f-cf6a7da19f8d
+2026-01-29 23:54:34.498054: User: 7b7fbd6d-369b-4049-88e3-e6047cd16770, Token present: True
+2026-01-29 23:54:34.514854: Background task started for generation_id: a36e4d3e-9037-4ffa-aa00-f471755e8f8f
+2026-01-29 23:54:34.518374: Generating for Aaravshah2806/test_repository on branch master
+2026-01-29 23:54:34.521263: Calling AI service...
+2026-01-29 23:54:44.244107: Content generated, length: 1992
+2026-01-29 23:54:44.250274: Database updated to completed
+2026-01-29 23:55:10.413214: Received generation request for repo_id: 886f083f-f2d3-4c36-997f-cf6a7da19f8d
+2026-01-29 23:55:10.414076: User: 7b7fbd6d-369b-4049-88e3-e6047cd16770, Token present: True
+2026-01-29 23:55:10.421624: Background task started for generation_id: c3abf536-7037-43ac-b45c-84ca941803e5
+2026-01-29 23:55:10.423676: Generating for Aaravshah2806/test_repository on branch master
+2026-01-29 23:55:10.426118: Calling AI service...
+2026-01-29 23:55:20.492852: Content generated, length: 2699
+2026-01-29 23:55:20.495632: Database updated to completed

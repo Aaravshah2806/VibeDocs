@@ -1,8 +1,13 @@
 /**
  * API Service for backend communication
+ * In dev, use same-origin (Vite proxy) to avoid CORS and "Failed to fetch".
  */
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+export function getApiBaseUrl() {
+  return import.meta.env.DEV
+    ? ""
+    : (import.meta.env.VITE_API_URL || "http://localhost:8000");
+}
+const API_BASE_URL = getApiBaseUrl();
 
 /**
  * Make an authenticated API request
@@ -38,6 +43,17 @@ async function apiRequest(endpoint, token, options = {}) {
  */
 export async function fetchRepos(token) {
   return apiRequest("/api/repos/", token);
+}
+
+/**
+ * Fetch a single repository from GitHub by ID or owner/repo, import to DB, and return DB repo.
+ * Use when the repo isn't in the user's list (e.g. pagination) or fetchRepos failed.
+ * @param {string} token - Clerk session token
+ * @param {string} identifier - GitHub repo ID (numeric) or "owner/repo"
+ */
+export async function fetchRepoByIdentifier(token, identifier) {
+  const encoded = encodeURIComponent(identifier);
+  return apiRequest(`/api/repos/fetch/${encoded}`, token);
 }
 
 /**
@@ -88,6 +104,7 @@ export async function getGeneration(token, generationId) {
 
 export default {
   fetchRepos,
+  fetchRepoByIdentifier,
   getCurrentUser,
   importRepo,
   generateReadme,

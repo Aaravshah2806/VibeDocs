@@ -87,7 +87,7 @@ function RepoCard({ repo }) {
       
       {/* Action buttons */}
       <div className="tilt-card-actions">
-        <Link to={`/generator/${id}`} className="btn btn-primary btn-sm">
+        <Link to={`/generator/${full_name}`} className="btn btn-primary btn-sm">
           Generate Docs
         </Link>
         <a 
