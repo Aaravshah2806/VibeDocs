@@ -1,0 +1,101 @@
+.shuffle-parent {
+  display: inline-block;
+  white-space: normal;
+  word-wrap: break-word;
+  will-change: transform;
+  line-height: 1.1;
+  visibility: hidden;
+  cursor: default;
+}
+
+.shuffle-parent.is-ready {
+  visibility: visible;
+}
+
+.shuffle-char-wrapper {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: baseline;
+  position: relative;
+}
+
+.shuffle-char-wrapper > span {
+  display: inline-flex;
+  will-change: transform;
+}
+
+.shuffle-char {
+  line-height: 1;
+  display: inline-block;
+  text-align: center;
+  will-change: transform, opacity;
+}
+
+/* VibeDocs specific styling */
+.shuffle-hero-title {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 800;
+  font-family: var(--font-heading);
+  background: linear-gradient(
+    135deg, 
+    #a78bfa 0%, 
+    #60a5fa 25%,
+    #c084fc 50%,
+    #60a5fa 75%,
+    #a78bfa 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+  letter-spacing: -0.03em;
+  filter: drop-shadow(0 0 60px rgba(139, 92, 246, 0.4));
+  position: relative;
+  padding: 0.1em 0;
+}
+
+.shuffle-hero-title .shuffle-char {
+  background: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Hover glow effect */
+.shuffle-hero-title:hover {
+  filter: drop-shadow(0 0 80px rgba(139, 92, 246, 0.6));
+}
+
+/* Add subtle text shadow via pseudo-element */
+.shuffle-hero-title::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: blur(40px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .shuffle-hero-title {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    letter-spacing: -0.02em;
+  }
+}

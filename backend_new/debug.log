@@ -3600,3 +3600,1033 @@
 2026-01-29 23:55:51,030 - httpcore.http11 - DEBUG - response_closed.complete
 2026-01-29 23:55:51,031 - httpcore.connection - DEBUG - close.started
 2026-01-29 23:55:51,031 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:19:59,077 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:19:59,078 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:19:59,098 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:19:59,098 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:19:59,745 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:19:59,813 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F900762900>
+2026-01-30 20:19:59,814 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F900721130> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:19:59,871 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90068F610>
+2026-01-30 20:19:59,872 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:19:59,872 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:19:59,873 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:19:59,873 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:19:59,873 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:00,478 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:00 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c7763f45ff97-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'40fd144a99b2414d497466489e3ba24e'), (b'x-cloud-trace-context', b'40fd144a99b2414d497466489e3ba24e'), (b'Set-Cookie', b'__cf_bm=9gKt.jMG6E91xPzqQPzBSsQbIBB46N7FaDcoIrYw9SU-1769784600-1.0.1.1-SPlCRAih79fgFVNJuCskIeSrUk2RlaeLmZqaV9i6h6VovJULqL9ZzJbqG_7hyP_MzkWe3ywqtfDqNUZv_kKeBcGxwYqc7N1MqXvZcZC1tFo; path=/; expires=Fri, 30-Jan-26 15:20:00 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=g_CLRyMdT4_z5YGPeQUj7UwyMT9z.chmRu7y.vXVfr4-1769784600611-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:00,480 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:00,480 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:00,484 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:00,484 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:00,485 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:00,486 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:00,486 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:00,487 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:01,035 - httpcore.connection - DEBUG - connect_tcp.started host='api.github.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:01,120 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90078B250>
+2026-01-30 20:20:01,120 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F9007239B0> server_hostname='api.github.com' timeout=5.0
+2026-01-30 20:20:01,152 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007E43E0>
+2026-01-30 20:20:01,154 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:01,155 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:01,155 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:01,156 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:01,156 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:01,600 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:01 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=60, s-maxage=60'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"171aedfb4ec954e74cd50c2309078aff4532794271058534e293103b7e1dc971"'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4965'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'35'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'7708:2253BB:B7D8FE:CE2504:697CC519')])
+2026-01-30 20:20:01,601 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated "HTTP/1.1 200 OK"
+2026-01-30 20:20:01,602 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:01,604 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:01,606 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:01,607 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:01,608 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:01,609 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:16,254 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:16,255 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:16,255 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:16,255 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:16,810 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:16,843 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007E49D0>
+2026-01-30 20:20:16,843 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F900723AD0> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:16,884 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9006EAE70>
+2026-01-30 20:20:16,884 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:16,885 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:16,885 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:16,885 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:16,886 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:17,496 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:17 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c7e08cb8d91f-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'286c08d6af18531732868913dd3ffd01'), (b'x-cloud-trace-context', b'286c08d6af18531732868913dd3ffd01'), (b'Set-Cookie', b'__cf_bm=I1pwM8dk7NjCEs71cjl7zprYIsXRrFulMzvtBIsAta8-1769784617-1.0.1.1-bX13t_IsbGcgReX5j.4aIQ.iwxPjW9_PnMdHRqLHqpP70R4v62pqGSC3h7QliO4b_odOjNbkVUZV3rOuoKazU7xw5LFIBM2NM4kjECGhm6o; path=/; expires=Fri, 30-Jan-26 15:20:17 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=vahuvmZroTzX7fGsx1vXgZhgXT1EdMk.90RXPYXzHTw-1769784617632-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:17,497 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:17,498 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:17,499 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:17,500 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:17,502 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:17,504 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:17,505 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:17,506 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:18,076 - httpcore.connection - DEBUG - connect_tcp.started host='api.github.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:18,135 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F900766470>
+2026-01-30 20:20:18,135 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F900723B60> server_hostname='api.github.com' timeout=5.0
+2026-01-30 20:20:18,175 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F900766580>
+2026-01-30 20:20:18,176 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:18,177 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:18,178 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:18,179 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:18,179 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:18,616 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:18 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=60, s-maxage=60'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"171aedfb4ec954e74cd50c2309078aff4532794271058534e293103b7e1dc971"'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4964'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'36'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'1A38:10C094:B6328A:CC7A04:697CC52A')])
+2026-01-30 20:20:18,617 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated "HTTP/1.1 200 OK"
+2026-01-30 20:20:18,618 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:18,619 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:18,620 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:18,620 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:18,621 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:18,621 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:18,630 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:18,630 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:18,630 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:18,631 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:19,227 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:19,255 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F900776550>
+2026-01-30 20:20:19,255 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F900723D10> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:19,295 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F900776850>
+2026-01-30 20:20:19,295 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:19,296 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:19,296 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:19,296 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:19,297 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:19,906 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:20 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c7efae583f03-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'067799d56890ac674e66618d21f925b6'), (b'x-cloud-trace-context', b'067799d56890ac674e66618d21f925b6'), (b'Set-Cookie', b'__cf_bm=_G2ix4sCYbWAq7QMI8LqBMphxP9A9_lFpdInZG3RxpY-1769784620-1.0.1.1-cL7OOetDpKWBfk9.dgB8HzHNCkyeso730BwHKTmoLyWLwrF.tVOrpM9sfHPa8rJ143dxL5FW8.toHIvIzvZBPa0H90hAypzwpxMF7AUyh4s; path=/; expires=Fri, 30-Jan-26 15:20:20 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=VHlmvmvAPFh9YFmEZfjmok0J2.xPUQk1xwO0yVFNc6M-1769784620043-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:19,906 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:19,907 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:19,907 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:19,908 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:19,908 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:19,909 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:19,909 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:19,910 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:20,563 - httpcore.connection - DEBUG - connect_tcp.started host='api.github.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:20,589 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007C7980>
+2026-01-30 20:20:20,590 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F900723EC0> server_hostname='api.github.com' timeout=5.0
+2026-01-30 20:20:20,629 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007C7B60>
+2026-01-30 20:20:20,629 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:20,630 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:20,630 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:20,631 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:20,631 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:21,062 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:21 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=60, s-maxage=60'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"171aedfb4ec954e74cd50c2309078aff4532794271058534e293103b7e1dc971"'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4963'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'37'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'6420:B6A4D:BAA69B:D0EAE3:697CC52C')])
+2026-01-30 20:20:21,063 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated "HTTP/1.1 200 OK"
+2026-01-30 20:20:21,063 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:21,064 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:21,064 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:21,064 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:21,065 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:21,066 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:22,057 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:22,057 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:22,058 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:22,058 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:22,623 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:22,660 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007DC210>
+2026-01-30 20:20:22,660 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F900723890> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:22,694 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007DD630>
+2026-01-30 20:20:22,694 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:22,695 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:22,695 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:22,696 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:22,696 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:23,035 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:23 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c804df5b4472-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'84fda6d7fc8fbd10ff9e71554a756268'), (b'x-cloud-trace-context', b'84fda6d7fc8fbd10ff9e71554a756268'), (b'Set-Cookie', b'__cf_bm=R15X_DAje8AOTR9qnF9z2qXkx5tkrqPJLzbR_e8yGXo-1769784623-1.0.1.1-zzWJLLEEo7XI3B2lv_5gPtHpNf.XHilezHSQmDmthN7USEswbbC9f0nOyDAHx.dHGr6m1otH8KojgLwF2aje6ZFjOAjeYvutVvjAuai.1_E; path=/; expires=Fri, 30-Jan-26 15:20:23 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=tt0snwwYXJGHXUpVlSojfk.I4FaSz1emOf8BJ16SM2Q-1769784623169-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:23,036 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:23,036 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:23,036 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:23,037 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:23,037 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:23,038 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:23,039 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:23,039 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:23,043 - app.routers.auth - INFO - Importing repo: Aaravshah2806/VibeDocs (ID: 1141593824) for user a7d12944-f8ed-4348-b4dc-2c8215e7a9ef
+2026-01-30 20:20:23,064 - app.routers.auth - INFO - Created new repo: 4a3bdb0e-2688-4ceb-a34e-1f0c6ebf3ea5
+2026-01-30 20:20:23,077 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:23,077 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:23,077 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:23,078 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:23,767 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:23,792 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90072B1E0>
+2026-01-30 20:20:23,792 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F900723A40> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:23,843 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9005FEE10>
+2026-01-30 20:20:23,853 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:23,862 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:23,868 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:23,875 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:23,884 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:24,201 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:24 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c80c2825ffa9-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'317b967d5d27691e28a4d19a3f83c0a6'), (b'x-cloud-trace-context', b'317b967d5d27691e28a4d19a3f83c0a6'), (b'Set-Cookie', b'__cf_bm=cSNOBOPFkW0t_k3wDRwZc5tjaDk5bO_LoxoUvizNCY4-1769784624-1.0.1.1-2XUvjA3u.9xZo9sH6FwLNpv38dq_Gqp9YAaBraCCynac8rRqMcsiJJzT5IWuu7liwp8OSerfWP9gmXGpVDM2cos.WFgx8COg3xBZME83Bqg; path=/; expires=Fri, 30-Jan-26 15:20:24 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=_mKKvmIM2wA5M8rFAvIXR9si0kBZOwtzvIueUBHi04w-1769784624333-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:24,201 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:24,202 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:24,202 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:24,203 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:24,203 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:24,204 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:24,204 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:24,205 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:24,228 - app.services.ai_generator - INFO - AIGeneratorService initialized with Gemini API
+2026-01-30 20:20:24,230 - app.services.ai_generator - INFO - Generating README for Aaravshah2806/VibeDocs on branch main
+2026-01-30 20:20:24,941 - httpcore.connection - DEBUG - connect_tcp.started host='api.github.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:24,998 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9005FF1D0>
+2026-01-30 20:20:24,999 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F97F762BA0> server_hostname='api.github.com' timeout=5.0
+2026-01-30 20:20:25,038 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9005F2780>
+2026-01-30 20:20:25,039 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:25,043 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:25,043 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:25,044 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:25,044 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:25,240 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:25,240 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:25,241 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:25,241 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:25,942 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:25,943 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:25 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=60, s-maxage=60'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"2c37261cf78c6216bec52b86d26b0edcdbe41a9acff1e877e1f223814f5eecbd"'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4962'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'38'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'4416:D0808:B6FF06:CD4A7F:697CC531')])
+2026-01-30 20:20:25,944 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Aaravshah2806/VibeDocs/branches/main "HTTP/1.1 200 OK"
+2026-01-30 20:20:25,944 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:25,945 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:25,945 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:25,945 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:25,948 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:25,950 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:25,951 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:25,953 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:25,953 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:25,970 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90181C260>
+2026-01-30 20:20:25,970 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901808290> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:26,010 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017DE030>
+2026-01-30 20:20:26,010 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:26,011 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:26,011 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:26,011 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:26,011 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:26,314 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:26 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=86400, s-maxage=86400'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"9ef8b3dc3f3da67e1f910c44453a7b4b726947926e26805dde57ed307fa6b7de"'), (b'Last-Modified', b'Fri, 30 Jan 2026 02:23:21 GMT'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4961'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'39'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'4416:D0808:B6FFAD:CD4B38:697CC531')])
+2026-01-30 20:20:26,315 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Aaravshah2806/VibeDocs/git/trees/960547c882e6b7c36b4396f841fb1e9e6d5c7a74?recursive=1 "HTTP/1.1 200 OK"
+2026-01-30 20:20:26,315 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:26,320 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:26,320 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:26,321 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:26,325 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:26,326 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:26,327 - app.services.ai_generator - INFO - Retrieved file tree with 107 items
+2026-01-30 20:20:26,327 - app.services.ai_generator - INFO - Retrieved 0 important files
+2026-01-30 20:20:26,328 - app.services.ai_generator - INFO - Calling AI service...
+2026-01-30 20:20:26,328 - app.services.ai_generator - INFO - Trying model: gemini-2.5-flash
+2026-01-30 20:20:26,577 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:26 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c81999313d54-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'9356fa317b5a85fde9037c9c8aafeb9e'), (b'x-cloud-trace-context', b'9356fa317b5a85fde9037c9c8aafeb9e'), (b'Set-Cookie', b'__cf_bm=GNDd2SZp6x9OrguJx86aHMVHop89f0kiG2BVsNyNBpI-1769784626-1.0.1.1-9_JWGmWuUACiJuE4S0CpxWgWRmbjecw6lK07tOMCxzDWFmKE7l8fAQNCKGkj.vOJeVIRdUy.Z_51uJw27YpxTob.qR0HQA7KDOA1v8UVBJQ; path=/; expires=Fri, 30-Jan-26 15:20:26 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=Wohcw4K9hsgTiBf.0S6jhibvwXZmT.Kl4xJVcEcZWhQ-1769784626710-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:26,578 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:26,579 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:26,579 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:26,580 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:26,580 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:26,582 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:26,584 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:26,585 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:27,611 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:27,611 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:27,612 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:27,612 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:28,275 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:28,305 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F97714C190>
+2026-01-30 20:20:28,305 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809880> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:28,334 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901809910>
+2026-01-30 20:20:28,335 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:28,336 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:28,336 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:28,337 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:28,337 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:28,660 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:28 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c8281fa8ff6f-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'ceb0678ac6519776ed9a723379b6fdb3'), (b'x-cloud-trace-context', b'ceb0678ac6519776ed9a723379b6fdb3'), (b'Set-Cookie', b'__cf_bm=63VBD7kZ0cyEVSmb3ps2v1LvQ7dghOfTohfC6n.w4zQ-1769784628-1.0.1.1-pMgCgNUyueZTDX044z4z7trpId9LXPr52dns1ZizTHfPyd1l04CE55hqq8BB7la1B53DEGfDD7Wxocp9ve6cmJ8cv5HuRza2Fshm.5C4JzI; path=/; expires=Fri, 30-Jan-26 15:20:28 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=Pyfip7DQseP56siBpyXR7kSlIq67NfbYYPJtFEqV1F0-1769784628798-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:28,660 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:28,661 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:28,672 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:28,672 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:28,672 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:28,674 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:28,675 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:28,675 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:29,697 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:29,698 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:29,699 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:29,699 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:30,360 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:30,385 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018709D0>
+2026-01-30 20:20:30,385 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809B50> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:30,417 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018706D0>
+2026-01-30 20:20:30,417 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:30,418 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:30,418 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:30,419 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:30,419 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:30,758 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:30 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c83519e6ff9a-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'f546be9b84ce20bc7e37d352f9e07519'), (b'x-cloud-trace-context', b'f546be9b84ce20bc7e37d352f9e07519'), (b'Set-Cookie', b'__cf_bm=2SutUeuiZz7UAei.XWBxVDurcx09q8Ntmp_zK2swZ3o-1769784630-1.0.1.1-jglX3mNWmrHF_SZ09LN5wRpCF7DbemwoMaTJIAd5HqZIW5FHmub961qgfXn.OEh7PLT1zqn3sCVP_vm5y5n8GdMRYL1b9mwTqJGPomulseY; path=/; expires=Fri, 30-Jan-26 15:20:30 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=o_RnMLew54KMxv97VjIW8yqoK_SuJOoS1Gw2BBUGhC0-1769784630891-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:30,759 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:30,759 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:30,760 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:30,760 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:30,761 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:30,762 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:30,763 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:30,763 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:31,779 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:31,779 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:31,780 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:31,780 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:32,544 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:32,583 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90078FEE0>
+2026-01-30 20:20:32,583 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809AC0> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:32,627 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901849780>
+2026-01-30 20:20:32,628 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:32,629 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:32,629 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:32,630 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:32,630 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:32,965 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:33 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c842f8f50b2c-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'a20c5d217185a399aa2ed7251460c8b2'), (b'x-cloud-trace-context', b'a20c5d217185a399aa2ed7251460c8b2'), (b'Set-Cookie', b'__cf_bm=IbzfVat5WLcvIXigi0e6XM5ukGidyn9uA9jNsVFmGLs-1769784633-1.0.1.1-0ZnFL7ySnaOVIv7E6_JZMZL1H8Z6Mr3ath38QdcriBxkm_rYf0oS5FOMJhyh4EyOIHSkr8FX.oKN7rpEtc5sdf_2NUAZqC4.oPyCTqhp4To; path=/; expires=Fri, 30-Jan-26 15:20:33 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=Tj.HcPZ82FQRn1qHyhvPaHmQg5jDLs56nGCVfYXY0ps-1769784633102-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:32,966 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:32,966 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:32,970 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:32,970 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:32,971 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:32,974 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:32,975 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:32,975 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:33,998 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:34,002 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:34,005 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:34,008 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:34,688 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:34,709 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901874E90>
+2026-01-30 20:20:34,710 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809760> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:34,747 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018750D0>
+2026-01-30 20:20:34,748 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:34,749 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:34,749 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:34,749 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:34,750 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:35,080 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:35 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c8503dc34702-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'dc0a533edcb415bf213d102be5301fb9'), (b'x-cloud-trace-context', b'dc0a533edcb415bf213d102be5301fb9'), (b'Set-Cookie', b'__cf_bm=A2sEGBwEAS4LeU25wXGY_CzGyCGyrSHG8I6W.16ys2A-1769784635-1.0.1.1-PXRq.tM5.RhKpF3thlC0.3XAsnyzmON4HagIBPsHUJHVe_IWEbtuH_G.5XODsGpM2dB67EKXKToVp9gHdpgEkbsLw9IKskAoOi1TaTsesyA; path=/; expires=Fri, 30-Jan-26 15:20:35 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=eQ9fjxNVjkbZ65pQS46zB4dkUMPrRr6OF2M.8WFAdOU-1769784635217-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:35,081 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:35,081 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:35,085 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:35,085 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:35,086 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:35,086 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:35,087 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:35,087 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:36,104 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:36,105 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:36,105 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:36,106 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:36,636 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:36,665 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901879450>
+2026-01-30 20:20:36,666 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809EB0> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:36,696 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D2DF0>
+2026-01-30 20:20:36,697 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:36,698 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:36,698 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:36,699 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:36,699 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:37,012 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:37 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c85c5b6db7e5-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'5fd37b5859c8cec4a0168b9d700b62eb'), (b'x-cloud-trace-context', b'5fd37b5859c8cec4a0168b9d700b62eb'), (b'Set-Cookie', b'__cf_bm=P2Q1R6zTr4in3jEJ1oU1f2ztstnnTuKQMLPG9gYk5Ws-1769784637-1.0.1.1-EfFtO8OMhm2F8tg9PEopzpnqvjipwLZwmuO1jLCVX8BEVpMCt9MW7Gs9lB1cEY_nznUlqgzR66.YwcN7yZbl2O0NgQq8ZJ1vNKMo6H8cI0U; path=/; expires=Fri, 30-Jan-26 15:20:37 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=z3Ac9aIkjGPr_NrQRjK0FSAgvKX1B6w5z92L2k9dpXM-1769784637147-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:37,013 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:37,013 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:37,014 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:37,014 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:37,014 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:37,015 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:37,015 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:37,016 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:38,028 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:38,028 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:38,028 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:38,029 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:38,575 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:38,605 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901879CC0>
+2026-01-30 20:20:38,605 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809D90> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:38,647 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901862990>
+2026-01-30 20:20:38,648 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:38,648 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:38,649 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:38,649 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:38,649 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:38,984 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:39 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c8688aa44722-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'7d542408d11d3860b02a31bd38b1f255'), (b'x-cloud-trace-context', b'7d542408d11d3860b02a31bd38b1f255'), (b'Set-Cookie', b'__cf_bm=mNH3RG_pogjBNtZGM6_OkhBixnBuaixRQjETiB4UQtE-1769784639-1.0.1.1-5nlJqLsqTKX9_i_waQdOhxh5Xm6ED4sb1PwRoxpllC.tlmzDdOHrUsUAcGW_HCLfa7Yo0fsFZ9gIQsUZu1qU4iwEfXXnAedP.zxt48dsziQ; path=/; expires=Fri, 30-Jan-26 15:20:39 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=Q.GPJDXeETR0nhRDlKLXYi_ZDyMwjqraaojh743feaU-1769784639119-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:38,985 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:38,985 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:38,986 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:38,986 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:38,986 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:38,987 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:38,987 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:38,988 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:40,004 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:40,004 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:40,005 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:40,005 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:40,579 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:40,609 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018797C0>
+2026-01-30 20:20:40,610 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901808290> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:40,647 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D14A0>
+2026-01-30 20:20:40,647 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:40,648 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:40,648 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:40,648 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:40,649 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:41,024 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:41 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c8751b393a59-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'fde2294610edc0fd429f72b30d715d26'), (b'x-cloud-trace-context', b'fde2294610edc0fd429f72b30d715d26'), (b'Set-Cookie', b'__cf_bm=jNCyzmhfyfTCBE_128amziOT8ZeDYb9TvYWvWiGQIU8-1769784641-1.0.1.1-Phzu9znQoG9SUJQXK2Be4uqgjaxssWcNRikPhnX_svnywjmavWPX4dKMHB.HjuphgFHAMoiQ4FleXLbGzbz0aT3GWa0Cyphrl5kXEviihGI; path=/; expires=Fri, 30-Jan-26 15:20:41 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=5aCyrcpOQwAFkQKPkaEhQORsorRX573mhPoTxwLu.fs-1769784641162-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:41,025 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:41,025 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:41,026 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:41,026 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:41,026 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:41,027 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:41,028 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:41,028 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:42,044 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:42,044 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:42,044 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:42,045 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:42,595 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:42,619 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187A260>
+2026-01-30 20:20:42,620 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809F40> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:42,652 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018633E0>
+2026-01-30 20:20:42,653 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:42,653 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:42,654 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:42,654 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:42,654 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:42,998 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:43 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c88199033bda-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'bb1219319d79b09b735a9d08aaacea4c'), (b'x-cloud-trace-context', b'bb1219319d79b09b735a9d08aaacea4c'), (b'Set-Cookie', b'__cf_bm=bjiuAyjhG4voeH_QbNSczrEmoMXpdA35bIIIUycPTDM-1769784643-1.0.1.1-JYF1SgW.Jux4Fd2YCAJ2dg4CiofCB5DufhxKriGyRf_7uhFA7nrh_NjInlitIJgRTW5oBSkQS3X.4QyCdO_eaZqUcEMPuIc51K2T0W03EnQ; path=/; expires=Fri, 30-Jan-26 15:20:43 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=iI3INMWhlmTC5a5haf2pTLHaS5nJ5y5ex4Y5Fu2qdKk-1769784643136-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:42,999 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:43,000 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:43,000 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:43,000 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:43,001 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:43,002 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:43,002 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:43,003 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:44,020 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:44,020 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:44,020 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:44,020 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:44,618 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:44,644 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187ADA0>
+2026-01-30 20:20:44,645 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809D00> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:44,686 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D2A80>
+2026-01-30 20:20:44,687 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:44,688 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:44,688 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:44,689 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:44,689 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:45,043 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:45 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c88e5dff46bc-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'ebc2805aac8604d7a15f7cf4e91aad1f'), (b'x-cloud-trace-context', b'ebc2805aac8604d7a15f7cf4e91aad1f'), (b'Set-Cookie', b'__cf_bm=j_VpIQJ0qaA5DR96_yFdUp.9sZ_QQryFc1o7fxcUvS0-1769784645-1.0.1.1-K2FCXUGRatAQblnps_.TYNkt1x0NEOAdUWZbeMEOhvpJQLq29.JEPwLnQ5OdGglGUvMUeipcf8SQ9ndCm3QPdzo3NA8J1BY10wfWMlOCCqQ; path=/; expires=Fri, 30-Jan-26 15:20:45 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=JtTLuEAxfKLw0iXpnHfqOgah2h8Oc55uFRAWYCuPwdM-1769784645175-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:45,044 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:45,045 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:45,045 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:45,045 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:45,046 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:45,046 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:45,047 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:45,047 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:46,061 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:46,061 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:46,061 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:46,061 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:46,603 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:46,629 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187A990>
+2026-01-30 20:20:46,630 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F9018099A0> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:46,684 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007B7CF0>
+2026-01-30 20:20:46,685 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:46,686 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:46,686 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:46,687 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:46,687 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:47,010 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:47 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c89aca31ff6f-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'50fbe7b33b32802357f040441ad37b1b'), (b'x-cloud-trace-context', b'50fbe7b33b32802357f040441ad37b1b'), (b'Set-Cookie', b'__cf_bm=eixl_86.R3cu6S4IzwODl0aLFaIq1mjuHNZNteBvUO8-1769784647-1.0.1.1-ErOaq4zaRPYOlgT0FxnDdu3cUCmnr8IzzVxv6sTK2RPy6q7NPxxJ96xUQ4Q.pqWoUv.Ndx4PaUr52esRDeS6vwIpP5xrUz4.YGbOv.PTg1w; path=/; expires=Fri, 30-Jan-26 15:20:47 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=gB3iTrdRJWMee9nt_u_61RRzJlvGlm_C.SDGFC.hCNs-1769784647149-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:47,010 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:47,011 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:47,012 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:47,012 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:47,013 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:47,014 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:47,014 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:47,014 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:20:47,430 - app.services.ai_generator - INFO - Successfully generated with gemini-2.5-flash
+2026-01-30 20:20:47,431 - app.services.ai_generator - INFO - Generated README with 8889 characters
+2026-01-30 20:20:48,036 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:20:48,037 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:20:48,037 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:20:48,038 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:20:48,607 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:20:48,650 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D05F0>
+2026-01-30 20:20:48,651 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F9007239B0> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:20:48,682 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F900705CC0>
+2026-01-30 20:20:48,683 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:48,684 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:20:48,684 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:20:48,685 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:20:48,685 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:20:49,034 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:50:49 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61c8a7593affa1-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'e03e287fe76d3bdaa091d0921e5a7351'), (b'x-cloud-trace-context', b'e03e287fe76d3bdaa091d0921e5a7351'), (b'Set-Cookie', b'__cf_bm=J6l3KpUoffPeAYV2wbJGtObbN5pxJXHIJcU1jHTg9RE-1769784649-1.0.1.1-27XNwAhF79whxrWgJkSADOsv6zrKcXwBPXnH8uxBVuzICGnozj2aAsnYUtXlycPwuqXanvBKOliWKatS0R.VxdF4W02ei95wpPyrMNYfTbI; path=/; expires=Fri, 30-Jan-26 15:20:49 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=loL7sJzcyDhPOqvWSXwugkOz0nYd1Dm.nivlJNrnFa8-1769784649171-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:20:49,036 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:20:49,036 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:20:49,037 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:20:49,037 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:20:49,038 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:20:49,041 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:20:49,042 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:20:49,043 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:08,108 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:08,108 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:08,109 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:08,109 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:08,606 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:08,697 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9797BA850>
+2026-01-30 20:23:08,697 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A180> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:08,762 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D06E0>
+2026-01-30 20:23:08,763 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:08,764 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:08,765 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:08,765 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:08,766 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:09,365 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:09 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc12eec7ad28-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'e6a031a1ab19274fa3ce1fea9ed21c40'), (b'x-cloud-trace-context', b'e6a031a1ab19274fa3ce1fea9ed21c40'), (b'Set-Cookie', b'__cf_bm=KLMBYuEvsfune9U35waP5AGdVnRg_t_blbKogcvKy.s-1769784789-1.0.1.1-9GxmKSCpQh2z2XqYv3yyFelUPYdE6Co0kql1mEEg9DnkzyC1rtGYHpPJKWcPqT.F3VqrZPoKOQUKp7I3oGyZhuH8bU3v2iJUvoTgNdfZI20; path=/; expires=Fri, 30-Jan-26 15:23:09 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=zpDkiqi_2zyE4U2O5gpcZ87kNWrnjQsOUzZmkD4f26k-1769784789498-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:09,366 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:09,367 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:09,369 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:09,370 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:09,370 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:09,371 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:09,371 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:09,372 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:09,374 - app.routers.auth - INFO - Importing repo: Aaravshah2806/VibeDocs (ID: 1141593824) for user a7d12944-f8ed-4348-b4dc-2c8215e7a9ef
+2026-01-30 20:23:09,375 - app.routers.auth - INFO - Repo already exists: 4a3bdb0e-2688-4ceb-a34e-1f0c6ebf3ea5
+2026-01-30 20:23:09,389 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:09,390 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:09,390 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:09,391 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:09,872 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:09,932 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D1B80>
+2026-01-30 20:23:09,932 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180AA80> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:10,003 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D3750>
+2026-01-30 20:23:10,003 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:10,004 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:10,004 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:10,004 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:10,005 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:10,372 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:10 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc1abcf26115-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'53d8abdfef4e82a93ffcb0202a493a5b'), (b'x-cloud-trace-context', b'53d8abdfef4e82a93ffcb0202a493a5b'), (b'Set-Cookie', b'__cf_bm=iuYuw4zpshVnI31u_q1cM2guPCU4TP.BrNAJXR82nDE-1769784790-1.0.1.1-CB8Ddzr9Uq4jNSzaAzxho3YApziVLoFmJUUAHC9Y5qa0DIrWi2QyEgHUl4sNPOdow1fNfx.q_jjof9kQdjCBt3W3aqPXNW3tdIyKXnwvkq4; path=/; expires=Fri, 30-Jan-26 15:23:10 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=P3HEAjlBv5PJRSGhoQr3B2o915YOUOduFRGc5OTSvOs-1769784790506-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:10,373 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:10,374 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:10,375 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:10,376 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:10,377 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:10,378 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:10,379 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:10,379 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:10,401 - app.services.ai_generator - INFO - AIGeneratorService initialized with Gemini API
+2026-01-30 20:23:10,403 - app.services.ai_generator - INFO - Generating README for Aaravshah2806/VibeDocs on branch main
+2026-01-30 20:23:10,908 - httpcore.connection - DEBUG - connect_tcp.started host='api.github.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:10,960 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007B6D50>
+2026-01-30 20:23:10,960 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F900723B60> server_hostname='api.github.com' timeout=5.0
+2026-01-30 20:23:10,993 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D28F0>
+2026-01-30 20:23:10,995 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:10,998 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:10,999 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:10,999 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:10,999 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:11,408 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:11,408 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:11,408 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:11,409 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:11,974 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:11,975 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:11 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=60, s-maxage=60'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"707734ccb63aaf09049be06b0494405869a1438f49049cb32f2d91a9b18fcfca"'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4952'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'48'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'37BF:D0808:B78226:CDDCC8:697CC5D7')])
+2026-01-30 20:23:11,976 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Aaravshah2806/VibeDocs/branches/main "HTTP/1.1 200 OK"
+2026-01-30 20:23:11,977 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:11,977 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:11,977 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:11,978 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:11,980 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:11,981 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:11,981 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:11,982 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:11,982 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:12,027 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901831270>
+2026-01-30 20:23:12,027 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180AF90> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:12,089 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D3E30>
+2026-01-30 20:23:12,090 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:12,090 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:12,091 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:12,091 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:12,091 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:12,310 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:12 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=86400, s-maxage=86400'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"6530b36bf6634b9502fd16dbb1ec09bcaa357027138387db24ee6c73f06adff5"'), (b'Last-Modified', b'Fri, 30 Jan 2026 14:52:39 GMT'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4951'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'49'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'37BF:D0808:B78312:CDDDBF:697CC5D7')])
+2026-01-30 20:23:12,310 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Aaravshah2806/VibeDocs/git/trees/8fd02329b7f4711acedd1e8aff0f295622a4f695?recursive=1 "HTTP/1.1 200 OK"
+2026-01-30 20:23:12,311 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:12,312 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:12,312 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:12,313 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:12,314 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:12,314 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:12,315 - app.services.ai_generator - INFO - Retrieved file tree with 108 items
+2026-01-30 20:23:12,316 - app.services.ai_generator - INFO - Retrieved 0 important files
+2026-01-30 20:23:12,317 - app.services.ai_generator - INFO - Calling AI service...
+2026-01-30 20:23:12,317 - app.services.ai_generator - INFO - Trying model: gemini-2.5-flash
+2026-01-30 20:23:12,460 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:12 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc27be927ff8-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'e6701d44b555c5b63d517757ca8a6065'), (b'x-cloud-trace-context', b'e6701d44b555c5b63d517757ca8a6065'), (b'Set-Cookie', b'__cf_bm=fPTSTIz3gkDazNj8PX5YZ_CKR.OWJRdaxVnd0rCzQG8-1769784792-1.0.1.1-pq9M_TUmBNz3oES3B.c37Gm8qwHHPf5jUcClIB0po1PAXxShxeJbj4q_5TEc8FJp.lG9fBmPcNNiLhDzrxzTwe6aADkORemLMZva93IOH6o; path=/; expires=Fri, 30-Jan-26 15:23:12 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=TIJxqUEWZXnbLx8XDfoehcAvFaQQAPNd_YSseF72ETY-1769784792590-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:12,460 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:12,461 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:12,461 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:12,462 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:12,462 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:12,463 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:12,463 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:12,463 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:13,480 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:13,480 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:13,481 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:13,481 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:13,994 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:14,042 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90075F840>
+2026-01-30 20:23:14,042 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A330> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:14,100 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901830370>
+2026-01-30 20:23:14,100 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:14,101 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:14,102 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:14,102 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:14,102 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:14,455 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:14 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc343edb0698-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'268b635f62cf3548a65ea5ffdf390eaa'), (b'x-cloud-trace-context', b'268b635f62cf3548a65ea5ffdf390eaa'), (b'Set-Cookie', b'__cf_bm=wAkUN_uIaRjLgc4D7lsMSrHYER967SGOYjMutOgcd_w-1769784794-1.0.1.1-3XOcQqzNAXZSyEjrqppWz9Btin1sM3GNXNE1wwVrZN3rrDtd9_gYUfQUroA.xPAg2q6XIGu0WqOB1u3SCRjpGfFWBlVB47XwIpMxbW5c_VM; path=/; expires=Fri, 30-Jan-26 15:23:14 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=3juuwsNyOxuNpxkAT8ib92k169HcbvJK1XHdv_9splc-1769784794588-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:14,455 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:14,456 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:14,456 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:14,456 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:14,457 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:14,457 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:14,458 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:14,458 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:15,471 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:15,472 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:15,472 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:15,472 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:16,008 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:16,055 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187B110>
+2026-01-30 20:23:16,055 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A720> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:16,112 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9797BA850>
+2026-01-30 20:23:16,119 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:16,124 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:16,131 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:16,137 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:16,143 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:16,480 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:16 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc40ef80f3fd-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'44bbfba7ee8117d311a21dae947a1e0c'), (b'x-cloud-trace-context', b'44bbfba7ee8117d311a21dae947a1e0c'), (b'Set-Cookie', b'__cf_bm=oZuExLNAFCIj_pyckGpY8ZqF991rfHGWDQMsmFuHSF8-1769784796-1.0.1.1-aCLBI01uibgnkJjPXFt_WpBgVtnuq5Oglejl3K8QjEJ5hvRt2q5Ckoek.R951Lu.5__8.SxgrxlBGWLdf1cWXWekI.59k0AWR21cGwaFlHs; path=/; expires=Fri, 30-Jan-26 15:23:16 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=8E1T4O0py62GRcY5f_yFW5GizsSaXk2BzmNK722uQ7o-1769784796612-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:16,482 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:16,483 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:16,484 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:16,484 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:16,485 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:16,489 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:16,492 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:16,493 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:17,511 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:17,511 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:17,512 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:17,512 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:18,047 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:18,099 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187AA30>
+2026-01-30 20:23:18,100 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180B020> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:18,160 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F900705CC0>
+2026-01-30 20:23:18,161 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:18,161 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:18,162 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:18,162 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:18,162 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:18,546 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:18 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc4dcadd7f3f-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'f713b11e97ccc97911a21dae947a1d20'), (b'x-cloud-trace-context', b'f713b11e97ccc97911a21dae947a1d20'), (b'Set-Cookie', b'__cf_bm=fFsE5CRii2uW7vZVuBOtu98_f6VWkvrICVWxs69HnQU-1769784798-1.0.1.1-4uLFWLuNkCRFKGByGkrSP1gKbolcy.wnvNsWbVkxD5F2ChZZv2_VK48KPisgDTYyGTGIjDbthXK0H_m4Um7Htzwa7YGts0LJGtLqKhariaU; path=/; expires=Fri, 30-Jan-26 15:23:18 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=pGP8HPMcW_Q0PNcRCIgkEJL39nAEn1aDhhM4vGtJovo-1769784798679-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:18,547 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:18,547 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:18,548 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:18,548 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:18,549 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:18,550 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:18,551 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:18,551 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:19,570 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:19,570 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:19,570 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:19,570 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:20,087 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:20,140 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901879810>
+2026-01-30 20:23:20,140 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180AA80> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:20,194 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187A2B0>
+2026-01-30 20:23:20,195 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:20,196 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:20,197 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:20,197 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:20,198 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:20,543 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:20 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc5a5ce717cf-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'd4845209e97ba82df58d906617cf94a9'), (b'x-cloud-trace-context', b'd4845209e97ba82df58d906617cf94a9'), (b'Set-Cookie', b'__cf_bm=DOI1Z9tCVmEfN_uC9hwdmKXv0UfnpVX9WvjBc98yNoc-1769784800-1.0.1.1-9AA9RkBjUDHEvR1hndBBvrUYrZCSoUxGw2L6.xv4E02jVs5SbXjkz0ZL0tZ8zZX_x3_lzHEGGqFNjDD6o1mtKtxPpvUowFRNADOY03Dg904; path=/; expires=Fri, 30-Jan-26 15:23:20 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=SZPKm.WFyhH0uoe9IohWcKRVPlOTk7NizRuLNuUMl2o-1769784800681-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:20,544 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:20,544 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:20,545 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:20,545 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:20,545 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:20,546 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:20,547 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:20,547 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:21,568 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:21,568 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:21,568 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:21,568 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:22,076 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:22,125 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901879C20>
+2026-01-30 20:23:22,125 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A960> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:22,189 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018793B0>
+2026-01-30 20:23:22,189 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:22,191 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:22,191 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:22,192 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:22,193 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:22,556 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:22 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc66d93a1203-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'7c9d45dd5b46e74ecdbf463b8e74df9a'), (b'x-cloud-trace-context', b'7c9d45dd5b46e74ecdbf463b8e74df9a'), (b'Set-Cookie', b'__cf_bm=lvoViXOwiFTxMJrho6yb_O0OEeDBl.oalCHkbl1KpTs-1769784802-1.0.1.1-9dctwgn87e7op7KxIXlyDs0s6gXSQK0jmRzyfa6NdVo1GZOE7cRhtlR8H8U0S8AhaHXcnCcVd8MO7hDB7tRAT6947tDerrSSG3Qe3jUNCvc; path=/; expires=Fri, 30-Jan-26 15:23:22 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=cqsIE6moY8pd7cnD1z_Fjc3oyZPJKJ6pg.rzO0O839o-1769784802681-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:22,557 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:22,558 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:22,558 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:22,559 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:22,559 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:22,560 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:22,560 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:22,560 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:23,578 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:23,579 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:23,579 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:23,579 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:24,128 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:24,171 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D3F20>
+2026-01-30 20:23:24,171 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A4E0> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:24,233 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D0B40>
+2026-01-30 20:23:24,234 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:24,235 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:24,235 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:24,235 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:24,236 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:24,584 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:24 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc739b1d3965-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'149c924f07218da5aa2944e578ddc487'), (b'x-cloud-trace-context', b'149c924f07218da5aa2944e578ddc487'), (b'Set-Cookie', b'__cf_bm=HgAqQ5foFI2bXoxkdd0WCYEE9CPBje5gegqiKmMCa44-1769784804-1.0.1.1-7gk5x307FyogKw9.NTlv60VJSF_ZP9bdXPwWmqTsyNwczW8fW_4URD0dgPi3UOC6xMYHt0BWrqnI3VQyL5jqAr2hbMwXMKJz88o2NdCX3sQ; path=/; expires=Fri, 30-Jan-26 15:23:24 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=fxG5wxYaKkgW8q6SMycnUKcS.qNGjdCeGpGgUe0v0R8-1769784804718-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:24,586 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:24,586 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:24,587 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:24,587 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:24,587 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:24,588 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:24,588 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:24,589 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:25,606 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:25,606 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:25,607 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:25,607 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:26,181 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:26,240 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D3700>
+2026-01-30 20:23:26,240 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A180> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:26,302 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901879630>
+2026-01-30 20:23:26,303 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:26,303 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:26,303 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:26,303 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:26,304 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:26,706 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:26 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc809ac97fc2-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'e29b89f8f36d2571099d156e0c45f42c'), (b'x-cloud-trace-context', b'e29b89f8f36d2571099d156e0c45f42c'), (b'Set-Cookie', b'__cf_bm=DX1A585rNtd4qsJ0YvsQBhWyF1Ve99AyImNXD7QAOlE-1769784806-1.0.1.1-d3qpN2WsW.BqR_2Ckz8GByXLiByB2SZxPYo2bKkrV3B3XYvvZSoXcMUYSUKvR90E6weFFrydwAK8yTQcmMCCSfGC9qAoxqMzfgxOcM5l2RQ; path=/; expires=Fri, 30-Jan-26 15:23:26 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=lV_PFEfVfEjtoRcSSPG3.yu4hMKWvnzVh_ws.WxjW_M-1769784806840-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:26,706 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:26,707 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:26,707 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:26,707 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:26,708 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:26,708 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:26,709 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:26,709 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:27,727 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:27,727 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:27,727 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:27,727 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:28,259 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:28,303 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018305A0>
+2026-01-30 20:23:28,303 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A600> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:28,352 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D3250>
+2026-01-30 20:23:28,353 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:28,353 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:28,353 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:28,354 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:28,354 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:28,369 - app.services.ai_generator - INFO - Successfully generated with gemini-2.5-flash
+2026-01-30 20:23:28,370 - app.services.ai_generator - INFO - Generated README with 4994 characters
+2026-01-30 20:23:28,757 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:28 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cc8d588aa911-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'2f0b7c3aa667d3d01dae0ec2931d2e54'), (b'x-cloud-trace-context', b'2f0b7c3aa667d3d01dae0ec2931d2e54'), (b'Set-Cookie', b'__cf_bm=iSWJiKUW0uLoNE6sUV2OwN6nFH9JIWfa.rzG6hNM2CY-1769784808-1.0.1.1-AJ6yJYCMKfKOKKzxs2WEAE8P9ZfrTZsI5Iy_X84dcw0J85XXYfyKecFjkE0nYro79ITBgNaTSEtoZNZuzHrjmVCzcHE4N36DNS6WLvykRU8; path=/; expires=Fri, 30-Jan-26 15:23:28 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=iDtkz4fQg1FyH.SwaUdwb6XPPza9ooCmc6ZTBfYvb9s-1769784808886-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:28,758 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:28,758 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:28,758 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:28,759 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:28,759 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:28,760 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:28,761 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:28,761 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:52,050 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:52,052 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:52,052 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:52,052 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:52,673 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:52,730 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187A3A0>
+2026-01-30 20:23:52,730 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A060> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:52,791 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F900783DE0>
+2026-01-30 20:23:52,793 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:52,794 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:52,794 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:52,794 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:52,795 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:53,146 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:53 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cd262d9c06b8-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'039a79772620188b9debc120ba13346b'), (b'x-cloud-trace-context', b'039a79772620188b9debc120ba13346b'), (b'Set-Cookie', b'__cf_bm=M3ppRWq5m0Vj6hTdrtWM2OHNii.7z3ZJKd2CkMqWPIg-1769784833-1.0.1.1-nGbrxYDTgx1CQJYEnHU5Z5tqpnPUM1d.rTKs4AE5_ZH1WT7vcHChlbJxZ0CDw3p74DMMSo2fX1miLdUDD4Vyb6Rq3Bn0yJ2.XHo3BP71QPg; path=/; expires=Fri, 30-Jan-26 15:23:53 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=VPDUKZG8BYvlx9NQ7g91Nyw.BoVZcoXv8MeT7XDZ1So-1769784833279-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:53,147 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:53,147 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:53,148 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:53,148 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:53,149 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:53,150 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:53,150 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:53,150 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:53,152 - app.routers.auth - INFO - Importing repo: Aaravshah2806/VibeDocs (ID: 1141593824) for user a7d12944-f8ed-4348-b4dc-2c8215e7a9ef
+2026-01-30 20:23:53,153 - app.routers.auth - INFO - Repo already exists: 4a3bdb0e-2688-4ceb-a34e-1f0c6ebf3ea5
+2026-01-30 20:23:53,165 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:53,165 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:53,166 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:53,166 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:53,687 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:53,934 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187BCF0>
+2026-01-30 20:23:53,935 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A9F0> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:53,968 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187A490>
+2026-01-30 20:23:53,969 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:53,970 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:53,970 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:53,970 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:53,971 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:54,480 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:54 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cd2d6c2d3d6c-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'72cb9e13e1aa78f08fcc7b7c96913c0e'), (b'x-cloud-trace-context', b'72cb9e13e1aa78f08fcc7b7c96913c0e'), (b'Set-Cookie', b'__cf_bm=PVfPzU3j6LEiwtyrsVh8nO0OI62MUZbF20LOisQU6Nw-1769784834-1.0.1.1-F3c.EOt8e8SCfLUOCMzc9MHskdnwOJAYnVJCXoA3V.qACONsp9YKX8X4WJfMP2.s72gUEFZO_KB8peZg3.ce.4UmxP7YQKVB1XAvVIUzzx8; path=/; expires=Fri, 30-Jan-26 15:23:54 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=.qJcNPy1ywQYJU.3V7hU1dv9injBdMY21_sHf_nfUCI-1769784834624-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:54,481 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:54,481 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:54,482 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:54,482 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:54,483 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:54,484 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:54,485 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:54,485 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:54,501 - app.services.ai_generator - INFO - AIGeneratorService initialized with Gemini API
+2026-01-30 20:23:54,503 - app.services.ai_generator - INFO - Generating README for Aaravshah2806/VibeDocs on branch main
+2026-01-30 20:23:55,057 - httpcore.connection - DEBUG - connect_tcp.started host='api.github.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:55,118 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187B9D0>
+2026-01-30 20:23:55,119 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180A450> server_hostname='api.github.com' timeout=5.0
+2026-01-30 20:23:55,156 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187BD90>
+2026-01-30 20:23:55,157 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:55,157 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:55,158 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:55,158 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:55,159 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:55,496 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:55 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=60, s-maxage=60'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"707734ccb63aaf09049be06b0494405869a1438f49049cb32f2d91a9b18fcfca"'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4950'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'50'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'27FF:B6A4D:BB51AF:D1A989:697CC603')])
+2026-01-30 20:23:55,497 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Aaravshah2806/VibeDocs/branches/main "HTTP/1.1 200 OK"
+2026-01-30 20:23:55,497 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:55,498 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:55,499 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:55,500 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:55,503 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:55,506 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:55,506 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:55,507 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:55,507 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:55,510 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:55,510 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:55,512 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:55,512 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:56,129 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:56,130 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:55 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=86400, s-maxage=86400'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"6530b36bf6634b9502fd16dbb1ec09bcaa357027138387db24ee6c73f06adff5"'), (b'Last-Modified', b'Fri, 30 Jan 2026 14:52:39 GMT'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4949'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'51'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'27FF:B6A4D:BB51F3:D1A9CD:697CC603')])
+2026-01-30 20:23:56,131 - httpx - INFO - HTTP Request: GET https://api.github.com/repos/Aaravshah2806/VibeDocs/git/trees/8fd02329b7f4711acedd1e8aff0f295622a4f695?recursive=1 "HTTP/1.1 200 OK"
+2026-01-30 20:23:56,131 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:56,132 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:56,133 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:56,133 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:56,136 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:56,139 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:56,141 - app.services.ai_generator - INFO - Retrieved file tree with 108 items
+2026-01-30 20:23:56,143 - app.services.ai_generator - INFO - Retrieved 0 important files
+2026-01-30 20:23:56,144 - app.services.ai_generator - INFO - Calling AI service...
+2026-01-30 20:23:56,144 - app.services.ai_generator - INFO - Trying model: gemini-2.5-flash
+2026-01-30 20:23:56,165 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901831D60>
+2026-01-30 20:23:56,166 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809A30> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:56,222 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901831FE0>
+2026-01-30 20:23:56,223 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:56,224 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:56,224 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:56,226 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:56,228 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:56,800 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:56 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cd3b7b4d47f3-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'd75a060e9631d774298e6d2b0c478254'), (b'x-cloud-trace-context', b'd75a060e9631d774298e6d2b0c478254'), (b'Set-Cookie', b'__cf_bm=UUHwDlSnYIhPsxsiIvTv7V.u0GvsOryhI4iyO64n_PE-1769784836-1.0.1.1-rvlrlMHN7CXIWd0.YMCfCFKiSlBoED.i3yL2FV6g5.7nrJhRRnpf8nw0crrkgacludlOlo9CxoGF3rEVBGjlwa2kE1Ta4nQ7Yo1YwK7.1g0; path=/; expires=Fri, 30-Jan-26 15:23:56 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=QRQEoHkWBMtPK6.QYZfN5Xl5InFfBdAmb5O8NCNkLO0-1769784836940-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:56,801 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:56,801 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:56,802 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:56,802 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:56,802 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:56,803 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:56,804 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:56,804 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:23:57,822 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:23:57,824 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:23:57,825 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:23:57,825 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:23:58,457 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:23:58,510 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018C7610>
+2026-01-30 20:23:58,511 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809F40> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:23:58,547 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901879FE0>
+2026-01-30 20:23:58,549 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:58,550 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:23:58,552 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:23:58,552 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:23:58,554 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:23:59,135 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:53:59 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cd4a0d743dfd-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'd0432e896fb06d198d77c2db9c1673bf'), (b'x-cloud-trace-context', b'd0432e896fb06d198d77c2db9c1673bf'), (b'Set-Cookie', b'__cf_bm=YKQqPejKKWgVKoissYLQjynqMhhjQKJ6WhHzeFj6Ud0-1769784839-1.0.1.1-IpUqRvBWKdR.Z0JYoBchgnEIFH5DeqOvusnU5NuS6VHICHFvwyPgVeLFw2xJXjcSOUg.Rpuo4it0JesVOrkjx8GrrUPQfV9Kk6U0RPLMe78; path=/; expires=Fri, 30-Jan-26 15:23:59 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=x8V7pLhpPknbS67vWvZV0kdtH.7AcEO52IJnicM8x1Y-1769784839276-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:23:59,135 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:23:59,136 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:23:59,136 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:23:59,137 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:23:59,137 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:23:59,138 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:23:59,138 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:23:59,139 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:24:00,156 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:24:00,157 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:24:00,158 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:24:00,158 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:24:00,780 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:24:00,919 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018C7C50>
+2026-01-30 20:24:00,920 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809D90> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:24:01,067 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018320D0>
+2026-01-30 20:24:01,068 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:24:01,068 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:24:01,069 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:24:01,069 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:24:01,069 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:24:01,458 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:54:01 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cd59bbc93a5b-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'cce74729d7aa3869da905ea676fcaa6d'), (b'x-cloud-trace-context', b'cce74729d7aa3869da905ea676fcaa6d'), (b'Set-Cookie', b'__cf_bm=XvOyohqKgHJgouIJA7EDnSIyWmvKrHxomqWcQPsfpdI-1769784841-1.0.1.1-M.SN4W552Y8fG.tnibVKOvHYeOdcvyssWxtHhfsalUIluEvdvxq4UruMpfHKQAXWXennRjM4DLuGLiOeIN48.j6ByGNBFPFF2x0kJGCSB3Q; path=/; expires=Fri, 30-Jan-26 15:24:01 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=sjJ_UfzYFCWXSJx_yFp6A5maMk74srLPdaotfPOJDb8-1769784841598-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:24:01,459 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:24:01,459 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:24:01,459 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:24:01,460 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:24:01,460 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:24:01,461 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:24:01,461 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:24:01,462 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:24:02,420 - app.services.ai_generator - INFO - Successfully generated with gemini-2.5-flash
+2026-01-30 20:24:02,422 - app.services.ai_generator - INFO - Generated README with 319 characters
+2026-01-30 20:24:02,479 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:24:02,480 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:24:02,481 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:24:02,482 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:24:03,077 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:24:03,109 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F90187BC00>
+2026-01-30 20:24:03,111 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809EB0> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:24:03,155 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D3840>
+2026-01-30 20:24:03,156 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:24:03,158 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:24:03,160 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:24:03,162 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:24:03,163 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:24:03,500 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 14:54:03 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61cd66cec03b22-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'2d4d0d1f23928f00b84a6fac0c4a9aca'), (b'x-cloud-trace-context', b'2d4d0d1f23928f00b84a6fac0c4a9aca'), (b'Set-Cookie', b'__cf_bm=PDMC6b25TyJ4oLd8M64H_SjRAfWBr60diJDRwfCZUwo-1769784843-1.0.1.1-gk.wp0FEAluIM8bgCeJSPZqqQM8K27NilEjzumUG4ElaBbLoQtJs.tW5Ac60YMett79jvU0jNGbC4yrdnMEg.QUu6o3cl4AcEVME.VMrMXQ; path=/; expires=Fri, 30-Jan-26 15:24:03 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=V3MIsXS8jkQmOBgC7Yp03DoumBayMSLVBwGtson5FhI-1769784843645-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:24:03,502 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:24:03,504 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:24:03,506 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:24:03,508 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:24:03,511 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:24:03,518 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:24:03,520 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:24:03,522 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:57:36,115 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 20:57:36,117 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 20:57:36,119 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 20:57:36,119 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 20:57:36,651 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:57:36,985 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018314A0>
+2026-01-30 20:57:36,986 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180AF00> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 20:57:37,088 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901830140>
+2026-01-30 20:57:37,090 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:57:37,091 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:57:37,091 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:57:37,091 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:57:37,092 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:57:37,697 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 15:27:37 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c61fe9248028042-MAA'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'8aed17d1a6dfc20cef922d6709361ad1'), (b'x-cloud-trace-context', b'8aed17d1a6dfc20cef922d6709361ad1'), (b'Set-Cookie', b'__cf_bm=fGoCnMisWqnq3s7ymkLTXm9N5X5.RSyFIiBb5FcqjME-1769786857-1.0.1.1-YDU8q9WVHnkvFPa4N6zGk6YwO.O1y35fomw5kg_Yna7jxPwiX_nsqMdHKpLRC6hJYvEEzyKrOMBGqUYpdAr4axcaouEJ01AuBluHLOU6YEQ; path=/; expires=Fri, 30-Jan-26 15:57:37 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=1rU3FFwVn2JjlmFj30Krf8Py4GojPn.uJaOc_8XvLBk-1769786857870-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 20:57:37,700 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 20:57:37,701 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:57:37,701 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:57:37,702 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:57:37,702 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:57:37,704 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:57:37,705 - httpcore.connection - DEBUG - close.complete
+2026-01-30 20:57:37,705 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 20:57:38,263 - httpcore.connection - DEBUG - connect_tcp.started host='api.github.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 20:57:38,329 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007CE5D0>
+2026-01-30 20:57:38,330 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180AE70> server_hostname='api.github.com' timeout=5.0
+2026-01-30 20:57:38,361 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901831E00>
+2026-01-30 20:57:38,362 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 20:57:38,363 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 20:57:38,363 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 20:57:38,363 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 20:57:38,363 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 20:57:38,792 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 15:27:38 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=60, s-maxage=60'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"d451e2e00b1222ff87b2b6eabe4d26e5c0efc4ba73b6579e98bf86597530daac"'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4948'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'52'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'7D90:120DBD:BC83AB:D399AB:697CCDEA')])
+2026-01-30 20:57:38,794 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated "HTTP/1.1 200 OK"
+2026-01-30 20:57:38,794 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 20:57:38,795 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 20:57:38,796 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 20:57:38,796 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 20:57:38,799 - httpcore.connection - DEBUG - close.started
+2026-01-30 20:57:38,804 - httpcore.connection - DEBUG - close.complete
+2026-01-30 21:04:13,411 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 21:04:13,411 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 21:04:13,411 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 21:04:13,411 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 21:04:14,057 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 21:04:14,097 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D2B20>
+2026-01-30 21:04:14,097 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809B50> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 21:04:14,134 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9007B54A0>
+2026-01-30 21:04:14,134 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 21:04:14,135 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 21:04:14,135 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 21:04:14,136 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 21:04:14,136 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 21:04:14,724 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 15:34:14 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c620843da0f3fae-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'dee663eb817fd6881c3edfecafeae3b9'), (b'x-cloud-trace-context', b'dee663eb817fd6881c3edfecafeae3b9'), (b'Set-Cookie', b'__cf_bm=7Fu6ro8khydzGaaP0ZNB64BCBe6vFRhqVhIi2focoXw-1769787254-1.0.1.1-nbpHBl0KNyQTkBI7JKtxNqL7dpK9wgcT57wqyXwyHoFvIj5z.Ex2OWVIiIJj.FVTFo2KvGkxqp2OAUHP4gDSaLNeP27XRajWO80AJwvspMU; path=/; expires=Fri, 30-Jan-26 16:04:14 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=SLhNRbPFGOaVh.Ud6pGvoWOUSShvApMvNTYOYJsGL1M-1769787254930-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 21:04:14,725 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 21:04:14,725 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 21:04:14,728 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 21:04:14,728 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 21:04:14,729 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 21:04:14,730 - httpcore.connection - DEBUG - close.started
+2026-01-30 21:04:14,731 - httpcore.connection - DEBUG - close.complete
+2026-01-30 21:04:14,731 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 21:04:15,321 - httpcore.connection - DEBUG - connect_tcp.started host='api.github.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 21:04:15,372 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901831360>
+2026-01-30 21:04:15,373 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901809E20> server_hostname='api.github.com' timeout=5.0
+2026-01-30 21:04:15,404 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F900655CC0>
+2026-01-30 21:04:15,405 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 21:04:15,405 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 21:04:15,406 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 21:04:15,406 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 21:04:15,406 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 21:04:15,799 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 15:34:15 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=60, s-maxage=60'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"d451e2e00b1222ff87b2b6eabe4d26e5c0efc4ba73b6579e98bf86597530daac"'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4947'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'53'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'47E9:213EEA:C067BF:D7A36C:697CCF77')])
+2026-01-30 21:04:15,801 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated "HTTP/1.1 200 OK"
+2026-01-30 21:04:15,805 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 21:04:15,808 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 21:04:15,810 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 21:04:15,814 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 21:04:15,821 - httpcore.connection - DEBUG - close.started
+2026-01-30 21:04:15,823 - httpcore.connection - DEBUG - close.complete
+2026-01-30 21:06:41,453 - app.routers.auth - INFO - verify_clerk_token called
+2026-01-30 21:06:41,453 - app.routers.auth - INFO - Token received (first 20 chars): eyJhbGciOiJSUzI1NiIs...
+2026-01-30 21:06:41,454 - app.routers.auth - INFO - Decoded user ID: user_38yvO0JA9M2bkLiKWeamEkpP4rO
+2026-01-30 21:06:41,454 - app.routers.auth - INFO - Fetching GitHub token from Clerk...
+2026-01-30 21:06:42,025 - httpcore.connection - DEBUG - connect_tcp.started host='api.clerk.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 21:06:42,207 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018C5A40>
+2026-01-30 21:06:42,208 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F901808440> server_hostname='api.clerk.com' timeout=5.0
+2026-01-30 21:06:42,249 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9017D3D40>
+2026-01-30 21:06:42,250 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 21:06:42,250 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 21:06:42,250 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 21:06:42,251 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 21:06:42,251 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 21:06:43,144 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 15:36:43 GMT'), (b'Content-Type', b'application/json'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Content-Encoding', b'br'), (b'CF-Ray', b'9c620be17e574445-BOM'), (b'CF-Cache-Status', b'DYNAMIC'), (b'X-CFWorker', b'1'), (b'clerk-api-version', b'2025-11-10'), (b'x-clerk-trace-id', b'571e5f022c999eafc47f1300a2dba072'), (b'x-cloud-trace-context', b'571e5f022c999eafc47f1300a2dba072'), (b'Set-Cookie', b'__cf_bm=pt7Ti.5zGTywMWopIsUhu7owaU4.tOFaDkFnSHBMmOM-1769787403-1.0.1.1-KxYIcrt1Naf1F0G.XUqNXPiCZ6FZ9.AJqDBsOzyWy8cqSKuL5.d77Ek7d7phVDHv4m4wFFAI5ylre3rHt0eLxj6K7nMwLNcumkuW5HWTTXY; path=/; expires=Fri, 30-Jan-26 16:06:43 GMT; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Set-Cookie', b'_cfuvid=RrTTQgjOnB6y7NhdVN1QCmb2V0MmOwgMlV_fx8AG6bg-1769787403350-0.0.1.1-604800000; path=/; domain=.api.clerk.com; HttpOnly; Secure; SameSite=None'), (b'Vary', b'Accept-Encoding'), (b'Server', b'cloudflare')])
+2026-01-30 21:06:43,146 - httpx - INFO - HTTP Request: GET https://api.clerk.com/v1/users/user_38yvO0JA9M2bkLiKWeamEkpP4rO/oauth_access_tokens/oauth_github "HTTP/1.1 200 OK"
+2026-01-30 21:06:43,147 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 21:06:43,148 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 21:06:43,148 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 21:06:43,148 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 21:06:43,149 - httpcore.connection - DEBUG - close.started
+2026-01-30 21:06:43,149 - httpcore.connection - DEBUG - close.complete
+2026-01-30 21:06:43,150 - app.routers.auth - INFO - GitHub token received: Yes
+2026-01-30 21:06:43,775 - httpcore.connection - DEBUG - connect_tcp.started host='api.github.com' port=443 local_address=None timeout=5.0 socket_options=None
+2026-01-30 21:06:43,832 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F9018C52C0>
+2026-01-30 21:06:43,832 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001F90180AD50> server_hostname='api.github.com' timeout=5.0
+2026-01-30 21:06:43,875 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.anyio.AnyIOStream object at 0x000001F901879090>
+2026-01-30 21:06:43,876 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2026-01-30 21:06:43,877 - httpcore.http11 - DEBUG - send_request_headers.complete
+2026-01-30 21:06:43,877 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2026-01-30 21:06:43,877 - httpcore.http11 - DEBUG - send_request_body.complete
+2026-01-30 21:06:43,878 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2026-01-30 21:06:44,265 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Fri, 30 Jan 2026 15:36:44 GMT'), (b'Content-Type', b'application/json; charset=utf-8'), (b'Cache-Control', b'private, max-age=60, s-maxage=60'), (b'Vary', b'Accept, Authorization, Cookie, X-GitHub-OTP,Accept-Encoding, Accept, X-Requested-With'), (b'ETag', b'W/"d451e2e00b1222ff87b2b6eabe4d26e5c0efc4ba73b6579e98bf86597530daac"'), (b'X-OAuth-Scopes', b'read:user, user:email'), (b'X-Accepted-OAuth-Scopes', b''), (b'x-oauth-client-id', b'456274a3f3e4821d16e4'), (b'X-GitHub-Media-Type', b'github.v3; format=json'), (b'x-github-api-version-selected', b'2022-11-28'), (b'X-RateLimit-Limit', b'5000'), (b'X-RateLimit-Remaining', b'4946'), (b'X-RateLimit-Reset', b'1769787592'), (b'X-RateLimit-Used', b'54'), (b'X-RateLimit-Resource', b'core'), (b'Access-Control-Expose-Headers', b'ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, X-GitHub-SSO, X-GitHub-Request-Id, Deprecation, Sunset'), (b'Access-Control-Allow-Origin', b'*'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubdomains; preload'), (b'X-Frame-Options', b'deny'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'0'), (b'Referrer-Policy', b'origin-when-cross-origin, strict-origin-when-cross-origin'), (b'Content-Security-Policy', b"default-src 'none'"), (b'Content-Encoding', b'gzip'), (b'Transfer-Encoding', b'chunked'), (b'Server', b'github.com'), (b'X-GitHub-Request-Id', b'369E:EB576:C0E7EB:D82D07:697CD00C')])
+2026-01-30 21:06:44,266 - httpx - INFO - HTTP Request: GET https://api.github.com/user/repos?page=1&per_page=100&sort=updated "HTTP/1.1 200 OK"
+2026-01-30 21:06:44,267 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2026-01-30 21:06:44,270 - httpcore.http11 - DEBUG - receive_response_body.complete
+2026-01-30 21:06:44,270 - httpcore.http11 - DEBUG - response_closed.started
+2026-01-30 21:06:44,270 - httpcore.http11 - DEBUG - response_closed.complete
+2026-01-30 21:06:44,271 - httpcore.connection - DEBUG - close.started
+2026-01-30 21:06:44,272 - httpcore.connection - DEBUG - close.complete

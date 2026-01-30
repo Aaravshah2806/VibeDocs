@@ -4,6 +4,7 @@ import { SignedIn, SignedOut } from '@clerk/clerk-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import LiquidGlassCard from '../components/LiquidGlassCard';
+import Shuffle from '../components/Shuffle';
 
 function Landing() {
   const location = useLocation();
@@ -35,11 +36,28 @@ function Landing() {
               AI-Powered Documentation
             </span>
             
-            <h1 className="hero-title">
+            <div className="hero-title-wrapper">
+              <Shuffle
+                text="VibeDocs"
+                tag="h1"
+                className="shuffle-hero-title"
+                shuffleDirection="up"
+                duration={0.5}
+                shuffleTimes={2}
+                stagger={0.04}
+                ease="power4.out"
+                triggerOnHover={true}
+                triggerOnce={false}
+                threshold={0.2}
+                rootMargin="0px"
+              />
+            </div>
+            
+            <h2 className="hero-subtitle">
               Generate Professional
               <span className="text-gradient"> README Files</span>
               <br />in Seconds
-            </h1>
+            </h2>
             
             <p className="hero-description">
               Transform your GitHub repositories into beautifully documented projects. 
