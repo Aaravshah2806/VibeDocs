@@ -1,0 +1,80 @@
+# ===================================
+# Docker Compose - GitHub README AI
+# ===================================
+
+services:
+  # Backend Service - FastAPI
+  backend:
+    build:
+      context: ./backend_new
+      dockerfile: Dockerfile
+    container_name: readme-ai-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DATABASE_URL=sqlite:///./data/readme_ai.db
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - CORS_ORIGINS=["http://localhost:5173","http://localhost:3000","http://localhost"]
+      - DEBUG=${DEBUG:-false}
+      - RATE_LIMIT_PER_MINUTE=${RATE_LIMIT_PER_MINUTE:-60}
+    volumes:
+      - backend_data:/app/data
+    networks:
+      - readme-ai-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Frontend Service - React + NGINX
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - VITE_CLERK_PUBLISHABLE_KEY=${VITE_CLERK_PUBLISHABLE_KEY}
+        - VITE_API_URL=http://localhost:8000
+    container_name: readme-ai-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - readme-ai-network
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:80",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+# Networks
+networks:
+  readme-ai-network:
+    driver: bridge
+
+# Volumes
+volumes:
+  backend_data:
+    driver: local
