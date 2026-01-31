@@ -970,3 +970,550 @@
     font-size: 1.5rem;
   }
 }
+
+/* ============================================
+   ADDITIONAL RESPONSIVE STYLES FOR ALL PAGES
+   ============================================ */
+
+/* Large Tablet / Small Desktop (1024px) */
+@media (max-width: 1024px) {
+  /* Hero Section */
+  .hero {
+    padding: var(--space-12) 0;
+  }
+
+  .hero::before,
+  .hero::after {
+    width: 250px;
+    height: 250px;
+  }
+
+  .hero-description {
+    font-size: 1.125rem;
+  }
+
+  /* Features */
+  .features {
+    padding: var(--space-12) 0;
+  }
+
+  .feature-card {
+    padding: var(--space-6);
+  }
+
+  .feature-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .feature-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  /* How It Works */
+  .how-it-works {
+    padding: var(--space-12) 0;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 1.125rem;
+  }
+
+  /* CTA */
+  .cta {
+    padding: var(--space-12) 0;
+  }
+
+  .cta-card {
+    padding: var(--space-8);
+  }
+
+  .cta-title {
+    font-size: 1.75rem;
+  }
+
+  /* Dashboard */
+  .dashboard {
+    padding-top: 90px;
+  }
+
+  .dashboard-stats {
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    min-width: 120px;
+    flex: 1;
+  }
+}
+
+/* Tablet (768px) */
+@media (max-width: 768px) {
+  /* Landing */
+  .landing {
+    padding-top: 70px;
+  }
+
+  .landing::before {
+    opacity: 0.1;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: auto;
+    padding: var(--space-10) 0 var(--space-12);
+  }
+
+  .hero::before,
+  .hero::after {
+    display: none;
+  }
+
+  .hero-badge {
+    font-size: 0.75rem;
+    padding: var(--space-1) var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-title {
+    font-size: 1.75rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  /* Features */
+  .features {
+    padding: var(--space-10) 0;
+  }
+
+  .section-header {
+    margin-bottom: var(--space-8);
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+  }
+
+  .section-description {
+    font-size: 1rem;
+  }
+
+  .feature-card {
+    padding: var(--space-5);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-4);
+  }
+
+  .feature-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .feature-title {
+    font-size: 1.125rem;
+  }
+
+  .feature-description {
+    font-size: 0.875rem;
+  }
+
+  /* Steps */
+  .steps {
+    gap: var(--space-4);
+  }
+
+  .step {
+    padding: var(--space-4);
+  }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .step-title {
+    font-size: 1rem;
+  }
+
+  .step-description {
+    font-size: 0.8125rem;
+  }
+
+  /* CTA */
+  .cta {
+    padding: var(--space-10) 0;
+  }
+
+  .cta-card {
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+  }
+
+  .cta-title {
+    font-size: 1.5rem;
+  }
+
+  .cta-description {
+    font-size: 0.9375rem;
+  }
+
+  /* Dashboard */
+  .dashboard {
+    padding-top: 80px;
+    padding-bottom: var(--space-8);
+  }
+
+  .dashboard-title {
+    font-size: 1.5rem;
+  }
+
+  .dashboard-stats {
+    gap: var(--space-3);
+  }
+
+  .stat-card {
+    padding: var(--space-4);
+    min-width: 100px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  /* Generator */
+  .generator {
+    padding-top: 80px;
+    padding-bottom: var(--space-8);
+  }
+
+  .generator-title {
+    font-size: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .generator-layout {
+    min-height: 300px;
+  }
+
+  .panel-header {
+    padding: var(--space-3);
+  }
+
+  .panel-title {
+    font-size: 0.875rem;
+  }
+
+  .editor-textarea {
+    font-size: 0.8125rem;
+    padding: var(--space-3);
+  }
+
+  .generator-actions {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .generator-actions .btn {
+    width: 100%;
+  }
+
+  /* Sign In Page */
+  .signin-page {
+    padding: var(--space-4);
+  }
+
+  .signin-header {
+    margin-bottom: var(--space-6);
+  }
+
+  .signin-logo {
+    font-size: 1.25rem;
+  }
+
+  .signin-title {
+    font-size: 1.5rem;
+  }
+
+  .clerk-signin {
+    padding: var(--space-6);
+  }
+}
+
+/* Mobile (480px) */
+@media (max-width: 480px) {
+  /* Landing */
+  .landing {
+    padding-top: 60px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: var(--space-8) 0 var(--space-10);
+  }
+
+  .hero-badge {
+    font-size: 0.6875rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .hero-description {
+    font-size: 0.9375rem;
+  }
+
+  /* Features */
+  .features {
+    padding: var(--space-8) 0;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+  }
+
+  .section-description {
+    font-size: 0.875rem;
+  }
+
+  .feature-card {
+    padding: var(--space-4);
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .feature-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .feature-title {
+    font-size: 1rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .feature-description {
+    font-size: 0.8125rem;
+  }
+
+  /* How It Works */
+  .how-it-works {
+    padding: var(--space-8) 0;
+  }
+
+  .step {
+    padding: var(--space-3);
+  }
+
+  /* CTA */
+  .cta-card {
+    padding: var(--space-5);
+  }
+
+  .cta-title {
+    font-size: 1.25rem;
+  }
+
+  .cta-description {
+    font-size: 0.875rem;
+    margin-bottom: var(--space-5);
+  }
+
+  /* Dashboard */
+  .dashboard-header {
+    gap: var(--space-3);
+  }
+
+  .dashboard-title {
+    font-size: 1.25rem;
+  }
+
+  .dashboard-stats {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .stat-card {
+    width: 100%;
+    min-width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .stat-value {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+
+  .stat-label {
+    order: -1;
+  }
+
+  /* Generator */
+  .generator-header {
+    margin-bottom: var(--space-4);
+  }
+
+  .generator-title {
+    font-size: 1.125rem;
+    gap: var(--space-2);
+  }
+
+  .generator-subtitle {
+    font-size: 0.8125rem;
+  }
+
+  /* Empty State */
+  .empty-state {
+    padding: var(--space-8);
+  }
+
+  .empty-state-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: var(--space-4);
+  }
+
+  .empty-state-title {
+    font-size: 1.125rem;
+  }
+
+  .empty-state-description {
+    font-size: 0.875rem;
+  }
+
+  /* Auth Pages */
+  .auth-page {
+    padding: var(--space-3);
+  }
+
+  .auth-card {
+    padding: var(--space-5);
+    border-radius: var(--radius-lg);
+  }
+
+  .auth-title {
+    font-size: 1.25rem;
+  }
+
+  .auth-subtitle {
+    font-size: 0.8125rem;
+  }
+
+  /* Markdown Preview */
+  .markdown-preview {
+    padding: var(--space-4);
+    max-height: 400px;
+  }
+
+  .markdown-preview h1 {
+    font-size: 1.5rem;
+  }
+
+  .markdown-preview h2 {
+    font-size: 1.25rem;
+  }
+
+  .markdown-preview h3 {
+    font-size: 1rem;
+  }
+}
+
+/* Extra Small Mobile (360px) */
+@media (max-width: 360px) {
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-description {
+    font-size: 0.875rem;
+  }
+
+  .hero-actions {
+    max-width: 100%;
+  }
+
+  .section-title {
+    font-size: 1.125rem;
+  }
+
+  .cta-title {
+    font-size: 1.125rem;
+  }
+
+  .dashboard-title {
+    font-size: 1.125rem;
+  }
+
+  .auth-card {
+    padding: var(--space-4);
+  }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: var(--space-6) 0;
+  }
+
+  .hero-badge {
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-subtitle {
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-description {
+    margin-bottom: var(--space-4);
+  }
+
+  .auth-page {
+    align-items: flex-start;
+    padding-top: var(--space-4);
+  }
+
+  .auth-card {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+

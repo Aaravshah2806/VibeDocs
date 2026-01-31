@@ -125,3 +125,144 @@
     transform: translateX(-250px) translateY(250px);
   }
 }
+
+/* ============================================
+   RESPONSIVE SPACE BACKGROUND
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .space-nebula {
+    filter: blur(60px);
+  }
+
+  .space-nebula-1 {
+    width: 600px;
+    height: 450px;
+  }
+
+  .space-nebula-2 {
+    width: 450px;
+    height: 525px;
+  }
+
+  .space-nebula-3 {
+    width: 375px;
+    height: 375px;
+  }
+
+  .space-nebula-4 {
+    width: 300px;
+    height: 340px;
+  }
+
+  .space-background::before {
+    background-size: 80px 80px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .space-nebula {
+    filter: blur(50px);
+    opacity: 0.3;
+  }
+
+  .space-nebula-1 {
+    width: 400px;
+    height: 300px;
+    top: -100px;
+    left: -100px;
+  }
+
+  .space-nebula-2 {
+    width: 300px;
+    height: 350px;
+    bottom: -100px;
+    right: -100px;
+  }
+
+  .space-nebula-3 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .space-nebula-4 {
+    width: 200px;
+    height: 220px;
+  }
+
+  .space-background::before {
+    background-size: 60px 60px;
+    opacity: 0.3;
+  }
+
+  .space-background::after {
+    background-size: 200px 200px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .space-nebula {
+    filter: blur(40px);
+    opacity: 0.25;
+  }
+
+  .space-nebula-1 {
+    width: 250px;
+    height: 200px;
+  }
+
+  .space-nebula-2 {
+    width: 200px;
+    height: 250px;
+  }
+
+  .space-nebula-3 {
+    width: 180px;
+    height: 180px;
+  }
+
+  .space-nebula-4 {
+    display: none;
+  }
+
+  .space-background::before {
+    display: none;
+  }
+}
+
+/* Reduce motion for performance on mobile */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .space-nebula {
+    animation-duration: 45s;
+  }
+
+  .space-background::after {
+    animation-duration: 120s;
+  }
+}
+
+/* Disable animations for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .space-nebula {
+    animation: none;
+  }
+
+  .space-background::after {
+    animation: none;
+  }
+
+  .space-canvas {
+    display: none;
+  }
+}
+
+/* Low power mode / battery saver */
+@media (prefers-reduced-data: reduce) {
+  .space-canvas {
+    display: none;
+  }
+}
+

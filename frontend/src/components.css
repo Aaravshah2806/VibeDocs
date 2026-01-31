@@ -813,3 +813,375 @@
     justify-content: center;
   }
 }
+
+/* ============================================
+   COMPREHENSIVE COMPONENT RESPONSIVE STYLES
+   ============================================ */
+
+/* Large Tablet (1024px) */
+@media (max-width: 1024px) {
+  /* Navbar */
+  .navbar-nav {
+    gap: var(--space-4);
+  }
+
+  .navbar-link {
+    font-size: 0.875rem;
+  }
+
+  /* Tilt Card */
+  .tilt-card-canvas {
+    height: 240px;
+  }
+
+  .tilt-card-prompt {
+    font-size: 1.25rem;
+  }
+
+  .tilt-card-title {
+    font-size: 1.125rem;
+  }
+
+  /* User Menu */
+  .user-menu-dropdown {
+    min-width: 180px;
+  }
+}
+
+/* Tablet (768px) - Already defined above, adding more */
+@media (max-width: 768px) {
+  /* Navbar Mobile Optimization */
+  .navbar-outer {
+    max-width: 100%;
+  }
+
+  .navbar-glass {
+    height: 56px !important;
+  }
+
+  .navbar-container {
+    padding: 0;
+  }
+
+  /* Tilt Card Mobile */
+  .tilt-card-canvas {
+    height: 200px;
+    perspective: 600px;
+  }
+
+  .tilt-card-inner {
+    padding: var(--space-4);
+  }
+
+  .tilt-card-prompt {
+    font-size: 1.125rem;
+  }
+
+  .tilt-card-details {
+    padding: var(--space-4);
+  }
+
+  .tilt-card-title {
+    font-size: 1rem;
+  }
+
+  .tilt-card-desc {
+    font-size: 0.8125rem;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .tilt-card-meta {
+    gap: var(--space-2);
+  }
+
+  .tilt-card-stat {
+    font-size: 0.75rem;
+  }
+
+  .tilt-card-badge {
+    font-size: 0.5625rem;
+    padding: 2px 6px;
+  }
+
+  .tilt-card-actions {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .tilt-card-actions .btn {
+    width: 100%;
+  }
+
+  /* Markdown Preview */
+  .markdown-preview {
+    padding: var(--space-4);
+    max-height: 500px;
+  }
+
+  /* Template Selector */
+  .template-option {
+    padding: var(--space-3);
+  }
+
+  .template-option-title {
+    font-size: 0.875rem;
+  }
+
+  .template-option-desc {
+    font-size: 0.75rem;
+  }
+
+  /* Search Bar */
+  .search-bar {
+    max-width: 100%;
+  }
+
+  /* User Menu */
+  .user-menu-trigger {
+    padding: var(--space-1) var(--space-2);
+  }
+
+  .user-avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .user-menu-dropdown {
+    min-width: 160px;
+    padding: var(--space-1);
+  }
+
+  .user-menu-item {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.875rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--space-8) 0 var(--space-6);
+  }
+
+  .footer-container {
+    gap: var(--space-4);
+  }
+
+  .footer-logo {
+    font-size: 1.125rem;
+  }
+
+  .footer-links {
+    gap: var(--space-4);
+  }
+
+  .footer-link {
+    font-size: 0.875rem;
+  }
+
+  .footer-copyright {
+    font-size: 0.75rem;
+  }
+
+  /* Loading States */
+  .skeleton-card {
+    height: 160px;
+  }
+}
+
+/* Mobile (480px) */
+@media (max-width: 480px) {
+  /* Navbar */
+  .navbar-wrapper {
+    padding: var(--space-2);
+  }
+
+  .navbar-glass {
+    height: 50px !important;
+    border-radius: 12px !important;
+  }
+
+  .navbar-glass .glass-surface__content {
+    padding: 0 var(--space-3);
+  }
+
+  .navbar-logo {
+    font-size: 1rem;
+    gap: var(--space-2);
+  }
+
+  .navbar-logo svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .btn-navbar {
+    padding: var(--space-1) var(--space-2) !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Tilt Card */
+  .tilt-card-canvas {
+    height: 180px;
+    perspective: 500px;
+  }
+
+  .tilt-card-inner {
+    border-radius: 12px;
+    padding: var(--space-3);
+  }
+
+  .tilt-card-prompt {
+    font-size: 1rem;
+  }
+
+  .tilt-card-details {
+    padding: var(--space-3);
+  }
+
+  .tilt-card-title {
+    font-size: 0.9375rem;
+  }
+
+  .tilt-card-desc {
+    font-size: 0.75rem;
+  }
+
+  .tilt-card-badge {
+    top: var(--space-2);
+    right: var(--space-2);
+    font-size: 0.5rem;
+    padding: 2px 4px;
+  }
+
+  /* LiquidGlassCard */
+  .liquid-glass-card {
+    border-radius: var(--radius-lg);
+  }
+
+  /* Footer */
+  .footer {
+    padding: var(--space-6) 0 var(--space-4);
+  }
+
+  .footer-logo {
+    font-size: 1rem;
+  }
+
+  .footer-logo svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .footer-links {
+    gap: var(--space-3);
+  }
+
+  .footer-link {
+    font-size: 0.8125rem;
+  }
+
+  /* User Menu */
+  .user-menu-trigger {
+    padding: var(--space-1);
+  }
+
+  .user-avatar {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+/* Extra Small Mobile (360px) */
+@media (max-width: 360px) {
+  .navbar-logo {
+    font-size: 0.9375rem;
+  }
+
+  .navbar-logo svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .btn-navbar {
+    padding: 4px 8px !important;
+    font-size: 0.6875rem !important;
+  }
+
+  .tilt-card-canvas {
+    height: 160px;
+  }
+
+  .tilt-card-prompt {
+    font-size: 0.9375rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+}
+
+/* Touch Device Optimizations for Components */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover effects on touch */
+  .navbar-link:hover::after {
+    width: 0;
+  }
+
+  .navbar-link.active::after {
+    width: 100%;
+  }
+
+  .tilt-card-container:hover .tilt-card-inner {
+    transform: none;
+  }
+
+  .tracker:hover ~ .tilt-card-inner {
+    transform: none !important;
+  }
+
+  /* Show details on tap for mobile */
+  .tilt-card-container:active .tilt-card-prompt {
+    opacity: 0;
+  }
+
+  .tilt-card-container:active .tilt-card-details {
+    opacity: 1;
+  }
+
+  /* Better touch targets */
+  .navbar-link {
+    padding: var(--space-2) var(--space-1);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .footer-link {
+    padding: var(--space-2) 0;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .user-menu-item {
+    min-height: 44px;
+  }
+}
+
+/* Landscape Tablet */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .tilt-card-canvas {
+    height: 220px;
+  }
+}
+
+/* High DPI / Retina Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .navbar-logo svg,
+  .feature-icon svg,
+  .footer-logo svg {
+    transform: translateZ(0); /* Force GPU acceleration for crisp rendering */
+  }
+}
+

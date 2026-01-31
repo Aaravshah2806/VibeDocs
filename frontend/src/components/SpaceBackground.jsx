@@ -1,14 +1,44 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './SpaceBackground.css';
 
 const SpaceBackground = ({ 
   starCount = 150, 
   shootingStarInterval = 3000,
-  nebulaeCount = 3 
+  nebulaeCount = 4 
 }) => {
   const canvasRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  
+  // Detect mobile and reduced motion preference
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    const checkReducedMotion = () => {
+      setPrefersReducedMotion(
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      );
+    };
+    
+    checkMobile();
+    checkReducedMotion();
+    
+    window.addEventListener('resize', checkMobile);
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    motionQuery.addEventListener('change', checkReducedMotion);
+    
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      motionQuery.removeEventListener('change', checkReducedMotion);
+    };
+  }, []);
   
   useEffect(() => {
+    // Don't run animations if user prefers reduced motion
+    if (prefersReducedMotion) return;
+    
     const canvas = canvasRef.current;
     if (!canvas) return;
     
@@ -17,19 +47,30 @@ const SpaceBackground = ({
     let stars = [];
     let shootingStars = [];
     
+    // Adjust counts based on device
+    const actualStarCount = isMobile ? Math.floor(starCount * 0.5) : starCount;
+    const actualShootingInterval = isMobile ? shootingStarInterval * 1.5 : shootingStarInterval;
+    
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.scale(dpr, dpr);
       initStars();
     };
     
     const initStars = () => {
       stars = [];
-      for (let i = 0; i < starCount; i++) {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      for (let i = 0; i < actualStarCount; i++) {
         stars.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 2 + 0.5,
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * (isMobile ? 1.5 : 2) + 0.5,
           opacity: Math.random() * 0.8 + 0.2,
           twinkleSpeed: Math.random() * 0.02 + 0.005,
           twinklePhase: Math.random() * Math.PI * 2,
@@ -50,12 +91,14 @@ const SpaceBackground = ({
     };
     
     const createShootingStar = () => {
-      const startX = Math.random() * canvas.width;
-      const startY = Math.random() * canvas.height * 0.5;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const startX = Math.random() * width;
+      const startY = Math.random() * height * 0.5;
       shootingStars.push({
         x: startX,
         y: startY,
-        length: Math.random() * 100 + 50,
+        length: Math.random() * (isMobile ? 60 : 100) + (isMobile ? 30 : 50),
         speed: Math.random() * 15 + 10,
         angle: Math.PI / 4 + (Math.random() - 0.5) * 0.3,
         opacity: 1,
@@ -64,7 +107,10 @@ const SpaceBackground = ({
     };
     
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      ctx.clearRect(0, 0, width, height);
       
       // Draw stars with twinkling
       stars.forEach(star => {
@@ -77,8 +123,8 @@ const SpaceBackground = ({
         ctx.fillStyle = `${star.color} ${currentOpacity})`;
         ctx.fill();
         
-        // Add glow for larger stars
-        if (star.size > 1.5) {
+        // Add glow for larger stars (skip on mobile for performance)
+        if (!isMobile && star.size > 1.5) {
           ctx.beginPath();
           ctx.arc(star.x, star.y, star.size * 2, 0, Math.PI * 2);
           const gradient = ctx.createRadialGradient(
@@ -116,12 +162,12 @@ const SpaceBackground = ({
           star.y - Math.sin(star.angle) * star.length
         );
         ctx.strokeStyle = gradient;
-        ctx.lineWidth = 2;
+        ctx.lineWidth = isMobile ? 1.5 : 2;
         ctx.stroke();
         
         // Draw head glow
         ctx.beginPath();
-        ctx.arc(star.x, star.y, 3, 0, Math.PI * 2);
+        ctx.arc(star.x, star.y, isMobile ? 2 : 3, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
         ctx.fill();
       });
@@ -134,14 +180,27 @@ const SpaceBackground = ({
     animate();
     
     // Create shooting stars periodically
-    const shootingInterval = setInterval(createShootingStar, shootingStarInterval);
+    const shootingInterval = setInterval(createShootingStar, actualShootingInterval);
     
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       cancelAnimationFrame(animationId);
       clearInterval(shootingInterval);
     };
-  }, [starCount, shootingStarInterval]);
+  }, [starCount, shootingStarInterval, isMobile, prefersReducedMotion]);
+  
+  // Don't render canvas if user prefers reduced motion
+  if (prefersReducedMotion) {
+    return (
+      <div className="space-background">
+        <div className="space-nebulae">
+          {Array.from({ length: nebulaeCount }).map((_, i) => (
+            <div key={i} className={`space-nebula space-nebula-${i + 1}`} />
+          ))}
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div className="space-background">
@@ -156,3 +215,4 @@ const SpaceBackground = ({
 };
 
 export default SpaceBackground;
+
