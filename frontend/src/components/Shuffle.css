@@ -31,26 +31,29 @@
   will-change: transform, opacity;
 }
 
-/* VibeDocs specific styling */
+/* ============================================
+   SPACE THEMED VibeDocs Hero Title
+   ============================================ */
 .shuffle-hero-title {
   font-size: clamp(3rem, 10vw, 6rem);
   font-weight: 800;
   font-family: var(--font-heading);
   background: linear-gradient(
     135deg, 
-    #a78bfa 0%, 
-    #60a5fa 25%,
-    #c084fc 50%,
-    #60a5fa 75%,
-    #a78bfa 100%
+    #a855f7 0%, 
+    #06b6d4 20%,
+    #ec4899 40%,
+    #3b82f6 60%,
+    #06b6d4 80%,
+    #a855f7 100%
   );
-  background-size: 200% 200%;
+  background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 4s ease infinite;
+  animation: cosmicGradient 8s ease infinite;
   letter-spacing: -0.03em;
-  filter: drop-shadow(0 0 60px rgba(139, 92, 246, 0.4));
+  filter: drop-shadow(0 0 60px rgba(168, 85, 247, 0.5));
   position: relative;
   padding: 0.1em 0;
 }
@@ -62,34 +65,53 @@
   background-clip: text;
 }
 
-@keyframes gradient-shift {
+@keyframes cosmicGradient {
   0%, 100% {
     background-position: 0% 50%;
+    filter: drop-shadow(0 0 60px rgba(168, 85, 247, 0.5));
   }
-  50% {
+  33% {
+    background-position: 50% 50%;
+    filter: drop-shadow(0 0 70px rgba(6, 182, 212, 0.5));
+  }
+  66% {
     background-position: 100% 50%;
+    filter: drop-shadow(0 0 65px rgba(236, 72, 153, 0.4));
   }
 }
 
-/* Hover glow effect */
+/* Cosmic hover glow effect */
 .shuffle-hero-title:hover {
-  filter: drop-shadow(0 0 80px rgba(139, 92, 246, 0.6));
+  filter: drop-shadow(0 0 100px rgba(6, 182, 212, 0.7));
+  animation-play-state: paused;
 }
 
-/* Add subtle text shadow via pseudo-element */
+/* Nebula glow via pseudo-element */
 .shuffle-hero-title::before {
   content: attr(data-text);
   position: absolute;
   left: 0;
   top: 0;
   z-index: -1;
-  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, #a855f7 0%, #06b6d4 50%, #ec4899 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: blur(40px);
-  opacity: 0.5;
+  filter: blur(50px);
+  opacity: 0.6;
   pointer-events: none;
+  animation: nebulaGlowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaGlowPulse {
+  0% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
 }
 
 /* Responsive adjustments */
@@ -99,3 +121,4 @@
     letter-spacing: -0.02em;
   }
 }
+

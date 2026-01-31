@@ -1,26 +1,37 @@
 :root {
-  /* Color Palette - Dark Mode with Purple/Blue Accents */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: rgba(18, 18, 26, 0.7);
-  --bg-tertiary: rgba(26, 26, 37, 0.6);
-  --bg-card: rgba(26, 26, 37, 0.5);
-  --bg-glass: rgba(255, 255, 255, 0.03);
+  /* ============================================
+     SPACE THEME - Cosmic Color Palette
+     ============================================ */
+  
+  /* Deep Space Background Colors */
+  --bg-primary: #050510;
+  --bg-secondary: rgba(10, 10, 30, 0.85);
+  --bg-tertiary: rgba(15, 15, 45, 0.7);
+  --bg-card: rgba(20, 20, 50, 0.6);
+  --bg-glass: rgba(100, 150, 255, 0.03);
 
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0b0;
-  --text-muted: #6a6a7a;
+  /* Cosmic Text Colors */
+  --text-primary: #e8eaff;
+  --text-secondary: #a0a8d0;
+  --text-muted: #6a70a0;
 
-  --accent-primary: #8b5cf6;
-  --accent-secondary: #3b82f6;
-  --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #9d6fff 0%, #4d94ff 100%);
+  /* Nebula Accent Colors */
+  --accent-primary: #a855f7;
+  --accent-secondary: #06b6d4;
+  --accent-tertiary: #ec4899;
+  --accent-gradient: linear-gradient(135deg, #a855f7 0%, #06b6d4 50%, #3b82f6 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #c084fc 0%, #22d3ee 50%, #60a5fa 100%);
+  --cosmic-glow: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #06b6d4 100%);
 
-  --border-color: rgba(139, 92, 246, 0.2);
-  --border-glow: rgba(139, 92, 246, 0.4);
+  /* Space Border Colors */
+  --border-color: rgba(168, 85, 247, 0.25);
+  --border-glow: rgba(6, 182, 212, 0.5);
+  --border-nebula: rgba(236, 72, 153, 0.3);
 
-  --success: #22c55e;
+  /* Status Colors */
+  --success: #10b981;
   --warning: #f59e0b;
-  --error: #ef4444;
+  --error: #f43f5e;
 
   /* Typography */
   --font-heading: "Alumni Sans", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -48,11 +59,13 @@
   --radius-2xl: 1.5rem;
   --radius-full: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(139, 92, 246, 0.3);
+  /* Cosmic Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 30px rgba(168, 85, 247, 0.4);
+  --shadow-nebula: 0 0 60px rgba(6, 182, 212, 0.2), 0 0 100px rgba(168, 85, 247, 0.15);
+  --shadow-cosmic: 0 0 40px rgba(168, 85, 247, 0.25), 0 0 80px rgba(6, 182, 212, 0.15);
 
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -82,9 +95,14 @@ body {
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-/* Background Gradient Effect */
+/* ============================================
+   ANIMATED SPACE BACKGROUND
+   ============================================ */
+
+/* Deep Space Base with Nebula Gradients */
 body::before {
   content: "";
   position: fixed;
@@ -93,18 +111,82 @@ body::before {
   right: 0;
   bottom: 0;
   background:
+    /* Nebula clouds */
     radial-gradient(
-      ellipse at 20% 20%,
-      rgba(139, 92, 246, 0.15) 0%,
+      ellipse 80% 50% at 20% 30%,
+      rgba(168, 85, 247, 0.15) 0%,
       transparent 50%
     ),
     radial-gradient(
-      ellipse at 80% 80%,
-      rgba(59, 130, 246, 0.1) 0%,
+      ellipse 60% 40% at 75% 70%,
+      rgba(6, 182, 212, 0.12) 0%,
       transparent 50%
+    ),
+    radial-gradient(
+      ellipse 50% 60% at 50% 50%,
+      rgba(236, 72, 153, 0.08) 0%,
+      transparent 40%
+    ),
+    /* Deep space gradient */
+    linear-gradient(
+      180deg,
+      #050510 0%,
+      #0a0a25 30%,
+      #0d0d35 60%,
+      #050515 100%
     );
   pointer-events: none;
-  z-index: -1;
+  z-index: -3;
+}
+
+/* Animated Starfield Layer */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    /* Large stars */
+    radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(200, 220, 255, 0.8), transparent),
+    radial-gradient(2px 2px at 50px 160px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(2px 2px at 90px 40px, rgba(180, 200, 255, 0.9), transparent),
+    radial-gradient(2px 2px at 130px 80px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(2px 2px at 160px 120px, rgba(200, 180, 255, 0.8), transparent),
+    /* Medium stars */
+    radial-gradient(1.5px 1.5px at 100px 50px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 200px 150px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 300px 250px, rgba(200, 220, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 400px 350px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 500px 100px, rgba(180, 200, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 600px 200px, rgba(255, 255, 255, 0.5), transparent),
+    /* Small stars */
+    radial-gradient(1px 1px at 70px 90px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 150px 200px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 250px 80px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 350px 180px, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(1px 1px at 450px 280px, rgba(255, 255, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 550px 380px, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 600px 400px;
+  animation: starTwinkle 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -2;
+}
+
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
 }
 
 a {
@@ -156,7 +238,9 @@ p {
   color: var(--text-secondary);
 }
 
-/* Buttons */
+/* ============================================
+   COSMIC BUTTONS
+   ============================================ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -171,6 +255,8 @@ p {
   cursor: pointer;
   transition: all var(--transition-normal);
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-primary {
@@ -179,24 +265,43 @@ p {
   box-shadow: var(--shadow-md), var(--shadow-glow);
 }
 
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
 .btn-primary:hover {
   background: var(--accent-gradient-hover);
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.02);
   box-shadow:
     var(--shadow-lg),
-    0 0 30px rgba(139, 92, 246, 0.4);
+    0 0 40px rgba(168, 85, 247, 0.5),
+    0 0 80px rgba(6, 182, 212, 0.3);
 }
 
 .btn-secondary {
-  background: var(--bg-glass);
+  background: rgba(15, 15, 45, 0.6);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(100, 150, 255, 0.1);
   border-color: var(--border-glow);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  transform: translateY(-2px);
 }
 
 .btn-ghost {
@@ -206,43 +311,74 @@ p {
 
 .btn-ghost:hover {
   color: var(--text-primary);
-  background: var(--bg-glass);
+  background: rgba(168, 85, 247, 0.1);
+  text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
 }
 
-/* Cards - Glass Effect */
+/* ============================================
+   COSMIC CARDS - Nebula Glass Effect
+   ============================================ */
 .card {
   position: relative;
-  background: rgba(255, 255, 255, 0.074);
-  border: 1px solid rgba(255, 255, 255, 0.222);
-  border-radius: 0.7rem;
+  background: rgba(15, 15, 50, 0.5);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  border-radius: var(--radius-xl);
   padding: var(--space-6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  transition: all ease 0.3s;
+  transition: all ease 0.4s;
+  overflow: hidden;
 }
 
+/* Cosmic nebula glow on hover */
 .card::before {
   content: "";
   position: absolute;
-  background: rgba(139, 92, 246, 0.2);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(6, 182, 212, 0.1) 50%, transparent 70%);
   border-radius: 50%;
-  width: 6rem;
-  height: 6rem;
-  top: 30%;
-  right: 7%;
+  width: 150px;
+  height: 150px;
+  top: -30%;
+  right: -10%;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.5s ease;
+  filter: blur(20px);
+}
+
+/* Secondary glow orb */
+.card::after {
+  content: "";
+  position: absolute;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.25) 0%, rgba(236, 72, 153, 0.1) 50%, transparent 70%);
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  bottom: -20%;
+  left: -5%;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.5s ease;
+  filter: blur(15px);
 }
 
 .card:hover::before {
   opacity: 1;
+  transform: scale(1.2);
+}
+
+.card:hover::after {
+  opacity: 0.8;
+  transform: scale(1.1);
 }
 
 .card:hover {
-  box-shadow: 0px 0px 20px 1px rgba(139, 92, 246, 0.3);
-  border: 1px solid rgba(139, 92, 246, 0.5);
-  transform: translateY(-4px);
+  box-shadow: 
+    0 0 30px rgba(168, 85, 247, 0.25),
+    0 0 60px rgba(6, 182, 212, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(168, 85, 247, 0.4);
+  transform: translateY(-6px);
 }
 
 /* Input Fields */

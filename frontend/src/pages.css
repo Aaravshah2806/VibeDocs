@@ -1,33 +1,143 @@
-/* Landing Page */
+/* ============================================
+   SPACE THEMED LANDING PAGE
+   ============================================ */
+
 .landing {
   padding-top: 80px;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Shooting Stars Animation */
+.landing::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(225deg, transparent 60%, rgba(168, 85, 247, 0.8) 60.5%, transparent 61%),
+    linear-gradient(225deg, transparent 75%, rgba(6, 182, 212, 0.6) 75.5%, transparent 76%);
+  background-size: 400px 400px;
+  animation: shootingStars 15s linear infinite;
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+@keyframes shootingStars {
+  0% {
+    background-position: 800px -400px, 1200px -600px;
+  }
+  100% {
+    background-position: -400px 800px, -600px 1200px;
+  }
+}
+
+/* Hero Section */
 .hero {
   min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;
   padding: var(--space-16) 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Floating cosmic orb decorations */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, rgba(6, 182, 212, 0.1) 40%, transparent 70%);
+  border-radius: 50%;
+  top: 10%;
+  right: -100px;
+  animation: cosmicFloat 20s ease-in-out infinite;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, rgba(236, 72, 153, 0.1) 40%, transparent 70%);
+  border-radius: 50%;
+  bottom: 20%;
+  left: -80px;
+  animation: cosmicFloat 25s ease-in-out infinite reverse;
+  pointer-events: none;
+  filter: blur(35px);
+}
+
+@keyframes cosmicFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(30px, -40px) scale(1.1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(0.9);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(-40px, -20px) scale(1.05);
+    opacity: 0.7;
+  }
 }
 
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
+/* Space-themed badge with glow */
 .hero-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-4);
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.4);
   border-radius: var(--radius-full);
-  color: var(--accent-primary);
+  color: var(--accent-secondary);
   font-size: 0.875rem;
   font-weight: 500;
   margin-bottom: var(--space-8);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: badgePulse 3s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+.hero-badge svg {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(6, 182, 212, 0.8));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(168, 85, 247, 1));
+  }
 }
 
 .hero-title {
@@ -77,8 +187,22 @@
   content: '';
   position: absolute;
   inset: -20%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+  background: 
+    radial-gradient(circle at 30% 30%, rgba(168, 85, 247, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(6, 182, 212, 0.2) 0%, transparent 50%);
   z-index: -1;
+  animation: nebulaGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes nebulaGlow {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
 .hero-image {
@@ -86,8 +210,11 @@
   max-width: 900px;
   margin: 0 auto;
   border-radius: var(--radius-2xl);
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  box-shadow: 
+    var(--shadow-lg), 
+    0 0 40px rgba(168, 85, 247, 0.2),
+    0 0 80px rgba(6, 182, 212, 0.1);
 }
 
 /* Features Section */
@@ -469,7 +596,7 @@
 .auth-orb-2 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.35) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.35) 0%, transparent 70%);
   bottom: -150px;
   right: -100px;
   animation-delay: -7s;
@@ -478,11 +605,21 @@
 .auth-orb-3 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.25) 0%, transparent 70%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation-delay: -13s;
+}
+
+/* Fourth cosmic orb for more depth */
+.auth-orb-4 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+  top: 70%;
+  left: 20%;
+  animation-delay: -18s;
 }
 
 @keyframes authOrbFloat {
@@ -500,18 +637,18 @@
   }
 }
 
-/* Grid Pattern */
+/* Constellation Grid Pattern */
 .auth-grid {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+    linear-gradient(rgba(168, 85, 247, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
 }
 
-/* Floating Particles */
+/* Floating Star Particles */
 .auth-particles {
   position: fixed;
   inset: 0;
@@ -521,30 +658,38 @@
 
 .auth-particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(139, 92, 246, 0.4);
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(168, 85, 247, 0.6) 100%);
   border-radius: 50%;
   animation: authParticleFloat var(--duration) ease-in-out infinite;
   animation-delay: var(--delay);
   left: var(--x-start);
   top: 100%;
+  box-shadow: 0 0 6px rgba(168, 85, 247, 0.5);
+}
+
+/* Alternate particle colors */
+.auth-particle:nth-child(odd) {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(6, 182, 212, 0.6) 100%);
+  box-shadow: 0 0 6px rgba(6, 182, 212, 0.5);
 }
 
 @keyframes authParticleFloat {
   0% {
     opacity: 0;
-    transform: translateY(0) translateX(0);
+    transform: translateY(0) translateX(0) scale(0.5);
   }
   10% {
     opacity: 1;
+    transform: scale(1);
   }
   90% {
     opacity: 1;
   }
   100% {
     opacity: 0;
-    transform: translateY(-100vh) translateX(calc(var(--x-end) - var(--x-start)));
+    transform: translateY(-100vh) translateX(calc(var(--x-end) - var(--x-start))) scale(0.5);
   }
 }
 

@@ -1,0 +1,127 @@
+/* ============================================
+   SPACE BACKGROUND COMPONENT
+   Animated starfield with nebulae
+   ============================================ */
+
+.space-background {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.space-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Nebula overlays */
+.space-nebulae {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.space-nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: nebulaFloat 30s ease-in-out infinite;
+}
+
+.space-nebula-1 {
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
+  top: -200px;
+  left: -200px;
+  animation-delay: 0s;
+}
+
+.space-nebula-2 {
+  width: 600px;
+  height: 700px;
+  background: radial-gradient(ellipse, rgba(6, 182, 212, 0.25) 0%, transparent 70%);
+  bottom: -150px;
+  right: -150px;
+  animation-delay: -10s;
+}
+
+.space-nebula-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(236, 72, 153, 0.2) 0%, transparent 70%);
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: -20s;
+}
+
+.space-nebula-4 {
+  width: 400px;
+  height: 450px;
+  background: radial-gradient(ellipse, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+  top: 20%;
+  right: 10%;
+  animation-delay: -15s;
+}
+
+@keyframes nebulaFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translate(30px, -20px) scale(1.05);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(0.95);
+    opacity: 0.35;
+  }
+  75% {
+    transform: translate(-30px, -10px) scale(1.02);
+    opacity: 0.45;
+  }
+}
+
+/* Constellation grid overlay */
+.space-background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(168, 85, 247, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.02) 1px, transparent 1px);
+  background-size: 100px 100px;
+  mask-image: radial-gradient(ellipse at center, transparent 20%, black 80%);
+  opacity: 0.5;
+}
+
+/* Cosmic dust particles */
+.space-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.15), transparent),
+    radial-gradient(1px 1px at 30% 60%, rgba(255, 255, 255, 0.1), transparent),
+    radial-gradient(1px 1px at 50% 30%, rgba(255, 255, 255, 0.12), transparent),
+    radial-gradient(1px 1px at 70% 80%, rgba(255, 255, 255, 0.08), transparent),
+    radial-gradient(1px 1px at 90% 40%, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 250px 250px;
+  animation: dustDrift 60s linear infinite;
+}
+
+@keyframes dustDrift {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(-250px) translateY(250px);
+  }
+}
