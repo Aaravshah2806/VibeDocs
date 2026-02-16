@@ -5,6 +5,8 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import LiquidGlassCard from '../components/LiquidGlassCard';
 import Shuffle from '../components/Shuffle';
+import CosmicCursor from '../components/CosmicCursor';
+import MagneticButton from '../components/MagneticButton';
 
 function Landing() {
   const location = useLocation();
@@ -23,6 +25,7 @@ function Landing() {
 
   return (
     <div className="landing">
+      <CosmicCursor />
       <Navbar />
       
       {/* Hero Section */}
@@ -36,22 +39,11 @@ function Landing() {
               AI-Powered Documentation
             </span>
             
-            <div className="hero-title-wrapper">
-              <Shuffle
-                text="VibeDocs"
-                tag="h1"
-                className="shuffle-hero-title"
-                shuffleDirection="up"
-                duration={0.5}
-                shuffleTimes={2}
-                stagger={0.04}
-                ease="power4.out"
-                triggerOnHover={true}
-                triggerOnce={false}
-                threshold={0.2}
-                rootMargin="0px"
-              />
-            </div>
+              <div className="hero-title-wrapper">
+                <h1 className="hero-title text-holographic" data-text="VibeDocs" style={{fontSize: '5rem', marginBottom: '1rem'}}>
+                  VibeDocs
+                </h1>
+              </div>
             
             <h2 className="hero-subtitle">
               Generate Professional
@@ -66,21 +58,28 @@ function Landing() {
             
             <div className="hero-actions">
               <SignedOut>
-                <Link to="/sign-up" className="btn btn-primary">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
-                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                  </svg>
-                  Connect GitHub
-                </Link>
-                <Link to="/sign-in" className="btn btn-secondary">
-                  Sign In
-                </Link>
+                <MagneticButton className="btn-wrapper">
+                  <Link to="/sign-up" className="btn btn-primary">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                    </svg>
+                    Connect GitHub
+                  </Link>
+                </MagneticButton>
+                
+                <MagneticButton className="btn-wrapper">
+                  <Link to="/sign-in" className="btn btn-secondary">
+                    Sign In
+                  </Link>
+                </MagneticButton>
               </SignedOut>
               
               <SignedIn>
-                <Link to="/dashboard" className="btn btn-primary">
-                  Go to Dashboard
-                </Link>
+                <MagneticButton className="btn-wrapper">
+                  <Link to="/dashboard" className="btn btn-primary">
+                    Go to Dashboard
+                  </Link>
+                </MagneticButton>
               </SignedIn>
             </div>
           </div>
@@ -100,7 +99,7 @@ function Landing() {
           </div>
           
           <div className="grid grid-3">
-            <LiquidGlassCard glowIntensity="md" shadowIntensity="sm" blurIntensity="md" className="feature-card">
+            <LiquidGlassCard glowIntensity="md" shadowIntensity="sm" blurIntensity="md" className="feature-card glass-shimmer">
               <div className="feature-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
@@ -112,7 +111,7 @@ function Landing() {
               </p>
             </LiquidGlassCard>
             
-            <LiquidGlassCard glowIntensity="md" shadowIntensity="sm" blurIntensity="md" className="feature-card">
+            <LiquidGlassCard glowIntensity="md" shadowIntensity="sm" blurIntensity="md" className="feature-card glass-shimmer">
               <div className="feature-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10" />
@@ -126,7 +125,7 @@ function Landing() {
               </p>
             </LiquidGlassCard>
             
-            <LiquidGlassCard glowIntensity="md" shadowIntensity="sm" blurIntensity="md" className="feature-card">
+            <LiquidGlassCard glowIntensity="md" shadowIntensity="sm" blurIntensity="md" className="feature-card glass-shimmer">
               <div className="feature-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />

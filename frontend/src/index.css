@@ -1,37 +1,39 @@
 :root {
   /* ============================================
-     SPACE THEME - Cosmic Color Palette
+     MIDNIGHT PRISM - Cyberpunk/Synthwave Palette
      ============================================ */
   
-  /* Deep Space Background Colors */
-  --bg-primary: #050510;
-  --bg-secondary: rgba(10, 10, 30, 0.85);
-  --bg-tertiary: rgba(15, 15, 45, 0.7);
-  --bg-card: rgba(20, 20, 50, 0.6);
-  --bg-glass: rgba(100, 150, 255, 0.03);
+  /* Deep Void Backgrounds */
+  --bg-primary: #020205;  /* Almost pure black */
+  --bg-secondary: rgba(10, 10, 15, 0.85);
+  --bg-tertiary: rgba(20, 20, 30, 0.7);
+  --bg-card: rgba(15, 15, 25, 0.6);
+  --bg-glass: rgba(255, 42, 109, 0.03); /* Subtle pink tint */
 
-  /* Cosmic Text Colors */
-  --text-primary: #e8eaff;
-  --text-secondary: #a0a8d0;
-  --text-muted: #6a70a0;
+  /* High Contrast Text */
+  --text-primary: #ffffff;
+  --text-secondary: #c0c0d0;
+  --text-muted: #6a6a80;
 
-  /* Nebula Accent Colors */
-  --accent-primary: #a855f7;
-  --accent-secondary: #06b6d4;
-  --accent-tertiary: #ec4899;
-  --accent-gradient: linear-gradient(135deg, #a855f7 0%, #06b6d4 50%, #3b82f6 100%);
-  --accent-gradient-hover: linear-gradient(135deg, #c084fc 0%, #22d3ee 50%, #60a5fa 100%);
-  --cosmic-glow: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #06b6d4 100%);
+  /* Neon Accents */
+  --accent-primary: #FF2A6D;   /* Neon Raspberry */
+  --accent-secondary: #05D9E8; /* Cyber Blue */
+  --accent-tertiary: #7700FF;  /* Electric Violet */
+  
+  /* Explosive Gradients */
+  --accent-gradient: linear-gradient(135deg, #FF2A6D 0%, #7700FF 50%, #05D9E8 100%);
+  --accent-gradient-hover: linear-gradient(135deg, #FF5C8D 0%, #9D40FF 50%, #2DE2EF 100%);
+  --cosmic-glow: linear-gradient(135deg, #FF2A6D 0%, #05D9E8 100%);
 
-  /* Space Border Colors */
-  --border-color: rgba(168, 85, 247, 0.25);
-  --border-glow: rgba(6, 182, 212, 0.5);
-  --border-nebula: rgba(236, 72, 153, 0.3);
+  /* Neon Borders */
+  --border-color: rgba(255, 42, 109, 0.2);
+  --border-glow: rgba(5, 217, 232, 0.5);
+  --border-nebula: rgba(119, 0, 255, 0.3);
 
   /* Status Colors */
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #f43f5e;
+  --success: #00FF9D;
+  --warning: #FFE600;
+  --error: #FF0055;
 
   /* Typography */
   --font-heading: "Alumni Sans", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -59,13 +61,13 @@
   --radius-2xl: 1.5rem;
   --radius-full: 9999px;
 
-  /* Cosmic Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.7);
-  --shadow-glow: 0 0 30px rgba(168, 85, 247, 0.4);
-  --shadow-nebula: 0 0 60px rgba(6, 182, 212, 0.2), 0 0 100px rgba(168, 85, 247, 0.15);
-  --shadow-cosmic: 0 0 40px rgba(168, 85, 247, 0.25), 0 0 80px rgba(6, 182, 212, 0.15);
+  /* Neon Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.8);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 20px rgba(255, 42, 109, 0.3);
+  --shadow-nebula: 0 0 40px rgba(5, 217, 232, 0.15), 0 0 80px rgba(119, 0, 255, 0.1);
+  --shadow-cosmic: 0 0 30px rgba(255, 42, 109, 0.2), 0 0 60px rgba(5, 217, 232, 0.1);
 
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -103,6 +105,7 @@ body {
    ============================================ */
 
 /* Deep Space Base with Nebula Gradients */
+/* Deep Space Base with Nebula Gradients */
 body::before {
   content: "";
   position: fixed;
@@ -111,29 +114,28 @@ body::before {
   right: 0;
   bottom: 0;
   background:
-    /* Nebula clouds */
+    /* Neon Nebula clouds */
     radial-gradient(
       ellipse 80% 50% at 20% 30%,
-      rgba(168, 85, 247, 0.15) 0%,
+      rgba(255, 42, 109, 0.08) 0%,
       transparent 50%
     ),
     radial-gradient(
       ellipse 60% 40% at 75% 70%,
-      rgba(6, 182, 212, 0.12) 0%,
+      rgba(5, 217, 232, 0.08) 0%,
       transparent 50%
     ),
     radial-gradient(
       ellipse 50% 60% at 50% 50%,
-      rgba(236, 72, 153, 0.08) 0%,
+      rgba(119, 0, 255, 0.06) 0%,
       transparent 40%
     ),
-    /* Deep space gradient */
+    /* Deep void gradient */
     linear-gradient(
       180deg,
-      #050510 0%,
-      #0a0a25 30%,
-      #0d0d35 60%,
-      #050515 100%
+      #020205 0%,
+      #050510 40%,
+      #080815 100%
     );
   pointer-events: none;
   z-index: -3;
@@ -795,3 +797,86 @@ main {
   }
 }
 
+
+/* ============================================
+   HOLOGRAPHIC & GLITCH EFFECTS
+   ============================================ */
+.text-holographic {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+}
+
+.text-holographic::before,
+.text-holographic::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.text-holographic::before {
+  color: #0ff;
+  z-index: -1;
+  animation: glitch-effect-1 3s infinite linear alternate-reverse;
+}
+
+.text-holographic::after {
+  color: #f0f;
+  z-index: -2;
+  animation: glitch-effect-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-effect-1 {
+  0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+  20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+  40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+  60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+  80% { clip-path: inset(10% 0 60% 0); transform: translate(1px, 2px); }
+  100% { clip-path: inset(30% 0 20% 0); transform: translate(-1px, -2px); }
+}
+
+@keyframes glitch-effect-2 {
+  0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+  20% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, 2px); }
+  40% { clip-path: inset(30% 0 20% 0); transform: translate(2px, 1px); }
+  60% { clip-path: inset(15% 0 80% 0); transform: translate(-1px, -2px); }
+  80% { clip-path: inset(55% 0 10% 0); transform: translate(1px, 2px); }
+  100% { clip-path: inset(40% 0 30% 0); transform: translate(-2px, 1px); }
+}
+
+/* Glass Shimmer Animation */
+.glass-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.5s;
+  pointer-events: none;
+}
+
+.glass-shimmer:hover::after {
+  animation: shimmer-slide 1s forwards;
+}
+
+@keyframes shimmer-slide {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}

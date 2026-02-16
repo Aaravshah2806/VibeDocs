@@ -82,10 +82,10 @@ const SpaceBackground = ({
     const getStarColor = () => {
       const colors = [
         'rgba(255, 255, 255,',      // White
-        'rgba(200, 220, 255,',      // Blue-white
-        'rgba(255, 200, 180,',      // Warm
-        'rgba(180, 200, 255,',      // Cool blue
-        'rgba(220, 180, 255,'       // Purple tint
+        'rgba(5, 217, 232,',        // Cyber Blue
+        'rgba(255, 42, 109,',       // Neon Pink
+        'rgba(119, 0, 255,',        // Electric Violet
+        'rgba(200, 240, 255,'       // Ice Blue
       ];
       return colors[Math.floor(Math.random() * colors.length)];
     };
