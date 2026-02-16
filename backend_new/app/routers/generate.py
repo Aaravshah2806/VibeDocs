@@ -23,11 +23,8 @@ import os
 from datetime import datetime
 
 def log_trace(msg):
-    try:
-        with open("generation_trace.log", "a") as f:
-            f.write(f"{datetime.now()}: {msg}\n")
-    except:
-        pass
+    # Log to stdout for cloud compatibility
+    print(f"{datetime.now()}: {msg}", flush=True)
 
 
 
@@ -113,18 +110,7 @@ async def generate_readme_background(
             pass
             
         error_msg = f"Error generating README: {str(e)}"
-        print(error_msg)
-        try:
-            import logging
-            # Configure logging to append to file
-            logging.basicConfig(
-                filename='backend_errors.log', 
-                level=logging.ERROR,
-                format='%(asctime)s - %(levelname)s - %(message)s'
-            )
-            logging.error(error_msg)
-        except:
-            print("Failed to write to error log")
+        print(error_msg, flush=True)
     finally:
         db.close()
 
