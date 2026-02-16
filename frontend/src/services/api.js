@@ -5,7 +5,7 @@
 export function getApiBaseUrl() {
   return import.meta.env.DEV
     ? ""
-    : (import.meta.env.VITE_API_URL || "http://localhost:8000");
+    : import.meta.env.VITE_API_URL || "http://localhost:8000";
 }
 const API_BASE_URL = getApiBaseUrl();
 
@@ -102,6 +102,50 @@ export async function getGeneration(token, generationId) {
   return apiRequest(`/api/generate/${generationId}`, token);
 }
 
+/**
+ * Refine text using AI
+ * @param {string} token - Clerk session token
+ * @param {string} currentText - Text to refine
+ * @param {string} instruction - User styling instruction
+ * @param {string} context - Optional context
+ */
+export async function refineText(
+  token,
+  currentText,
+  instruction,
+  context = null,
+) {
+  return apiRequest("/api/generate/refine", token, {
+    method: "POST",
+    body: JSON.stringify({
+      current_text: currentText,
+      instruction: instruction,
+      context: context,
+    }),
+  });
+}
+
+/**
+ * Detect badges for a repository
+ * @param {string} token - Clerk session token
+ * @param {string} repoId - Repository ID
+ */
+export async function detectBadges(token, repoId) {
+  return apiRequest(`/api/generate/badges/${repoId}`, token);
+}
+
+/**
+ * Audit README content
+ * @param {string} token - Clerk session token
+ * @param {string} content - README content
+ */
+export async function auditReadme(token, content) {
+  return apiRequest("/api/generate/audit", token, {
+    method: "POST",
+    body: JSON.stringify({ content }),
+  });
+}
+
 export default {
   fetchRepos,
   fetchRepoByIdentifier,
@@ -109,4 +153,8 @@ export default {
   importRepo,
   generateReadme,
   getGeneration,
+
+  refineText,
+  detectBadges,
+  auditReadme,
 };

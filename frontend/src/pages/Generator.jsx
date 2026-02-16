@@ -3,7 +3,10 @@ import { useParams, Link } from 'react-router-dom';
 import { useUser, useAuth, RedirectToSignIn } from '@clerk/clerk-react';
 import Navbar from '../components/Navbar';
 import MarkdownPreview from '../components/MarkdownPreview';
-import { generateReadme, getGeneration, importRepo, fetchRepos, fetchRepoByIdentifier, getApiBaseUrl } from '../services/api';
+import SmartRefineModal from '../components/SmartRefineModal';
+import BadgeSelector from '../components/BadgeSelector';
+import ScreenshotBeautifier from '../components/ScreenshotBeautifier';
+import { generateReadme, getGeneration, importRepo, fetchRepos, fetchRepoByIdentifier, refineText, detectBadges, auditReadme } from '../services/api';
 
 const templates = [
   { 
@@ -37,8 +40,26 @@ function Generator() {
   const [error, setError] = useState(null);
   const [repoInfo, setRepoInfo] = useState(null);
   const [dbRepoId, setDbRepoId] = useState(null); // DB UUID when repo loaded via fetch endpoint
+  const [currentGenerationId, setCurrentGenerationId] = useState(null);
   const [generationStatus, setGenerationStatus] = useState(null);
   const [loadError, setLoadError] = useState(null);
+  
+  // Smart Refine State
+  const [showRefineModal, setShowRefineModal] = useState(false);
+  const [refinePosition, setRefinePosition] = useState({ top: 0, left: 0 });
+  const [selectedText, setSelectedText] = useState('');
+
+  const textareaRef = useRef(null);
+
+  // Auto-Badge State
+  const [showBadgeModal, setShowBadgeModal] = useState(false);
+  const [detectedBadges, setDetectedBadges] = useState([]);
+  const [isDetectingBadges, setIsDetectingBadges] = useState(false);
+
+  // Vibe Check State
+  const [showScreenshotModal, setShowScreenshotModal] = useState(false);
+  const [auditResult, setAuditResult] = useState(null);
+  const [isAuditing, setIsAuditing] = useState(false);
 
   const loadRepoInfoRef = useRef(null);
 
@@ -154,6 +175,10 @@ function Generator() {
       const response = await generateReadme(token, idForGenerate, selectedTemplate);
       console.log('Generation response:', response);
       
+      if (response.generation_id) {
+        setCurrentGenerationId(response.generation_id);
+      }
+      
       if (response.status === 'pending') {
         // Poll for completion
         setGenerationStatus('AI is writing your README...');
@@ -217,9 +242,174 @@ function Generator() {
     URL.revokeObjectURL(url);
   };
 
+
+
+
+
+  const handleTextSelect = (e) => {
+    const textarea = e.target;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    
+    if (start !== end) {
+      const selected = textarea.value.substring(start, end);
+      // Only show for substantial selection
+      if (selected.length > 5) {
+        // Calculate position (approximation)
+        // Get textarea coordinates
+        const rect = textarea.getBoundingClientRect();
+        
+        // Simple positioning: near the mouse would be better, but we don't have the event here 
+        // cleanly if triggered by keyboard. Let's position centered above textarea for now, 
+        // or try to use the mouseup event which matches better.
+        setSelectedText(selected);
+      }
+    }
+  };
+
+  const handleMouseUp = (e) => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    
+    if (start !== end) {
+      const selected = textarea.value.substring(start, end);
+      if (selected.length > 5) {
+        setSelectedText(selected);
+        // Position modal near the mouse release
+        setRefinePosition({
+          top: e.clientY - 80, // Position above cursor
+          left: e.clientX - 150 // Center horizontally relative to cursor
+        });
+        setShowRefineModal(true);
+      }
+    } else {
+      setShowRefineModal(false);
+    }
+  };
+  
+  const handleRefine = async (instruction) => {
+    try {
+      const token = await getToken();
+      const response = await refineText(token, selectedText, instruction);
+      
+      if (response.refined_text && textareaRef.current) {
+        const textarea = textareaRef.current;
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        
+        const newContent = 
+          content.substring(0, start) + 
+          response.refined_text + 
+          content.substring(end);
+          
+        setContent(newContent);
+        // Close modal handled by component on submit
+      }
+    } catch (err) {
+      console.error("Refine error:", err);
+      alert("Failed to refine text: " + err.message);
+    }
+  };
+
+  const handleDetectBadges = async () => {
+    setIsDetectingBadges(true);
+    try {
+      const token = await getToken();
+      
+      let idForBadge = dbRepoId;
+      
+      // Lazy import if not already in DB
+      if (!idForBadge) {
+        if (repoInfo && repoInfo.full_name) {
+             const importData = {
+                id: repoInfo.id,
+                name: repoInfo.name,
+                full_name: repoInfo.full_name,
+                description: repoInfo.description || '',
+                language: repoInfo.language || 'Unknown',
+                stargazers_count: repoInfo.stargazers_count ?? 0,
+                forks_count: repoInfo.forks_count ?? 0,
+                visibility: repoInfo.visibility || 'public',
+                default_branch: repoInfo.default_branch || 'main',
+                updated_at: repoInfo.updated_at || new Date().toISOString(),
+              };
+              const importedRepo = await importRepo(token, importData);
+              idForBadge = importedRepo.id;
+              setDbRepoId(idForBadge); // Update state for future use
+        } else {
+             throw new Error("Repository info not loaded. Cannot detect badges.");
+        }
+      }
+
+      const badges = await detectBadges(token, idForBadge);
+      setDetectedBadges(badges);
+      setShowBadgeModal(true);
+    } catch (err) {
+      console.error("Badge detection error:", err);
+      alert("Failed to detect badges: " + err.message);
+    } finally {
+      setIsDetectingBadges(false);
+    }
+  };
+
+  const handleInsertBadges = (badgesToInsert) => {
+    if (badgesToInsert.length === 0) return;
+    
+    const badgeMarkdown = badgesToInsert.map(b => b.markdown).join(' ');
+    
+    // Insert at the top of the file, after title if exists, or just at very top
+    // For simplicity, let's prepend to the top with a newline
+    const newContent = badgeMarkdown + '\n\n' + content;
+    setContent(newContent);
+  };
+
+  const handleAudit = async () => {
+    if (!content) return;
+    setIsAuditing(true);
+    setAuditResult(null);
+    try {
+      const token = await getToken();
+      const result = await auditReadme(token, content);
+      setAuditResult(result);
+    } catch (err) {
+      console.error("Audit error:", err);
+      alert("Failed to audit README: " + err.message);
+    } finally {
+      setIsAuditing(false);
+    }
+  };
+
   return (
     <div className="generator">
       <Navbar />
+      
+      {showRefineModal && (
+        <SmartRefineModal 
+          isOpen={showRefineModal}
+          onClose={() => setShowRefineModal(false)}
+          onRefine={handleRefine}
+          position={refinePosition}
+        />
+      )}
+
+      {showBadgeModal && (
+        <BadgeSelector
+          isOpen={showBadgeModal}
+          onClose={() => setShowBadgeModal(false)}
+          badges={detectedBadges}
+          onInsert={handleInsertBadges}
+        />
+      )}
+
+      {showScreenshotModal && (
+        <ScreenshotBeautifier
+          isOpen={showScreenshotModal}
+          onClose={() => setShowScreenshotModal(false)}
+        />
+      )}
       
       <div className="container">
         <div className="generator-header">
@@ -328,14 +518,72 @@ function Generator() {
                 </svg>
                 Copy
               </button>
+              <button 
+                className="btn btn-ghost" 
+                onClick={handleDetectBadges} 
+                disabled={isDetectingBadges || (!repoInfo && !dbRepoId)}
+                title="Auto-detect and insert tech stack badges"
+              >
+                {isDetectingBadges ? 'Scanning...' : '🛡️ Add Badges'}
+              </button>
+              <button 
+                  className="btn btn-ghost" 
+                  onClick={() => setShowScreenshotModal(true)}
+                  title="Create beautiful screenshots"
+              >
+                🖼️ Beautify Screen
+              </button>
             </div>
             <div className="panel-content">
               <textarea
+                ref={textareaRef}
                 className="editor-textarea"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
+                onMouseUp={handleMouseUp}
                 placeholder={isGenerating ? generationStatus : "Click 'Generate' to create your README..."}
               />
+            </div>
+            
+            {/* Context/Audit Panel */}
+            <div style={{ padding: 'var(--space-4)', borderTop: '1px solid var(--border-color)', background: 'var(--bg-card)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h4 style={{ margin: 0, fontSize: '0.9rem' }}>🔍 Vibe Check</h4>
+                <button className="btn btn-sm btn-secondary" onClick={handleAudit} disabled={isAuditing || !content}>
+                  {isAuditing ? 'Checking...' : 'Check Score'}
+                </button>
+              </div>
+              
+              {auditResult && (
+                <div className="animate-in fade-in slide-in-from-bottom-2" style={{ marginTop: 'var(--space-3)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', marginBottom: 'var(--space-2)' }}>
+                    <div style={{ 
+                      fontSize: '1.5rem', 
+                      fontWeight: 'bold', 
+                      color: auditResult.grade.startsWith('A') ? 'var(--success)' : 
+                             auditResult.grade.startsWith('B') ? 'var(--accent-primary)' : 
+                             'var(--warning)'
+                    }}>
+                      {auditResult.grade} 
+                    </div>
+                    <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+                      Score: {auditResult.score}/100
+                    </div>
+                  </div>
+                  
+                  {auditResult.suggestions.length > 0 ? (
+                    <ul style={{ margin: 0, paddingLeft: '1.2rem', fontSize: '0.85rem', color: 'var(--text-main)' }}>
+                      {auditResult.suggestions.map((s, i) => (
+                        <li key={i}>{s}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--success)' }}>
+                      Perfect vibe! Your README rocks. 🚀
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 
@@ -365,14 +613,7 @@ function Generator() {
             </svg>
             Download README.md
           </button>
-          <button className="btn btn-primary" disabled={!content}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16">
-              <polyline points="16 16 12 12 8 16" />
-              <line x1="12" y1="12" x2="12" y2="21" />
-              <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" />
-            </svg>
-            Commit to GitHub
-          </button>
+
         </div>
       </div>
     </div>

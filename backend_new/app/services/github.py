@@ -136,11 +136,19 @@ class GitHubService:
             if current_sha:
                 commit_data["sha"] = current_sha
             
+            print(f"DEBUG: Attempting to commit to: {self.base_url}/repos/{owner}/{repo}/contents/{path}", flush=True)
             response = await client.put(
                 f"{self.base_url}/repos/{owner}/{repo}/contents/{path}",
                 headers=self.headers,
                 json=commit_data
             )
+            
+            print(f"DEBUG: GitHub Response Status: {response.status_code}", flush=True)
+            print(f"DEBUG: GitHub Scopes: {response.headers.get('X-OAuth-Scopes')}", flush=True)
+            
+            if response.status_code >= 400:
+                print(f"DEBUG: Commit failed. Body: {response.text}", flush=True)
+                
             response.raise_for_status()
             return True
     

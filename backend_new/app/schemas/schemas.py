@@ -76,10 +76,17 @@ class GenerateResponse(BaseModel):
     content: str
     status: str
 
-# Commit Request
-class CommitRequest(BaseModel):
-    generation_id: str
-    commit_message: str = "docs: Add AI-generated README"
+
+
+# Refine Request
+class RefineRequest(BaseModel):
+    current_text: str
+    instruction: str
+    context: Optional[str] = None
+
+# Audit Request
+class AuditRequest(BaseModel):
+    content: str
 
 #File Tree Response
 class FileTreeItem(BaseModel):

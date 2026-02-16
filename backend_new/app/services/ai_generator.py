@@ -233,3 +233,43 @@ Start directly with the title (# Project Name).
                 context += f"### {path}\n```\n{content}\n```\n\n"
         
         return context
+
+    async def refine_text(
+        self,
+        current_text: str,
+        instruction: str,
+        context: Optional[str] = None
+    ) -> str:
+        """
+        Refine a specific section of text based on user instruction.
+        
+        Args:
+            current_text: The text to refine
+            instruction: User's instruction (e.g., "Make it funnier")
+            context: Optional surrounding context
+            
+        Returns:
+            Refined text
+        """
+        prompt = f"""
+You are an expert technical writer perfecting a README file.
+Your task is to rewrite the following text based on the user's instruction.
+
+Original Text:
+'''
+{current_text}
+'''
+
+User Instruction:
+"{instruction}"
+
+{f"Context: {context}" if context else ""}
+
+Rules:
+1. Return ONLY the rewritten text.
+2. Do not include quotes or "Here is the rewritten text".
+3. Maintain valid Markdown formatting.
+4. If the instruction is "fix grammar", preserve the meaning exactly.
+"""
+        logger.info(f"Refining text with instruction: {instruction}")
+        return await asyncio.to_thread(self._call_gemini, prompt)

@@ -10,11 +10,17 @@ from app.schemas.schemas import (
     GenerateRequest,
     GenerateResponse,
     GenerationResponse,
-    CommitRequest
+    GenerateResponse,
+    GenerationResponse,
+    GenerationResponse,
+    RefineRequest,
+    AuditRequest
 )
 from app.config import settings
 from app.services.github import GitHubService
 from app.services.ai_generator import AIGeneratorService
+from app.services.badge_generator import BadgeGeneratorService
+from app.services.audit_service import AuditService
 from app.routers.auth import verify_clerk_token
 
 router = APIRouter(prefix="/api/generate", tags=["generate"])
@@ -217,53 +223,99 @@ async def get_generation(
     return generation
 
 
-@router.post("/commit")
-async def commit_readme(
-    request: CommitRequest,
+
+
+
+@router.post("/refine")
+async def refine_section(
+    request: RefineRequest,
     db: Session = Depends(get_db),
     user_and_token: Tuple[User, str] = Depends(get_user_with_token)
 ):
-    """Commit generated README to GitHub."""
+    """Refine a specific section of text using AI."""
+    _, github_token = user_and_token
+    log_trace(f"Refining text. Instruction: {request.instruction}")
+    
+    # Use the same AI service
+    ai_service = AIGeneratorService()
+    
+    try:
+        refined_text = await ai_service.refine_text(
+            request.current_text,
+            request.instruction,
+            request.context
+        )
+        return {"refined_text": refined_text}
+    except Exception as e:
+        log_trace(f"Refinement failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Refinement failed: {str(e)}")
+    except Exception as e:
+        log_trace(f"Refinement failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Refinement failed: {str(e)}")
+
+
+@router.post("/audit")
+async def audit_readme(
+    request: AuditRequest,
+    db: Session = Depends(get_db),
+    user_and_token: Tuple[User, str] = Depends(get_user_with_token)
+):
+    """Audit README content."""
+    try:
+        audit_service = AuditService()
+        result = audit_service.audit_readme(request.content)
+        return result
+    except Exception as e:
+        log_trace(f"Audit failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Audit failed: {str(e)}")
+
+
+@router.get("/badges/{repo_id}")
+async def detect_badges(
+    repo_id: str,
+    db: Session = Depends(get_db),
+    user_and_token: Tuple[User, str] = Depends(get_user_with_token)
+):
+    """Detect badges for a repository."""
     user, github_token = user_and_token
     
-    # Get generation
-    generation = db.query(Generation).join(Repository).filter(
-        Generation.id == request.generation_id,
+    # Get repository
+    repo = db.query(Repository).filter(
+        Repository.id == repo_id,
         Repository.user_id == user.id
     ).first()
     
-    if not generation:
-        raise HTTPException(status_code=404, detail="Generation not found")
-    
-    if generation.status != "completed":
-        raise HTTPException(
-            status_code=400,
-            detail=f"Generation not completed. Current status: {generation.status}"
-        )
-    
-    if not generation.content:
-        raise HTTPException(status_code=400, detail="No content to commit")
-    
-    # Get repository
-    repo = generation.repository
+    if not repo:
+        raise HTTPException(status_code=404, detail="Repository not found")
+        
     owner, repo_name = repo.full_name.split("/", 1)
     
-    # Commit to GitHub
-    github_service = GitHubService(github_token)
-    
     try:
-        success = await github_service.commit_file(
-            owner,
-            repo_name,
-            "README.md",
-            generation.content,
-            request.commit_message,
-            repo.default_branch
-        )
+        github_service = GitHubService(github_token)
+        badge_service = BadgeGeneratorService()
         
-        if success:
-            return {"message": "README committed successfully", "status": "success"}
-        else:
-            raise HTTPException(status_code=500, detail="Failed to commit README")
+        # 1. Get file tree
+        file_tree = await github_service.get_repo_tree(owner, repo_name, repo.default_branch)
+        
+        # 2. Fetch dependency files
+        dependency_files = [
+            "package.json", "requirements.txt", "pyproject.toml",
+            "go.mod", "cargo.toml", "pom.xml", "composer.json",
+            "gemfile", "mix.exs"
+        ]
+        
+        file_contents = {}
+        for item in file_tree:
+            filename = item.path.split("/")[-1].lower()
+            if filename in dependency_files:
+                content = await github_service.get_file_content(owner, repo_name, item.path, repo.default_branch)
+                if content:
+                    file_contents[filename] = content
+                    
+        # 3. Generate badges
+        badges = badge_service.generate_badges(file_tree, file_contents)
+        return badges
+        
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to commit README: {str(e)}")
+        log_trace(f"Badge detection failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Badge detection failed: {str(e)}")
