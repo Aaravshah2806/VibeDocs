@@ -3,60 +3,46 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-VibeDocs is a full-stack web application designed to revolutionize the creation of professional and engaging README files for GitHub repositories. Leveraging AI capabilities, it intelligently analyzes repository contents and user inputs to generate comprehensive markdown documentation, significantly enhancing project discoverability and clarity.
-
-## Table of Contents
-
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [API Reference](#api-reference)
-- [Contributing](#contributing)
-- [License](#license)
+VibeDocs is an AI-powered application designed to streamline the creation of comprehensive and professional GitHub README files. It features a robust Python FastAPI backend for AI generation, repository integration, and user management, coupled with an interactive React.js frontend for a seamless user experience and customization.
 
 ## Features
 
-- **AI-Powered README Generation:** Automatically generates detailed and structured READMEs by analyzing repository files and code.
-- **GitHub Integration:** Seamlessly connect and fetch repository information directly from your GitHub account.
-- **User Authentication & Management:** Secure user registration and login, allowing personalized experiences and saved generations.
-- **Interactive Markdown Preview:** Visualize your README in real-time before finalizing and saving.
-- **Dashboard Overview:** Manage your generated READMEs and connected repositories from a centralized dashboard.
-- **Modular & Scalable Architecture:** Built with a clear separation of concerns using FastAPI for the backend and React for the frontend.
-- **Containerized Development:** Easy setup and deployment using Docker and Docker Compose for consistent environments.
+-   **AI-Driven README Generation:** Leverages advanced AI models to generate tailored README content based on repository analysis and user input.
+-   **User Authentication & Management:** Secure user registration and login functionalities for personalized experiences.
+-   **GitHub Integration:** Connects with GitHub to fetch repository details and facilitate seamless README updates.
+-   **Dynamic Badge Generation:** Automatically creates and embeds relevant badges for project status, technologies, and more.
+-   **Intuitive Web Interface:** A modern and responsive React.js frontend for easy interaction, previewing, and managing generated READMEs.
+-   **Persistent Storage:** Utilizes a local SQLite database to store user data, generated READMEs, and repository information.
+-   **Containerized Environment:** Fully Dockerized setup for easy deployment and consistent development environments.
 
 ## Tech Stack
 
 **Frontend:**
-- **React.js:** A JavaScript library for building user interfaces.
-- **Vite:** A fast build tool that provides an instant development server and bundles your code for production.
-- **JavaScript/ES6+:** Core programming language.
-- **CSS:** For styling and responsive design.
-- **Nginx:** High-performance web server used to serve the static frontend assets.
+-   React.js
+-   Vite
+-   JavaScript
+-   CSS
+-   Nginx (for serving static assets)
 
 **Backend:**
-- **Python:** The primary programming language.
-- **FastAPI:** A modern, fast (high-performance) web framework for building APIs with Python 3.7+ based on standard Python type hints.
-- **SQLAlchemy:** SQL toolkit and Object-Relational Mapper (ORM) for interacting with the database.
-- **SQLite:** Lightweight, file-based relational database used for development.
-- **Docker:** Containerization platform for packaging the application and its dependencies.
-- **AI/LLM Integration:** Utilizes an underlying Language Model (LLM) for content generation (e.g., OpenAI, implied by `ai_generator.py`).
+-   Python 3.13
+-   FastAPI
+-   SQLAlchemy (ORM)
+-   AI/LLM Integration (for prompt engineering and generation)
+-   Uvicorn (ASGI server)
 
-**Orchestration:**
-- **Docker Compose:** Tool for defining and running multi-container Docker applications.
+**Database:**
+-   SQLite
+
+**Containerization:**
+-   Docker
+-   Docker Compose
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed on your system:
-
-- **Git:** For cloning the repository.
-  - [Download Git](https://git-scm.com/downloads)
-- **Docker Engine (v20.10+):** For running containerized applications.
-  - [Install Docker](https://docs.docker.com/engine/install/)
-- **Docker Compose (v2.0+):** For orchestrating multi-container applications.
-  - [Install Docker Compose](https://docs.docker.com/compose/install/)
+-   Git
+-   Docker Engine (v20.10+)
+-   Docker Compose (v2.0+)
 
 ## Installation
 
@@ -65,125 +51,119 @@ Follow these steps to get VibeDocs up and running on your local machine:
 1.  **Clone the repository:**
     ```bash
     git clone https://github.com/Aaravshah2806/VibeDocs.git
-    ```
-
-2.  **Navigate to the project directory:**
-    ```bash
     cd VibeDocs
     ```
 
-3.  **Configure Environment Variables:**
-    Copy the example environment file and rename it to `.env`.
-    ```bash
-    cp .env.docker.example .env
-    ```
-    Open the `.env` file and update the variables as needed, especially for GitHub API keys and AI service credentials.
+2.  **Configure Environment Variables:**
+    *   For Docker Compose, copy the example file:
+        ```bash
+        cp .env.docker.example .env.docker
+        ```
+        Edit `.env.docker` to configure ports or other global settings if necessary.
+    *   For the Backend service, copy its example file:
+        ```bash
+        cp backend_new/.env.example backend_new/.env
+        ```
+        Edit `backend_new/.env` to configure database settings, API keys for AI services, or any other backend-specific variables.
 
-4.  **Build and Run with Docker Compose:**
-    Execute the following command to build the Docker images and start the services in detached mode:
+3.  **Build and Run with Docker Compose:**
     ```bash
     docker-compose up --build -d
     ```
     This command will:
-    - Build the `backend_new` Docker image based on `backend_new/Dockerfile`.
-    - Build the `frontend` Docker image based on `frontend/Dockerfile`.
-    - Create and start the `backend` and `frontend` containers.
-    - Set up the necessary network configurations.
+    *   Build the Docker images for both the frontend and backend services.
+    *   Start the services in detached mode (`-d`).
+    *   Migrate the database (if defined in the backend's startup script).
 
 ## Usage
 
-Once the Docker containers are running, you can access VibeDocs:
+Once the Docker containers are running, you can access the application:
 
-1.  **Access the Frontend:**
-    Open your web browser and navigate to `http://localhost:80`.
-    You should see the VibeDocs user interface.
+1.  **Access the Frontend:** Open your web browser and navigate to `http://localhost` (or the port you configured in `.env.docker` for the frontend service).
 
-2.  **Register and Log In:**
-    Create a new account or log in if you already have one.
+2.  **Register/Login:** Create a new user account or log in if you already have one.
 
-3.  **Connect GitHub (Optional but Recommended):**
-    Navigate to the settings or integration section to connect your GitHub account. This allows VibeDocs to fetch your repository details.
+3.  **Generate READMEs:**
+    *   Provide the necessary repository details (e.g., GitHub URL).
+    *   Customize your README preferences through the interactive interface.
+    *   Initiate the AI generation process to receive a comprehensive README.
 
-4.  **Generate a README:**
-    Go to the "Generator" page, select a repository (or provide repository details manually), and initiate the AI generation process. Review and customize the generated markdown using the integrated preview.
-
-5.  **Explore the Dashboard:**
-    Visit the dashboard to view your history of generated READMEs and manage your connected repositories.
+4.  **Backend API:** The backend API will be accessible at `http://localhost:8000` (or the port configured for the backend service).
 
 ## Project Structure
 
 ```
 VibeDocs/
-├── .env.docker.example     # Example environment variables for Docker Compose
-├── .gitignore              # Specifies intentionally untracked files to ignore
-├── backend_implementation_plan.md # Development plan for backend
-├── backend_new/            # Backend service directory
-│   ├── .dockerignore       # Files to ignore when building backend Docker image
-│   ├── .env.example        # Example environment variables for backend (local)
-│   ├── Dockerfile          # Dockerfile for the backend service
-│   ├── README.md           # README for the backend service
-│   ├── app/                # Backend application source code
-│   │   ├── config.py       # Configuration settings
-│   │   ├── database.py     # Database connection and session management
-│   │   ├── main.py         # FastAPI application entry point
-│   │   ├── models/         # Database models (User, Repository, Generation)
-│   │   ├── prompts/        # AI prompt definitions (e.g., readme_prompt.py)
-│   │   ├── routers/        # API route definitions (auth, generate, repos)
-│   │   ├── schemas/        # Pydantic schemas for data validation
-│   │   └── services/       # Business logic services (AI generator, GitHub API)
-│   ├── readme_ai.db        # SQLite database file
-│   └── requirements.txt    # Python dependencies
-├── frontend/               # Frontend service directory
-│   ├── .dockerignore       # Files to ignore when building frontend Docker image
-│   ├── .gitignore          # Files to ignore for frontend git
-│   ├── Dockerfile          # Dockerfile for the frontend service
-│   ├── README.md           # README for the frontend service
-│   ├── nginx.conf          # Nginx configuration for serving frontend
-│   ├── package.json        # Node.js project configuration and dependencies
-│   ├── public/             # Static assets (logos, favicons)
-│   └── src/                # Frontend application source code
-│       ├── App.jsx         # Main React application component
-│       ├── assets/         # Images and other static assets
-│       ├── components/     # Reusable React components
-│       ├── pages/          # Page-level React components (Dashboard, Generator)
-│       └── main.jsx        # Frontend entry point
-└── docker-compose.yml      # Defines and configures the multi-container application
+├── .env.docker.example       # Example environment variables for Docker Compose
+├── .gitignore                # Files/directories to ignore in Git
+├── backend_new/              # Python FastAPI Backend Service
+│   ├── .dockerignore         # Docker ignore rules for backend
+│   ├── .env.example          # Example environment variables for backend
+│   ├── Dockerfile            # Dockerfile for building the backend image
+│   ├── app/                  # FastAPI application source code
+│   │   ├── config.py         # Application configuration settings
+│   │   ├── database.py       # SQLAlchemy database connection and session management
+│   │   ├── main.py           # Main FastAPI application entry point
+│   │   ├── models/           # SQLAlchemy ORM models (User, Repository, Generation)
+│   │   ├── prompts/          # AI prompt templates and management
+│   │   ├── routers/          # FastAPI API endpoint modules (Auth, Generate, Repos)
+│   │   ├── schemas/          # Pydantic schemas for request/response validation
+│   │   └── services/         # Business logic and external integrations (AI generator, GitHub service)
+│   ├── readme_ai.db          # SQLite database file (generated on first run)
+│   ├── requirements.txt      # Python dependencies for the backend
+│   └── run.py                # Script to run the backend application (e.g., for local development)
+├── docker-compose.yml        # Docker Compose configuration for multi-service orchestration
+├── frontend/                 # React.js Frontend Service
+│   ├── .dockerignore         # Docker ignore rules for frontend
+│   ├── .gitignore            # Git ignore rules for frontend
+│   ├── Dockerfile            # Dockerfile for building the frontend image
+│   ├── nginx.conf            # Nginx configuration to serve the React app
+│   ├── package.json          # Node.js project dependencies and scripts
+│   ├── public/               # Static assets (logos, favicons)
+│   ├── src/                  # React application source code
+│   │   ├── App.jsx           # Main React application component
+│   │   └── components/       # Reusable React components (e.g., BadgeSelector, GlassSurface)
+│   └── index.html            # Main HTML file for the React app
+└── README.md                 # This project README file
 ```
 
 ## API Reference
 
-The backend API is built with FastAPI, which automatically generates interactive API documentation. Once the application is running, you can access the documentation at:
+The VibeDocs backend provides a comprehensive RESTful API. When the backend service is running, interactive API documentation is automatically generated and accessible:
 
--   **Swagger UI:** `http://localhost:8000/docs`
--   **ReDoc:** `http://localhost:8000/redoc`
+*   **Swagger UI:** `http://localhost:8000/docs`
+*   **ReDoc:** `http://localhost:8000/redoc`
 
-These interfaces allow you to explore available endpoints, request/response schemas, and even test the API directly from your browser.
+Key API endpoint categories include:
+
+*   `/auth`: User authentication, registration, and token management.
+*   `/repos`: Endpoints for managing and integrating with user repositories (e.g., fetching details).
+*   `/generate`: Endpoints dedicated to triggering and managing the AI-powered README generation process.
 
 ## Contributing
 
 We welcome contributions to VibeDocs! To contribute, please follow these steps:
 
-1.  **Fork the repository:** Click the "Fork" button at the top right of this page.
-2.  **Clone your forked repository:**
+1.  **Fork** the repository on GitHub.
+2.  **Clone** your forked repository to your local machine.
     ```bash
-    git clone https://github.com/YOUR_USERNAME/VibeDocs.git
+    git clone https://github.com/your-username/VibeDocs.git
     cd VibeDocs
     ```
-3.  **Create a new branch:**
+3.  **Create a new branch** for your feature or bug fix.
     ```bash
-    git checkout -b feature/your-feature-name
+    git checkout -b feature/amazing-feature
     ```
-4.  **Make your changes:** Implement your feature or fix bugs.
-5.  **Commit your changes:**
+4.  **Make your changes** and ensure they adhere to the project's coding standards.
+5.  **Commit your changes** with a clear and descriptive commit message.
     ```bash
     git commit -m 'feat: Add amazing feature'
     ```
-    (Please follow conventional commit messages if possible)
-6.  **Push to your branch:**
+6.  **Push your branch** to your forked repository.
     ```bash
-    git push origin feature/your-feature-name
+    git push origin feature/amazing-feature
     ```
-7.  **Open a Pull Request:** Go to the original repository on GitHub and open a new Pull Request from your forked branch. Provide a clear description of your changes.
+7.  **Open a Pull Request** against the `main` branch of the original repository. Provide a detailed description of your changes.
 
 ## License
 
