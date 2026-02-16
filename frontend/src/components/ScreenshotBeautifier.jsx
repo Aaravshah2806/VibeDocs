@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import html2canvas from 'html2canvas';
 
-function ScreenshotBeautifier({ isOpen, onClose }) {
+function ScreenshotBeautifier({ isOpen, onClose, onInsert }) {
   const [image, setImage] = useState(null);
   const [padding, setPadding] = useState(40);
   const [shadow, setShadow] = useState('medium'); // none, small, medium, large
@@ -47,6 +47,36 @@ function ScreenshotBeautifier({ isOpen, onClose }) {
       console.error('Paste failed:', err);
       // Fallback for older browsers
       alert('Please use Ctrl+V / Cmd+V to paste an image onto the page.');
+    }
+  };
+
+  const handleInsert = async () => {
+    if (!exportRef.current) return;
+    
+    try {
+      const canvas = await html2canvas(exportRef.current, {
+        backgroundColor: null,
+        scale: 2
+      });
+      
+      canvas.toBlob((blob) => {
+        // Trigger download
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'readme-screenshot.png';
+        a.click();
+        URL.revokeObjectURL(url);
+        
+        // Insert markdown
+        if (onInsert) {
+          onInsert('readme-screenshot.png');
+          onClose();
+        }
+      });
+    } catch (err) {
+      console.error('Insert failed:', err);
+      alert('Failed to process image.');
     }
   };
 
@@ -207,6 +237,9 @@ function ScreenshotBeautifier({ isOpen, onClose }) {
             />
             <button className="btn btn-primary" onClick={handleExport} disabled={!image}>
               Copy to Clipboard
+            </button>
+            <button className="btn btn-secondary" onClick={handleInsert} disabled={!image}>
+              Download & Insert
             </button>
             <button className="btn-ghost" onClick={onClose}>&times;</button>
           </div>

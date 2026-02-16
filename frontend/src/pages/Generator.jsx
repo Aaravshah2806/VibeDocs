@@ -366,6 +366,14 @@ function Generator() {
     setContent(newContent);
   };
 
+
+
+  const handleInsertScreenshot = (filename) => {
+    const markdown = `\n![Vibe Screenshot](${filename})\n`;
+    setContent(prev => prev + markdown);
+    alert(`Image downloaded as '${filename}'.\nMarkdown link inserted at the end of README.`);
+  };
+
   const handleAudit = async () => {
     if (!content) return;
     setIsAuditing(true);
@@ -408,6 +416,7 @@ function Generator() {
         <ScreenshotBeautifier
           isOpen={showScreenshotModal}
           onClose={() => setShowScreenshotModal(false)}
+          onInsert={handleInsertScreenshot}
         />
       )}
       

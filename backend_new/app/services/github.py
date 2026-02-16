@@ -101,56 +101,7 @@ class GitHubService:
             except httpx.HTTPStatusError:
                 return None
     
-    async def commit_file(
-        self,
-        owner: str,
-        repo: str,
-        path: str,
-        content: str,
-        message: str,
-        branch: str = "main"
-    ) -> bool:
-        """Commit a file to the repository."""
-        async with httpx.AsyncClient() as client:
-            # Get current file SHA if it exists
-            try:
-                current_file = await client.get(
-                    f"{self.base_url}/repos/{owner}/{repo}/contents/{path}",
-                    headers=self.headers,
-                    params={"ref": branch}
-                )
-                current_sha = current_file.json().get("sha")
-            except httpx.HTTPStatusError:
-                current_sha = None
-            
-            # Encode content to base64
-            import base64
-            encoded_content = base64.b64encode(content.encode("utf-8")).decode("utf-8")
-            
-            # Commit the file
-            commit_data = {
-                "message": message,
-                "content": encoded_content,
-                "branch": branch
-            }
-            if current_sha:
-                commit_data["sha"] = current_sha
-            
-            print(f"DEBUG: Attempting to commit to: {self.base_url}/repos/{owner}/{repo}/contents/{path}", flush=True)
-            response = await client.put(
-                f"{self.base_url}/repos/{owner}/{repo}/contents/{path}",
-                headers=self.headers,
-                json=commit_data
-            )
-            
-            print(f"DEBUG: GitHub Response Status: {response.status_code}", flush=True)
-            print(f"DEBUG: GitHub Scopes: {response.headers.get('X-OAuth-Scopes')}", flush=True)
-            
-            if response.status_code >= 400:
-                print(f"DEBUG: Commit failed. Body: {response.text}", flush=True)
-                
-            response.raise_for_status()
-            return True
+
     
     async def get_user_info(self) -> Dict[str, Any]:
         """Get authenticated user information."""
