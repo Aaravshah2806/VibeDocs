@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useUser, useAuth, RedirectToSignIn } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import RepoCard from '../components/RepoCard';
 import { fetchRepos } from '../services/api';
 
 function Dashboard() {
-  const { isSignedIn, isLoaded, user } = useUser();
-  const { getToken } = useAuth();
+  const { isSignedIn, user, token, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,17 +17,12 @@ function Dashboard() {
   // Fetch repos from backend
   useEffect(() => {
     async function loadRepos() {
-      if (!isSignedIn) return;
+      if (!isSignedIn || !token) return;
       
       try {
         setLoading(true);
         setError(null);
-        console.log('DEBUG: Getting token from Clerk...');
-        const token = await getToken();
-        console.log('DEBUG: Token received:', token ? 'Yes' : 'No');
-        console.log('DEBUG: Calling fetchRepos...');
         const data = await fetchRepos(token);
-        console.log('DEBUG: Repos received:', data);
         setRepos(data);
       } catch (err) {
         console.error('Failed to fetch repos:', err);
@@ -36,13 +32,17 @@ function Dashboard() {
       }
     }
 
-    if (isLoaded && isSignedIn) {
-      loadRepos();
+    if (!authLoading) {
+      if (isSignedIn) {
+        loadRepos();
+      } else {
+        navigate('/');
+      }
     }
-  }, [isLoaded, isSignedIn, getToken]);
+  }, [isSignedIn, token, authLoading, navigate]);
 
   // Show loading while checking auth
-  if (!isLoaded) {
+  if (authLoading) {
     return (
       <div className="dashboard">
         <Navbar />
@@ -53,9 +53,9 @@ function Dashboard() {
     );
   }
 
-  // Redirect to sign-in if not authenticated
+  // Redirect to home if not authenticated
   if (!isSignedIn) {
-    return <RedirectToSignIn />;
+    return null; // Will navigate in useEffect
   }
 
   const filteredRepos = repos.filter(repo =>

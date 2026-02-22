@@ -1,133 +1,120 @@
-"""Authentication router with Clerk JWT verification."""
-from fastapi import APIRouter, Depends, HTTPException, Header
+"""Authentication router with GitHub OAuth."""
+import httpx
+from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi.responses import RedirectResponse
 from sqlalchemy.orm import Session
-from typing import Optional
 from app.database import get_db
 from app.models.user import User
 from app.schemas.schemas import UserResponse
 from app.config import settings
+from app.utils.security import create_access_token, get_current_user
 import logging
 
 # Set up logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler()
-    ]
-)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
+@router.get("/github/login")
+async def github_login():
+    """Redirect to GitHub OAuth login page."""
+    if not settings.github_client_id:
+        raise HTTPException(status_code=500, detail="GitHub Client ID not configured")
+    
+    redirect_uri = settings.github_redirect_uri or "http://localhost:5175/auth/callback"
+    
+    params = {
+        "client_id": settings.github_client_id,
+        "redirect_uri": redirect_uri,
+        "scope": "user repo",
+        "allow_signup": "true",
+    }
+    query_params = "&".join([f"{k}={v}" for k, v in params.items()])
+    url = f"https://github.com/login/oauth/authorize?{query_params}"
+    logger.info(f"GitHub login URL: {url}")
+    return {"url": url}
 
-async def verify_clerk_token(authorization: Optional[str] = Header(None)) -> dict:
-    """Verify Clerk JWT token and extract user information."""
-    logger.info("verify_clerk_token called")
+@router.get("/github/callback")
+async def github_callback(code: str, db: Session = Depends(get_db)):
+    """Handle GitHub OAuth callback."""
+    if not settings.github_client_id or not settings.github_client_secret:
+        raise HTTPException(status_code=500, detail="GitHub OAuth not configured")
     
-    if not authorization:
-        logger.error("No authorization header")
-        raise HTTPException(status_code=401, detail="Authorization header missing")
+    redirect_uri = settings.github_redirect_uri or "http://localhost:5175/auth/callback"
     
-    if not authorization.startswith("Bearer "):
-        logger.error("Invalid authorization format")
-        raise HTTPException(status_code=401, detail="Invalid authorization format")
-    
-    token = authorization.split(" ")[1]
-    logger.info(f"Token received (first 20 chars): {token[:20]}...")
-    
-    # Decode JWT to get user ID
-    try:
-        import jwt
-        decoded = jwt.decode(token, options={"verify_signature": False})
-        clerk_user_id = decoded.get("sub") or decoded.get("user_id")
-        logger.info(f"Decoded user ID: {clerk_user_id}")
-        
-        if not clerk_user_id:
-            raise HTTPException(status_code=401, detail="Invalid token: no user ID")
-        
-        # Try to get GitHub token from Clerk API
-        github_token = None
-        if settings.clerk_secret_key:
-            logger.info("Fetching GitHub token from Clerk...")
-            github_token = await fetch_github_token_from_clerk(clerk_user_id)
-            logger.info(f"GitHub token received: {'Yes' if github_token else 'No'}")
-        else:
-            logger.warning("No Clerk secret key configured")
-        
-        return {
-            "clerk_user_id": clerk_user_id,
-            "github_token": github_token
-        }
-    except jwt.exceptions.DecodeError as e:
-        logger.error(f"JWT decode error: {e}")
-        raise HTTPException(status_code=401, detail=f"Invalid token: {str(e)}")
-
-
-async def fetch_github_token_from_clerk(clerk_user_id: str) -> Optional[str]:
-    """Fetch GitHub OAuth access token from Clerk API."""
-    import httpx
-    
-    if not settings.clerk_secret_key:
-        print("DEBUG: No Clerk secret key configured")
-        return None
-    
+    # Exchange code for access token
     try:
         async with httpx.AsyncClient() as client:
-            # Clerk API endpoint to get OAuth access tokens for a user
-            url = f"https://api.clerk.com/v1/users/{clerk_user_id}/oauth_access_tokens/oauth_github"
-            print(f"DEBUG: Fetching GitHub token from Clerk for user: {clerk_user_id}")
-            
-            response = await client.get(
-                url,
-                headers={
-                    "Authorization": f"Bearer {settings.clerk_secret_key}",
-                    "Content-Type": "application/json"
-                }
+            token_response = await client.post(
+                "https://github.com/login/oauth/access_token",
+                data={
+                    "client_id": settings.github_client_id,
+                    "client_secret": settings.github_client_secret,
+                    "code": code,
+                    "redirect_uri": redirect_uri,
+                },
+                headers={"Accept": "application/json"}
             )
+            token_data = token_response.json()
+            access_token = token_data.get("access_token")
             
-            print(f"DEBUG: Clerk API response status: {response.status_code}")
-            print(f"DEBUG: Clerk API response: {response.text}")
+            if not access_token:
+                github_error = token_data.get("error", "unknown_error")
+                github_error_desc = token_data.get("error_description", "No description")
+                logger.error(f"GitHub token error: {github_error} - {github_error_desc}")
+                logger.error(f"Full token response: {token_data}")
+                raise HTTPException(
+                    status_code=400, 
+                    detail=f"GitHub auth failed: {github_error} - {github_error_desc}"
+                )
             
-            if response.status_code == 200:
-                data = response.json()
-                # Clerk returns an array of tokens, get the first one
-                if data and len(data) > 0:
-                    return data[0].get("token")
+            # Fetch user info from GitHub
+            user_response = await client.get(
+                "https://api.github.com/user",
+                headers={"Authorization": f"token {access_token}"}
+            )
+            github_user = user_response.json()
+            github_id = str(github_user.get("id"))
+            github_username = github_user.get("login")
+            avatar_url = github_user.get("avatar_url")
             
-            return None
+            # Find or create user
+            user = db.query(User).filter(User.github_id == github_id).first()
+            if not user:
+                user = User(
+                    github_id=github_id,
+                    github_username=github_username,
+                    avatar_url=avatar_url,
+                    github_access_token=access_token
+                )
+                db.add(user)
+            else:
+                user.github_access_token = access_token
+                user.github_username = github_username
+                user.avatar_url = avatar_url
+            
+            db.commit()
+            db.refresh(user)
+            
+            # Generate local JWT
+            jwt_token = create_access_token(data={"user_id": user.id})
+            
+            return {
+                "access_token": jwt_token,
+                "token_type": "bearer",
+                "user": {
+                    "id": user.id,
+                    "github_username": user.github_username,
+                    "avatar_url": user.avatar_url
+                }
+            }
+            
     except Exception as e:
-        print(f"Failed to fetch GitHub token from Clerk: {e}")
-        return None
-
+        logger.error(f"OAuth error: {e}")
+        raise HTTPException(status_code=500, detail=f"Authentication failed: {str(e)}")
 
 @router.get("/me", response_model=UserResponse)
-async def get_current_user(
-    user_info: dict = Depends(verify_clerk_token),
-    db: Session = Depends(get_db)
-):
-    """Get current user information. Creates user if doesn't exist."""
-    clerk_user_id = user_info["clerk_user_id"]
-    github_token = user_info.get("github_token")
-    
-    # Find or create user
-    user = db.query(User).filter(User.clerk_user_id == clerk_user_id).first()
-    
-    if not user:
-        # Create new user if doesn't exist
-        # Note: In production, GitHub token should come from Clerk OAuth, not JWT
-        if not github_token:
-            raise HTTPException(
-                status_code=400,
-                detail="GitHub access token required. Please connect your GitHub account."
-            )
-        
-        user = User(
-            clerk_user_id=clerk_user_id,
-            github_access_token=github_token
-        )
-        db.add(user)
-        db.commit()
-        db.refresh(user)
-    
+async def me(user: User = Depends(get_current_user)):
+    """Get current user information."""
     return user

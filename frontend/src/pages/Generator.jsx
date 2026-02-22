@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { useUser, useAuth, RedirectToSignIn } from '@clerk/clerk-react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import MarkdownPreview from '../components/MarkdownPreview';
 import SmartRefineModal from '../components/SmartRefineModal';
@@ -32,8 +32,8 @@ const templates = [
 function Generator() {
   const { repoId, owner, repo } = useParams();
   const identifier = owner && repo ? `${owner}/${repo}` : repoId;
-  const { isSignedIn, isLoaded } = useUser();
-  const { getToken } = useAuth();
+  const { isSignedIn, token, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
   const [selectedTemplate, setSelectedTemplate] = useState('professional');
   const [content, setContent] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
@@ -66,13 +66,12 @@ function Generator() {
   // Fetch repo info on mount: try list first, then fetch by id or owner/repo
   useEffect(() => {
     async function loadRepoInfo() {
-      if (!isSignedIn || !identifier) return;
+      if (!isSignedIn || !identifier || !token) return;
       setRepoInfo(null);
       setDbRepoId(null);
       setLoadError(null);
 
       try {
-        const token = await getToken();
         try {
           const repos = await fetchRepos(token);
           const match = repos.find(
@@ -109,10 +108,14 @@ function Generator() {
     }
 
     loadRepoInfoRef.current = loadRepoInfo;
-    if (isLoaded && isSignedIn) {
-      loadRepoInfo();
+    if (!authLoading) {
+      if (isSignedIn) {
+        loadRepoInfo();
+      } else {
+        navigate('/');
+      }
     }
-  }, [isLoaded, isSignedIn, identifier, getToken]);
+  }, [isSignedIn, token, authLoading, identifier, navigate]);
 
   const retryLoad = () => {
     setLoadError(null);
@@ -120,7 +123,7 @@ function Generator() {
     loadRepoInfoRef.current?.();
   };
 
-  if (!isLoaded) {
+  if (authLoading) {
     return (
       <div className="generator">
         <Navbar />
@@ -132,7 +135,7 @@ function Generator() {
   }
 
   if (!isSignedIn) {
-    return <RedirectToSignIn />;
+    return null; // Will navigate in useEffect
   }
 
   const handleGenerate = async () => {
@@ -142,8 +145,7 @@ function Generator() {
     setContent('');
 
     try {
-      const token = await getToken();
-      console.log('Token obtained:', token ? 'Yes' : 'No');
+      console.log('Using token:', token ? 'Yes' : 'No');
       
       let idForGenerate = dbRepoId;
 
@@ -292,7 +294,6 @@ function Generator() {
   
   const handleRefine = async (instruction) => {
     try {
-      const token = await getToken();
       const response = await refineText(token, selectedText, instruction);
       
       if (response.refined_text && textareaRef.current) {
@@ -317,7 +318,6 @@ function Generator() {
   const handleDetectBadges = async () => {
     setIsDetectingBadges(true);
     try {
-      const token = await getToken();
       
       let idForBadge = dbRepoId;
       
@@ -379,7 +379,6 @@ function Generator() {
     setIsAuditing(true);
     setAuditResult(null);
     try {
-      const token = await getToken();
       const result = await auditReadme(token, content);
       setAuditResult(result);
     } catch (err) {

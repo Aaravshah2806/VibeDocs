@@ -4,8 +4,9 @@ from datetime import datetime
 
 # User Schemas
 class UserBase(BaseModel):
-    clerk_user_id: str
+    github_id: str
     github_username: Optional[str] = None
+    avatar_url: Optional[str] = None
 
 class UserCreate(UserBase):
     github_access_token: str

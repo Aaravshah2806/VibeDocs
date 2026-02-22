@@ -1,60 +1,112 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-function AuthCallback() {
+const AuthCallback = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const { handleCallback } = useAuth();
+  const { setToken } = useAuth();
   const [error, setError] = useState(null);
+  
+  const API_URL = '';
+
+  const hasFetched = useRef(false);
 
   useEffect(() => {
-    const token = searchParams.get('token');
-    const errorParam = searchParams.get('error');
+    const handleCallback = async () => {
+      const code = searchParams.get('code');
+      if (!code || hasFetched.current) return;
+      
+      hasFetched.current = true;
+      console.log("Auth code received, exchanging for token...");
+      
+      try {
+        const response = await fetch(`${API_URL}/api/auth/github/callback?code=${code}`);
+        const data = await response.json();
+        
+        if (response.ok) {
+          console.log("Token received from backend");
+          setToken(data.access_token);
+          navigate('/dashboard');
+        } else {
+          console.error('Callback failed:', data);
+          setError(data.detail || 'Authentication failed. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error during callback:', error);
+        setError('Network error: Could not reach the backend. Is it running on port 8001?');
+      }
+    };
 
-    if (errorParam) {
-      setError(errorParam);
-      setTimeout(() => navigate('/sign-in'), 3000);
-      return;
-    }
-
-    if (token) {
-      handleCallback(token);
-      // Redirect to dashboard after successful login
-      navigate('/dashboard');
-    } else {
-      setError('No authentication token received');
-      setTimeout(() => navigate('/sign-in'), 3000);
-    }
-  }, [searchParams, handleCallback, navigate]);
+    handleCallback();
+  }, [searchParams, navigate, setToken]);
 
   if (error) {
     return (
-      <div className="auth-callback">
-        <div className="auth-callback-container">
-          <div className="auth-callback-icon error">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M15 9l-6 6M9 9l6 6" />
-            </svg>
-          </div>
-          <h2>Authentication Failed</h2>
-          <p>{error}</p>
-          <p className="redirect-text">Redirecting to sign in...</p>
-        </div>
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        height: '100vh', 
+        backgroundColor: '#0a0a0a',
+        color: '#fff',
+        flexDirection: 'column',
+        gap: '20px',
+        fontFamily: 'system-ui, -apple-system, sans-serif',
+        padding: '20px',
+        textAlign: 'center'
+      }}>
+        <div style={{ fontSize: '3rem' }}>⚠️</div>
+        <h2 style={{ color: '#f87171' }}>Authentication Failed</h2>
+        <p style={{ color: '#94a3b8', maxWidth: '500px' }}>{error}</p>
+        <button 
+          onClick={() => navigate('/')}
+          style={{ 
+            padding: '10px 24px', 
+            background: '#6366f1', 
+            color: 'white', 
+            border: 'none', 
+            borderRadius: '8px', 
+            cursor: 'pointer',
+            fontSize: '1rem'
+          }}
+        >
+          Try Again
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="auth-callback">
-      <div className="auth-callback-container">
-        <div className="loading-spinner"></div>
-        <h2>Completing Sign In...</h2>
-        <p>Please wait while we set up your account.</p>
-      </div>
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '100vh', 
+      backgroundColor: '#0a0a0a',
+      color: '#fff',
+      flexDirection: 'column',
+      gap: '20px',
+      fontFamily: 'system-ui, -apple-system, sans-serif'
+    }}>
+      <div className="spinner" style={{
+        width: '50px',
+        height: '50px',
+        border: '3px solid rgba(255,255,255,0.1)',
+        borderTop: '3px solid #6366f1',
+        borderRadius: '50%',
+        animation: 'spin 1s linear infinite'
+      }} />
+      <p style={{ fontSize: '1.2rem', fontWeight: '500' }}>Authenticating with GitHub...</p>
+      <style>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
-}
+};
 
 export default AuthCallback;
+

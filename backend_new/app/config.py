@@ -10,7 +10,16 @@ class Settings(BaseSettings):
     
     # API Keys
     gemini_api_key: Optional[str] = None
-    clerk_secret_key: Optional[str] = None
+    
+    # GitHub OAuth
+    github_client_id: Optional[str] = None
+    github_client_secret: Optional[str] = None
+    github_redirect_uri: Optional[str] = None # Will default to frontend url + /auth/callback
+    
+    # JWT
+    jwt_secret: str = "your-super-secret-key-change-me-in-production"
+    jwt_algorithm: str = "HS256"
+    jwt_expiration_minutes: int = 60 * 24 * 7 # 7 days
     
     # Database
     database_url: str = "sqlite:///./readme_ai.db"

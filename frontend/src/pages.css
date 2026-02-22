@@ -505,52 +505,6 @@
   justify-content: flex-end;
 }
 
-/* Sign In Page */
-.signin-page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-8);
-}
-
-.signin-container {
-  width: 100%;
-  max-width: 440px;
-}
-
-.signin-header {
-  text-align: center;
-  margin-bottom: var(--space-8);
-}
-
-.signin-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: var(--space-6);
-}
-
-.signin-title {
-  font-size: 1.75rem;
-  margin-bottom: var(--space-2);
-}
-
-.signin-subtitle {
-  color: var(--text-muted);
-}
-
-.clerk-signin {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-xl);
-  padding: var(--space-8);
-  backdrop-filter: blur(10px);
-}
 
 /* ==========================================
    PREMIUM AUTH PAGES (Sign In / Sign Up)
@@ -848,9 +802,6 @@
   font-size: 0.9375rem;
 }
 
-.auth-clerk-container {
-  width: 100%;
-}
 
 /* UserButton (Profile) Dark Mode Styling */
 .user-avatar {
@@ -1266,9 +1217,6 @@
     font-size: 1.5rem;
   }
 
-  .clerk-signin {
-    padding: var(--space-6);
-  }
 }
 
 /* Mobile (480px) */

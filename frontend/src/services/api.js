@@ -12,7 +12,7 @@ const API_BASE_URL = getApiBaseUrl();
 /**
  * Make an authenticated API request
  * @param {string} endpoint - API endpoint
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  * @param {object} options - Fetch options
  */
 async function apiRequest(endpoint, token, options = {}) {
@@ -39,7 +39,7 @@ async function apiRequest(endpoint, token, options = {}) {
 
 /**
  * Fetch user's GitHub repositories
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  */
 export async function fetchRepos(token) {
   return apiRequest("/api/repos/", token);
@@ -48,7 +48,7 @@ export async function fetchRepos(token) {
 /**
  * Fetch a single repository from GitHub by ID or owner/repo, import to DB, and return DB repo.
  * Use when the repo isn't in the user's list (e.g. pagination) or fetchRepos failed.
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  * @param {string} identifier - GitHub repo ID (numeric) or "owner/repo"
  */
 export async function fetchRepoByIdentifier(token, identifier) {
@@ -58,7 +58,7 @@ export async function fetchRepoByIdentifier(token, identifier) {
 
 /**
  * Get current user info
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  */
 export async function getCurrentUser(token) {
   return apiRequest("/api/auth/me", token);
@@ -66,7 +66,7 @@ export async function getCurrentUser(token) {
 
 /**
  * Import a repository to the database
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  * @param {object} repoData - GitHub repo data
  */
 export async function importRepo(token, repoData) {
@@ -78,7 +78,7 @@ export async function importRepo(token, repoData) {
 
 /**
  * Generate README for a repository
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  * @param {string} repoId - Repository ID
  * @param {string} templateType - Template type (professional, minimalist, portfolio)
  */
@@ -95,7 +95,7 @@ export async function generateReadme(
 
 /**
  * Get generation status
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  * @param {string} generationId - Generation ID
  */
 export async function getGeneration(token, generationId) {
@@ -104,7 +104,7 @@ export async function getGeneration(token, generationId) {
 
 /**
  * Refine text using AI
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  * @param {string} currentText - Text to refine
  * @param {string} instruction - User styling instruction
  * @param {string} context - Optional context
@@ -127,7 +127,7 @@ export async function refineText(
 
 /**
  * Detect badges for a repository
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  * @param {string} repoId - Repository ID
  */
 export async function detectBadges(token, repoId) {
@@ -136,7 +136,7 @@ export async function detectBadges(token, repoId) {
 
 /**
  * Audit README content
- * @param {string} token - Clerk session token
+ * @param {string} token - JWT authentication token
  * @param {string} content - README content
  */
 export async function auditReadme(token, content) {

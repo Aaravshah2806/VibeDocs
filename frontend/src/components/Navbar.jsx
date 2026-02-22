@@ -1,8 +1,9 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
+import { useAuth } from '../context/AuthContext';
 import GlassSurface from './GlassSurface';
 
 function Navbar() {
+  const { isSignedIn, user, logout, login } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   
@@ -51,14 +52,14 @@ function Navbar() {
             </Link>
 
             <div className="navbar-nav">
-              <SignedIn>
+              {isSignedIn && (
                 <Link 
                   to="/dashboard" 
                   className={`navbar-link ${isActive('/dashboard') ? 'active' : ''}`}
                 >
                   Dashboard
                 </Link>
-              </SignedIn>
+              )}
               <button onClick={() => scrollToSection('features')} className="navbar-link nav-btn">
                 Features
               </button>
@@ -68,87 +69,32 @@ function Navbar() {
             </div>
 
             <div className="navbar-actions">
-              <SignedOut>
-                <Link to="/sign-in" className="btn btn-secondary btn-navbar">
-                  Sign In
-                </Link>
-                <Link to="/sign-up" className="btn btn-primary btn-navbar">
-                  Get Started
-                </Link>
-              </SignedOut>
-              
-              <SignedIn>
-                <UserButton 
-                  appearance={{
-                    variables: {
-                      colorPrimary: '#8b5cf6',
-                      colorBackground: '#12121a',
-                      colorText: '#ffffff',
-                      colorTextSecondary: '#a0a0b0',
-                      colorInputBackground: 'rgba(26, 26, 37, 0.8)',
-                      colorInputText: '#ffffff',
-                      borderRadius: '0.75rem',
-                      fontFamily: '"Libre Franklin", -apple-system, BlinkMacSystemFont, sans-serif',
-                    },
-                    elements: {
-                      avatarBox: {
-                        width: '42px',
-                        height: '42px',
-                        border: '2px solid rgba(139, 92, 246, 0.3)',
-                        borderRadius: '50%',
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 2px 10px rgba(139, 92, 246, 0.2)',
-                        '&:hover': {
-                          borderColor: 'rgba(139, 92, 246, 0.6)',
-                          boxShadow: '0 4px 20px rgba(139, 92, 246, 0.3)',
-                          transform: 'scale(1.05)',
-                        }
-                      },
-                      userButtonPopoverCard: {
-                        background: 'rgba(18, 18, 26, 0.95)',
-                        border: '1px solid rgba(139, 92, 246, 0.25)',
-                        borderRadius: '1rem',
-                        backdropFilter: 'blur(20px)',
-                        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05) inset',
-                      },
-                      userButtonPopoverMain: {
-                        padding: '0.5rem',
-                      },
-                      userButtonPopoverFooter: {
-                        display: 'none',
-                      },
-                      userPreview: {
-                        padding: '1rem',
-                        borderBottom: '1px solid rgba(139, 92, 246, 0.15)',
-                      },
-                      userPreviewMainIdentifier: {
-                        color: '#ffffff',
-                        fontWeight: '600',
-                      },
-                      userPreviewSecondaryIdentifier: {
-                        color: '#a0a0b0',
-                      },
-                      userButtonPopoverActionButton: {
-                        color: '#a0a0b0',
-                        borderRadius: '0.5rem',
-                        padding: '0.75rem 1rem',
-                        transition: 'all 0.2s ease',
-                        '&:hover': {
-                          background: 'rgba(139, 92, 246, 0.15)',
-                          color: '#ffffff',
-                        }
-                      },
-                      userButtonPopoverActionButtonText: {
-                        fontWeight: '500',
-                      },
-                      userButtonPopoverActionButtonIcon: {
-                        color: '#8b5cf6',
-                        opacity: 0.8,
-                      },
-                    }
-                  }}
-                />
-              </SignedIn>
+              {!isSignedIn ? (
+                <>
+                  <button onClick={login} className="btn btn-secondary btn-navbar" style={{cursor: 'pointer'}}>
+                    Sign In
+                  </button>
+                  <button onClick={login} className="btn btn-primary btn-navbar" style={{cursor: 'pointer'}}>
+                    Get Started
+                  </button>
+                </>
+              ) : (
+                <div className="user-menu" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <img 
+                    src={user?.avatar_url} 
+                    alt={user?.github_username} 
+                    style={{ 
+                      width: '36px', 
+                      height: '36px', 
+                      borderRadius: '50%',
+                      border: '2px solid rgba(139, 92, 246, 0.4)'
+                    }} 
+                  />
+                  <button onClick={logout} className="btn btn-secondary btn-navbar" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem', cursor: 'pointer' }}>
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </GlassSurface>

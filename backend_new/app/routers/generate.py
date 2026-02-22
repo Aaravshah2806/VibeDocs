@@ -21,7 +21,7 @@ from app.services.github import GitHubService
 from app.services.ai_generator import AIGeneratorService
 from app.services.badge_generator import BadgeGeneratorService
 from app.services.audit_service import AuditService
-from app.routers.auth import verify_clerk_token
+from app.utils.security import get_current_user
 
 router = APIRouter(prefix="/api/generate", tags=["generate"])
 
@@ -32,32 +32,23 @@ def log_trace(msg):
     # Log to stdout for cloud compatibility
     print(f"{datetime.now()}: {msg}", flush=True)
 
-
-
 def get_user_with_token(
-    user_info: dict = Depends(verify_clerk_token),
-    db: Session = Depends(get_db)
+    user: User = Depends(get_current_user)
 ) -> Tuple[User, str]:
     """Get user and their GitHub access token."""
-    clerk_user_id = user_info["clerk_user_id"]
-    user = db.query(User).filter(User.clerk_user_id == clerk_user_id).first()
-    
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    
-    github_token = user_info.get("github_token") or user.github_access_token
+    token = user.github_access_token
     
     # Fallback to system token from env
-    if not github_token:
-        github_token = settings.github_token
+    if not token:
+        token = settings.github_token
     
-    if not github_token:
+    if not token:
         raise HTTPException(
-            status_code=400,
-            detail="GitHub access token not found. Please connect your GitHub account."
+            status_code=401,
+            detail="GitHub access token not found. Please log in again."
         )
     
-    return user, github_token
+    return user, token
 
 
 async def generate_readme_background(

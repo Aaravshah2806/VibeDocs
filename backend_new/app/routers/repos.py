@@ -13,47 +13,20 @@ from app.schemas.schemas import (
     FileTreeItem
 )
 from app.services.github import GitHubService
-from app.routers.auth import verify_clerk_token
+from app.utils.security import get_current_user
 
 router = APIRouter(prefix="/api/repos", tags=["repos"])
 
-
 def get_user_with_token(
-    user_info: dict = Depends(verify_clerk_token),
-    db: Session = Depends(get_db)
+    user: User = Depends(get_current_user)
 ) -> Tuple[User, str]:
-    """Get user and their GitHub access token. Creates user if not exists."""
-    clerk_user_id = user_info["clerk_user_id"]
-    github_token = user_info.get("github_token")
-    
-    user = db.query(User).filter(User.clerk_user_id == clerk_user_id).first()
-    
-    if not user:
-        # Auto-create user if they have a GitHub token
-        if github_token:
-            user = User(
-                clerk_user_id=clerk_user_id,
-                github_access_token=github_token
-            )
-            db.add(user)
-            db.commit()
-            db.refresh(user)
-        else:
-            raise HTTPException(
-                status_code=400,
-                detail="GitHub access token not found. Please connect your GitHub account in Clerk."
-            )
-    
-    # Get GitHub token from user or from Clerk JWT
-    token = github_token or user.github_access_token
-    
-    if not token:
+    """Get user and their GitHub access token."""
+    if not user.github_access_token:
         raise HTTPException(
-            status_code=400,
-            detail="GitHub access token not found. Please connect your GitHub account."
+            status_code=401,
+            detail="GitHub access token not found. Please log in again."
         )
-    
-    return user, token
+    return user, user.github_access_token
 
 
 @router.get("/", response_model=List[GitHubRepo])

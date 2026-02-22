@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { SignedIn, SignedOut } from '@clerk/clerk-react';
+import { useAuth } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import LiquidGlassCard from '../components/LiquidGlassCard';
@@ -9,6 +9,7 @@ import CosmicCursor from '../components/CosmicCursor';
 import MagneticButton from '../components/MagneticButton';
 
 function Landing() {
+  const { isSignedIn, login } = useAuth();
   const location = useLocation();
 
   // Handle scroll from navigation state
@@ -57,30 +58,30 @@ function Landing() {
             </p>
             
             <div className="hero-actions">
-              <SignedOut>
-                <MagneticButton className="btn-wrapper">
-                  <Link to="/sign-up" className="btn btn-primary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                    </svg>
-                    Connect GitHub
-                  </Link>
-                </MagneticButton>
-                
-                <MagneticButton className="btn-wrapper">
-                  <Link to="/sign-in" className="btn btn-secondary">
-                    Sign In
-                  </Link>
-                </MagneticButton>
-              </SignedOut>
-              
-              <SignedIn>
+              {!isSignedIn ? (
+                <>
+                  <MagneticButton className="btn-wrapper">
+                    <button onClick={login} className="btn btn-primary" style={{cursor: 'pointer'}}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                      </svg>
+                      Connect GitHub
+                    </button>
+                  </MagneticButton>
+                  
+                  <MagneticButton className="btn-wrapper">
+                    <button onClick={login} className="btn btn-secondary" style={{cursor: 'pointer'}}>
+                      Sign In
+                    </button>
+                  </MagneticButton>
+                </>
+              ) : (
                 <MagneticButton className="btn-wrapper">
                   <Link to="/dashboard" className="btn btn-primary">
                     Go to Dashboard
                   </Link>
                 </MagneticButton>
-              </SignedIn>
+              )}
             </div>
           </div>
         </div>
@@ -231,16 +232,15 @@ function Landing() {
             <p className="cta-description">
               Join thousands of developers who save hours on documentation.
             </p>
-            <SignedOut>
-              <Link to="/sign-up" className="btn btn-primary">
+            {!isSignedIn ? (
+              <button onClick={login} className="btn btn-primary" style={{cursor: 'pointer'}}>
                 Get Started for Free
-              </Link>
-            </SignedOut>
-            <SignedIn>
+              </button>
+            ) : (
               <Link to="/dashboard" className="btn btn-primary">
                 Go to Dashboard
               </Link>
-            </SignedIn>
+            )}
           </LiquidGlassCard>
         </div>
       </section>
