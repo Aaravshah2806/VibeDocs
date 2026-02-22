@@ -4,9 +4,6 @@ from app.config import settings
 from app.database import init_db
 from app.routers import auth, repos, generate
 
-# Initialize database
-init_db()
-
 # Create FastAPI app
 app = FastAPI(
     title = "GitHub README AI API",
@@ -16,6 +13,13 @@ app = FastAPI(
 
 @app.on_event("startup")
 async def startup_event():
+    try:
+        print("DATABASE INITIALIZING...", flush=True)
+        init_db()
+        print("DATABASE READY", flush=True)
+    except Exception as e:
+        print(f"DATABASE ERROR: {e}", flush=True)
+    
     print("BACKEND RESTARTED - READY FOR REQUESTS", flush=True)
 
 #Configure CORS
