@@ -6,7 +6,7 @@ services:
   # Backend Service - FastAPI
   backend:
     build:
-      context: ./backend_new
+      context: ./backend
       dockerfile: Dockerfile
     container_name: readme-ai-backend
     restart: unless-stopped
@@ -15,8 +15,11 @@ services:
     environment:
       - GEMINI_API_KEY=${GEMINI_API_KEY}
       - DATABASE_URL=sqlite:///./data/readme_ai.db
-      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
       - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+      - GITHUB_REDIRECT_URI=${GITHUB_REDIRECT_URI}
+      - JWT_SECRET=${JWT_SECRET}
       - CORS_ORIGINS=["http://localhost:5173","http://localhost:3000","http://localhost"]
       - DEBUG=${DEBUG:-false}
       - RATE_LIMIT_PER_MINUTE=${RATE_LIMIT_PER_MINUTE:-60}
@@ -43,7 +46,6 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - VITE_CLERK_PUBLISHABLE_KEY=${VITE_CLERK_PUBLISHABLE_KEY}
         - VITE_API_URL=http://localhost:8000
     container_name: readme-ai-frontend
     restart: unless-stopped
