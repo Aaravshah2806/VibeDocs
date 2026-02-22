@@ -1,6 +1,6 @@
 """Application configuration and environment variables."""
 import json
-from typing import Optional, List, Any
+from typing import Optional, List, Any, Union
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import field_validator
 
@@ -16,25 +16,25 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./readme_ai.db"
     
     # CORS
-    cors_origins: List[str] = ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000"]
+    cors_origins: Union[str, List[str]] = ["http://localhost:5173", "http://localhost:5174", "http://localhost:3000"]
 
-    @field_validator("cors_origins", mode="before")
+    @field_validator("cors_origins", mode="after")
     @classmethod
-    def assemble_cors_origins(cls, v: Any) -> List[str]:
+    def finalize_cors_origins(cls, v: Any) -> List[str]:
+        if isinstance(v, list):
+            return v
         if isinstance(v, str):
-            # Try to parse as JSON first (Render/Vercel sometimes pass JSON strings)
+            # Try JSON
             try:
                 parsed = json.loads(v)
                 if isinstance(parsed, list):
                     return parsed
-            except (json.JSONDecodeError, TypeError):
+            except:
                 pass
-            
-            # If not JSON, treat as comma-separated or single string
-            origins = [i.strip() for i in v.split(",")]
-            # Clean up: ensure each origin starts with http:// or https://
+            # Comma separated
+            origins = [o.strip() for o in v.split(",") if o.strip()]
             return [o if o.startswith(("http://", "https://")) else f"https://{o}" for o in origins]
-        return v
+        return ["*"] # Fallback
     
     model_config = SettingsConfigDict(
         env_file=".env",
