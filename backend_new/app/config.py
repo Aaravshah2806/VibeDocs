@@ -1,4 +1,5 @@
 """Application configuration and environment variables."""
+import json
 from typing import Optional, List, Any
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import field_validator
@@ -20,8 +21,19 @@ class Settings(BaseSettings):
     @field_validator("cors_origins", mode="before")
     @classmethod
     def assemble_cors_origins(cls, v: Any) -> List[str]:
-        if isinstance(v, str) and not v.startswith("["):
-            return [i.strip() for i in v.split(",")]
+        if isinstance(v, str):
+            # Try to parse as JSON first (Render/Vercel sometimes pass JSON strings)
+            try:
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+            except (json.JSONDecodeError, TypeError):
+                pass
+            
+            # If not JSON, treat as comma-separated or single string
+            origins = [i.strip() for i in v.split(",")]
+            # Clean up: ensure each origin starts with http:// or https://
+            return [o if o.startswith(("http://", "https://")) else f"https://{o}" for o in origins]
         return v
     
     model_config = SettingsConfigDict(
